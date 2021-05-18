@@ -1,19 +1,12 @@
-import {
-  ChakraProvider,
-  ColorModeProvider,
-  useColorMode,
-} from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import customTheme from '../styles/theme'
 import { Global, css } from '@emotion/react'
 
 const GlobalStyle = ({ children }) => {
-  const { colorMode } = useColorMode()
-
   return (
     <>
       <Global
         styles={css`
-          ${colorMode === 'light' ? 'white' : '#171717'};
           ::selection {
             background-color: #90cdf4;
             color: #fefefe;
@@ -24,13 +17,28 @@ const GlobalStyle = ({ children }) => {
           }
           html {
             min-width: 356px;
-            scroll-behavior: smooth;
           }
           #__next {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background: ${colorMode === 'light' ? 'white' : '#171717'};
+            background: #12141d;
+          }
+          h1,
+          h2,
+          h3,
+          h4,
+          h5 {
+            letter-spacing: -1.2px;
+          }
+          @media only screen and (min-width: 1024px) {
+            h1,
+            h2,
+            h3,
+            h4,
+            h5 {
+              letter-spacing: -1.8px;
+            }
           }
         `}
       />
@@ -42,16 +50,9 @@ const GlobalStyle = ({ children }) => {
 function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider resetCSS theme={customTheme}>
-      <ColorModeProvider
-        options={{
-          initialColorMode: 'light',
-          useSystemColorMode: true,
-        }}
-      >
-        <GlobalStyle>
-          <Component {...pageProps} />
-        </GlobalStyle>
-      </ColorModeProvider>
+      <GlobalStyle>
+        <Component {...pageProps} />
+      </GlobalStyle>
     </ChakraProvider>
   )
 }
