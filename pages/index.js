@@ -16,8 +16,8 @@ export default function Index() {
           spacing={8}
           justifyContent="center"
           alignItems="flex-start"
-          mx={{ md: '20', xl: '144' }}
-          mt={{ xl: '32' }}
+          mx="10vw"
+          mt="20vh"
         >
           <Introduction />
         </Stack>

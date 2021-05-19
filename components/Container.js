@@ -34,14 +34,19 @@ const Container = ({ children }) => {
 
   return (
     <>
-      <Slide direction="top" reverse in={navbar}>
+      <Slide
+        direction="top"
+        reverse
+        in={navbar}
+        transition={{ enter: { duration: 0.4, delay: 0.3 } }}
+      >
         <StickNav
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"
           width="100%"
           as="nav"
-          px={12}
+          px="3vw"
           my={5}
         >
           <Text color="white" fontWeight="bold" fontSize="32px">
@@ -49,18 +54,12 @@ const Container = ({ children }) => {
           </Text>
           <Box color="textSecondary">
             <NextLink href="/" passHref>
-              <Button
-                as="a"
-                variant="ghost"
-                p={[1, 2, 4]}
-                ml={10}
-                fontSize="16px"
-              >
+              <Button as="a" variant="ghost" p="4" ml="3vw" fontSize="16px">
                 Home
               </Button>
             </NextLink>
             <NextLink href="/blog" passHref>
-              <Button as="a" variant="ghost" p={[1, 2, 4]} fontSize="16px">
+              <Button as="a" variant="ghost" p="4" ml="3vw" fontSize="16px">
                 Blog
               </Button>
             </NextLink>
