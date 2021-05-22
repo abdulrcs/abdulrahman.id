@@ -4,6 +4,7 @@ import {
   Heading,
   Box,
   Icon,
+  Button,
   SlideFade,
   useMediaQuery,
 } from '@chakra-ui/react'
@@ -14,11 +15,11 @@ export default function Introduction() {
 
   return (
     <>
-      <Stack spacing={5} justifyContent="flex-start" alignItems="flex-start">
+      <Stack spacing={10} justifyContent="flex-start" alignItems="flex-start">
         <SlideFade
           direction="top"
           in={true}
-          transition={{ enter: { duration: 0.4, delay: 0.7 } }}
+          transition={{ enter: { duration: 0.4, delay: 0.6 } }}
         >
           <Text color="button1" fontSize="display2" fontWeight="medium">
             Hey there!, I'm-
@@ -37,7 +38,7 @@ export default function Introduction() {
         <SlideFade
           direction="top"
           in={true}
-          transition={{ enter: { duration: 0.4, delay: 0.8 } }}
+          transition={{ enter: { duration: 0.4, delay: 0.7 } }}
         >
           <Heading
             color="textSecondary"
@@ -58,12 +59,44 @@ export default function Introduction() {
         <SlideFade
           direction="top"
           in={true}
+          transition={{ enter: { duration: 0.4, delay: 0.8 } }}
+        >
+          <Text fontSize="display3" color="textSecondary">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum quas
+            expedita laudantium soluta debitis consequuntur nesciunt voluptates
+            minima esse nostrum!
+          </Text>
+        </SlideFade>
+        <SlideFade
+          direction="top"
+          in={true}
           transition={{ enter: { duration: 0.4, delay: 0.9 } }}
         >
           <Stack isInline spacing={4}>
-            <Icon as={FaGithub} w={6} h={6} />
-            <Icon as={FaLinkedin} w={6} h={6} />
-            <Icon as={FaEnvelope} w={6} h={6} />
+            <Button
+              colorScheme="gray"
+              leftIcon={<FaGithub />}
+              position="static"
+            >
+              Github
+            </Button>
+            <Button
+              backgroundColor="#0077b5"
+              leftIcon={<FaLinkedin />}
+              _hover={{ backgroundColor: '#0090db' }}
+              position="static"
+            >
+              LinkedIn
+            </Button>
+            <Button
+              backgroundColor="#EA4335"
+              color="#fff"
+              leftIcon={<FaEnvelope />}
+              _hover={{ backgroundColor: '#e05a4f' }}
+              position="static"
+            >
+              Email
+            </Button>
           </Stack>
         </SlideFade>
       </Stack>
