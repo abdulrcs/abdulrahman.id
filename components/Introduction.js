@@ -1,4 +1,5 @@
 import {
+  Link,
   Text,
   Stack,
   Heading,
@@ -73,30 +74,48 @@ export default function Introduction() {
           transition={{ enter: { duration: 0.4, delay: 0.9 } }}
         >
           <Stack isInline spacing={4}>
-            <Button
-              colorScheme="gray"
-              leftIcon={<FaGithub />}
-              position="static"
+            <Link
+              href="https://github.com/abdulrcs"
+              _hover={{ textDecoration: 'none' }}
+              isExternal
             >
-              Github
-            </Button>
-            <Button
-              backgroundColor="#0077b5"
-              leftIcon={<FaLinkedin />}
-              _hover={{ backgroundColor: '#0090db' }}
-              position="static"
+              <Button
+                colorScheme="gray"
+                leftIcon={<FaGithub />}
+                position="static"
+              >
+                Github
+              </Button>
+            </Link>
+            <Link
+              href="https://linkedin.com/in/abdulrcs"
+              _hover={{ textDecoration: 'none' }}
+              isExternal
             >
-              LinkedIn
-            </Button>
-            <Button
-              backgroundColor="#EA4335"
-              color="#fff"
-              leftIcon={<FaEnvelope />}
-              _hover={{ backgroundColor: '#e05a4f' }}
-              position="static"
+              <Button
+                backgroundColor="#0077b5"
+                leftIcon={<FaLinkedin />}
+                _hover={{ backgroundColor: '#0090db' }}
+                position="static"
+              >
+                LinkedIn
+              </Button>
+            </Link>
+            <Link
+              href="mailto:abdulrcs1@gmail.com"
+              _hover={{ textDecoration: 'none' }}
+              isExternal
             >
-              Email
-            </Button>
+              <Button
+                backgroundColor="#EA4335"
+                color="#fff"
+                leftIcon={<FaEnvelope />}
+                _hover={{ backgroundColor: '#e05a4f' }}
+                position="static"
+              >
+                Email
+              </Button>
+            </Link>
           </Stack>
         </SlideFade>
       </Stack>
