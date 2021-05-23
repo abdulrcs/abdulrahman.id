@@ -18,7 +18,7 @@ export default function Index() {
           justifyContent="center"
           alignItems="flex-start"
           mx={{ sm: '8vw', md: '10vw' }}
-          mt="22.5vh"
+          my="22.5vh"
         >
           <Introduction />
           <Projects />

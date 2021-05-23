@@ -8,6 +8,10 @@ export default class MyDocument extends NextDocument {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
+          rel="stylesheet"
+        ></link>
         <Head />
         <body>
           <Main />
