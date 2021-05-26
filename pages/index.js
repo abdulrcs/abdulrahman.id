@@ -3,11 +3,12 @@ import { Stack } from '@chakra-ui/react'
 import Container from '../components/Container'
 import Introduction from '../components/Introduction'
 import Projects from '../components/Projects'
+import LatestArticle from '../components/LatestArticle'
 
 export default function Index() {
   return (
     <>
-      <Container>
+      <Container enableTransition={true}>
         <Head>
           <title>Home - Abdul Rahman</title>
         </Head>
@@ -22,8 +23,17 @@ export default function Index() {
         >
           <Introduction />
           <Projects />
+          <LatestArticle />
         </Stack>
       </Container>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const res = await fetch('https://dailyprayer.abdulrcs.repl.co/api/mataram')
+  const data = await res.json()
+  return {
+    props: { prayer: data },
+  }
 }

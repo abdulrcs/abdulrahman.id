@@ -5,7 +5,7 @@ import { Button, Flex, Box, Text, Slide } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import styled from '@emotion/styled'
 
-const Container = ({ children }) => {
+const Container = ({ enableTransition, children }) => {
   const [navbar, setNavbar] = useState(2)
   // Show navbar on scroll up, hide when scroll down.
   let scrollValue = 0
@@ -42,7 +42,11 @@ const Container = ({ children }) => {
         direction="top"
         reverse
         in={navbar}
-        transition={{ enter: { duration: navbarDuration, delay: 0.01 } }}
+        transition={
+          enableTransition
+            ? { enter: { duration: navbarDuration, delay: 0.01 } }
+            : { enter: { duration: 0, delay: 0 } }
+        }
       >
         <StickNav
           flexDirection="row"
