@@ -24,22 +24,6 @@ const GlobalStyle = ({ children }) => {
             min-height: 100vh;
             background: #12141d;
           }
-          h1,
-          h2,
-          h3,
-          h4,
-          h5 {
-            letter-spacing: -1.2px;
-          }
-          @media only screen and (min-width: 1024px) {
-            h1,
-            h2,
-            h3,
-            h4,
-            h5 {
-              letter-spacing: -1.8px;
-            }
-          }
         `}
       />
       {children}

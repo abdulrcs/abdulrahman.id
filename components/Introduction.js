@@ -9,7 +9,12 @@ import {
   SlideFade,
   useMediaQuery,
 } from '@chakra-ui/react'
-import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
+import {
+  FaEnvelopeOpen,
+  FaEnvelope,
+  FaGithub,
+  FaLinkedin,
+} from 'react-icons/fa'
 
 export default function Introduction() {
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
@@ -31,6 +36,7 @@ export default function Introduction() {
             fontSize="display"
             lineHeight={'95%'}
             fontSize="display"
+            letterSpacing={{ sm: '-1.2px', md: '-1.8px' }}
           >
             Abdul Rahman.
           </Heading>
@@ -46,6 +52,7 @@ export default function Introduction() {
             fontSize="display2"
             fontWeight="medium"
             whiteSpace="pre-wrap"
+            letterSpacing={{ sm: '-1.2px', md: '-1.8px' }}
           >
             <Box as="span" color="white">
               Software Engineer.
@@ -107,10 +114,13 @@ export default function Introduction() {
               isExternal
             >
               <Button
-                backgroundColor="#EA4335"
-                color="#fff"
+                background="#e94057"
+                color="white"
                 leftIcon={<FaEnvelope />}
-                _hover={{ backgroundColor: '#e05a4f' }}
+                transition="0.3s"
+                _hover={{
+                  background: '#f24b62',
+                }}
                 position="static"
               >
                 Email

@@ -34,8 +34,7 @@ const Container = ({ enableTransition, children }) => {
     color: #8f9094;
     font-weight: 600;
   `
-  const navbarDuration = navbar == 2 ? 0.4 : 0.2
-
+  const navbarDuration = navbar == 2 ? (enableTransition ? 0.4 : 0) : 0.2
   return (
     <>
       <Slide
@@ -45,7 +44,7 @@ const Container = ({ enableTransition, children }) => {
         transition={
           enableTransition
             ? { enter: { duration: navbarDuration, delay: 0.01 } }
-            : { enter: { duration: 0, delay: 0 } }
+            : { enter: { duration: navbarDuration, delay: 0 } }
         }
       >
         <StickNav
@@ -57,9 +56,16 @@ const Container = ({ enableTransition, children }) => {
           px="3vw"
           py="3"
         >
-          <Text color="white" fontWeight="bold" fontSize="32px">
-            <Bracket>&#123;</Bracket>A<Bracket>&#125;</Bracket>
-          </Text>
+          <NextLink href="/" passHref>
+            <Text
+              cursor="pointer"
+              color="white"
+              fontWeight="bold"
+              fontSize="32px"
+            >
+              <Bracket>&#123;</Bracket>A<Bracket>&#125;</Bracket>
+            </Text>
+          </NextLink>
           <Box color="textSecondary">
             <NextLink href="/" passHref>
               <Button as="a" variant="ghost" p="4" ml="3vw" fontSize="16px">
