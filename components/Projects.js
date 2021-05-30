@@ -25,7 +25,7 @@ export default function Projects() {
         transition={{ duration: 0.4 }}
         variants={{
           visible: { opacity: 1, x: 0 },
-          hidden: { opacity: 0, x: slideFrom ? 100 : -100 },
+          hidden: { opacity: 0, x: slideFrom ? 20 : -20 },
         }}
       >
         {children}
@@ -61,7 +61,7 @@ export default function Projects() {
               <Cards
                 imageURL="https://i.imgur.com/3nCKJ6U.png"
                 title="Opiniometer"
-                desc="A web app to analyze whether an opinion on specific topic is Positive / Negative / Neutral based on recent tweets using Natural Language Processing (NLP) concept called Sentiment Analysis."
+                desc="A web app to analyze whether an opinion on specific topic is Positive or Negative based on recent tweets using Natural Language Processing (NLP) concept called Sentiment Analysis."
                 tag={['React', 'Python', 'Chart.js']}
               />
             </Box>

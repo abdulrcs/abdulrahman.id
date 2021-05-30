@@ -19,21 +19,12 @@ export default function Index() {
           justifyContent="center"
           alignItems="flex-start"
           mx={{ sm: '8vw', md: '10vw' }}
-          my="22.5vh"
+          mt="22.5vh"
         >
           <Introduction />
           <Projects />
-          <LatestArticle />
         </Stack>
       </Container>
     </>
   )
-}
-
-export async function getStaticProps() {
-  const res = await fetch('https://dailyprayer.abdulrcs.repl.co/api/mataram')
-  const data = await res.json()
-  return {
-    props: { prayer: data },
-  }
 }
