@@ -18,7 +18,7 @@ export default function Index() {
           spacing={20}
           justifyContent="center"
           alignItems="flex-start"
-          mx={{ sm: '8vw', md: '10vw' }}
+          mx={['1vw', '10vw']}
           mt="22.5vh"
         >
           <Introduction />

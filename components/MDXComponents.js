@@ -32,31 +32,6 @@ const CustomLink = (props) => {
   return <Link color={color[colorMode]} isExternal {...props} />
 }
 
-const Quote = (props) => {
-  const { colorMode } = useColorMode()
-  const bgColor = {
-    light: 'blue.50',
-    dark: 'blue.900',
-  }
-
-  return (
-    <Alert
-      mt={4}
-      w="98%"
-      bg={bgColor[colorMode]}
-      variant="left-accent"
-      status="info"
-      css={{
-        '> *:first-of-type': {
-          marginTop: 0,
-          marginLeft: 8,
-        },
-      }}
-      {...props}
-    />
-  )
-}
-
 const DocsHeading = (props) => (
   <Heading
     css={{
@@ -113,14 +88,16 @@ const Hr = () => {
 }
 
 const MDXComponents = {
-  h1: (props) => <Heading as="h1" size="xl" my={4} {...props} />,
+  h1: (props) => (
+    <Heading as="h1" size="xl" my={4} color="displayColor" {...props} />
+  ),
   h2: (props) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
   h3: (props) => <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />,
   h4: (props) => <DocsHeading as="h4" size="sm" fontWeight="bold" {...props} />,
   h5: (props) => <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />,
   h6: (props) => <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />,
   inlineCode: (props) => (
-    <Code colorScheme="yellow" fontSize="0.84em" {...props} />
+    <Code colorScheme="blue" fontSize="0.84em" {...props} />
   ),
   br: (props) => <Box height="24px" {...props} />,
   hr: Hr,
@@ -129,7 +106,6 @@ const MDXComponents = {
   ul: (props) => <Box as="ul" pt={2} pl={4} ml={2} {...props} />,
   ol: (props) => <Box as="ol" pt={2} pl={4} ml={2} {...props} />,
   li: (props) => <Box as="li" pb={1} {...props} />,
-  blockquote: Quote,
 }
 
 export { CustomLink }
