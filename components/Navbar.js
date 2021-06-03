@@ -5,12 +5,13 @@ import styled from '@emotion/styled'
 
 export default function Navbar({ enableTransition }) {
   const [navbar, setNavbar] = useState(2)
+
   // Show navbar on scroll up, hide when scroll down.
   let scrollValue = 0
   const showNavbar = () => {
     if (window.scrollY < scrollValue) {
       setNavbar(1)
-    } else {
+    } else if (window.scrollY > 50) {
       setNavbar(0)
     }
     scrollValue = window.scrollY
@@ -24,7 +25,7 @@ export default function Navbar({ enableTransition }) {
     position: sticky;
     z-index: 10;
     top: 0;
-    border-bottom: 0.5px solid gray;
+    border-bottom: 0.5px solid #1e2029;
     backdrop-filter: blur(4px);
   `
 
@@ -57,7 +58,7 @@ export default function Navbar({ enableTransition }) {
         <NextLink href="/" passHref>
           <Text
             cursor="pointer"
-            color="white"
+            color="displayColor"
             fontWeight="bold"
             fontSize="32px"
           >
