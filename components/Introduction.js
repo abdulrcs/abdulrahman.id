@@ -31,6 +31,7 @@ export default function Introduction() {
             fontSize="display"
             lineHeight={'95%'}
             fontSize="display"
+            color="displayColor"
             letterSpacing={{ sm: '-1.2px', md: '-1.8px' }}
           >
             Abdul Rahman.
@@ -49,7 +50,7 @@ export default function Introduction() {
             whiteSpace="pre-wrap"
             letterSpacing={{ sm: '-1.2px', md: '-1.8px' }}
           >
-            <Box as="span" color="white">
+            <Box as="span" color="displayColor">
               Software Engineer.
             </Box>{' '}
             A self-taught developer{' '}

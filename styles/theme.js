@@ -18,13 +18,14 @@ const fluidType = (minFont, maxFont) => {
 
 const colors = {
   background: '#12141D',
-  secondary: '#1E2029',
-  tertiary: '#35373F',
+  secondary: '#080808',
   complement: '#FA934F',
-  textPrimary: '#FFFFFF',
+  displayColor: '#FFFFFF',
+  textPrimary: '#D1D5DB',
   textSecondary: '#8F9094',
   button1: '#3CCF91',
   button2: '#5132BF',
+  borderColor: '#111111',
 }
 
 const fonts = {
@@ -63,7 +64,7 @@ const overrides = {
     //   '6xl': fluidType(24, 48),
     //   '7xl': fluidType(32, 64),
     //   '8xl': fluidType(36, 72),
-    display: fluidType(72, 144),
+    display: fluidType(80, 144),
     display2: fluidType(24, 36),
     display3: fluidType(16, 24),
   },
