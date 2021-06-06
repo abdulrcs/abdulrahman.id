@@ -71,11 +71,16 @@ export default function Navbar({ enableTransition }) {
               Home
             </Button>
           </NextLink>
+          <NextLink href="/projects" passHref>
+            <Button as="a" variant="ghost" p="4" ml="3vw" fontSize="16px">
+              Projects
+            </Button>
+          </NextLink>
           <NextLink href="/blog" passHref>
             <Button as="a" variant="ghost" p="4" ml="3vw" fontSize="16px">
               Blog
             </Button>
-          </NextLink>
+          </NextLink>{' '}
         </Box>
       </StickNav>
     </Slide>

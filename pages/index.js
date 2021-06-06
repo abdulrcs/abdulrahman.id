@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Stack } from '@chakra-ui/react'
 import Container from '../components/Container'
 import Introduction from '../components/Introduction'
-import Projects from '../components/Projects'
+import FeaturedProjects from '../components/FeaturedProjects'
 import LatestArticle from '../components/LatestArticle'
 
 export default function Index() {
@@ -22,7 +22,7 @@ export default function Index() {
           mt={['15vh', '15vh', '22.5vh', '22.5vh']}
         >
           <Introduction />
-          <Projects />
+          <FeaturedProjects />
         </Stack>
       </Container>
     </>

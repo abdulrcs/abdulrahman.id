@@ -6,7 +6,7 @@ import { motion, useAnimation } from 'framer-motion'
 import Cards from './Card'
 import { Slide } from '@chakra-ui/transition'
 
-export default function Projects() {
+export default function FeaturedProjects() {
   function SlideUpWhenVisible({ children, slideFrom, threshold }) {
     const controls = useAnimation()
     const [ref, inView] = useInView({ threshold: threshold ? threshold : 0.35 })
@@ -38,14 +38,18 @@ export default function Projects() {
       <Stack spacing={8} w="full">
         <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={8}>
           <SlideUpWhenVisible slideFrom={0}>
-            <Stack spacing={1} fontFamily="Ubuntu">
+            <Stack
+              spacing={1}
+              fontFamily="Ubuntu"
+              textAlign={['center', 'left']}
+            >
               <Text fontSize="2xl" color="displayColor">
                 All Creative Works.
               </Text>
-              <Text fontSize="xl" color="textSecondary">
+              <Text fontSize={['md', 'xl']} color="textSecondary">
                 Here's some of my projects that I have worked on.
               </Text>
-              <Text fontSize="xl" color="button1">
+              <Text fontSize={['md', 'xl']} color="button1">
                 Explore more &rarr;
               </Text>
             </Stack>
@@ -75,7 +79,7 @@ export default function Projects() {
           <SlideUpWhenVisible slideFrom={1} threshold={1}>
             <Cards
               imageURL="https://i.imgur.com/CKkK64o.png"
-              title="Daily Prayer Time API"
+              title="Prayer Time API"
               desc="It's an easy to use API to get today's (and tomorrow!) prayer time in any city in the world, based on Muslim Pro."
               githubLink="https://github.com/abdulrcs/Daily-Prayer-Time-API"
               deployLink="https://dailyprayer.abdulrcs.repl.co/api/jakarta"
