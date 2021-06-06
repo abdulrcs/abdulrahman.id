@@ -7,12 +7,13 @@ import {
   Icon,
   Button,
   SlideFade,
-  useMediaQuery,
+  Image,
 } from '@chakra-ui/react'
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
+import useMediaQuery from '../hook/useMediaQuery'
 
 export default function Introduction() {
-  const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
+  const isLargerThan800 = useMediaQuery(800)
 
   return (
     <>
@@ -22,10 +23,26 @@ export default function Introduction() {
           in={true}
           transition={{ enter: { duration: 0.4, delay: 0.6 } }}
         >
-          <Text color="button1" fontSize="display2" fontWeight="medium">
-            Hey there!, I'm-
-          </Text>
-
+          <Box position="relative">
+            <Image
+              src="https://svgsilh.com/svg/26432.svg"
+              filter="invert(0.1)"
+              w={{ base: '70px', md: '150px' }}
+              position="absolute"
+              top={{ base: '0', md: '-15' }}
+              left={{ base: '-5', md: '-10' }}
+              zIndex={1}
+            ></Image>
+            <Text
+              color="button1"
+              fontSize="display2"
+              fontWeight="medium"
+              position="relative"
+              zIndex={2}
+            >
+              Hey there!, I'm-
+            </Text>
+          </Box>
           <Heading
             color="textPrimary"
             fontSize="display"
@@ -33,6 +50,8 @@ export default function Introduction() {
             fontSize="display"
             color="displayColor"
             letterSpacing={{ sm: '-1.2px', md: '-1.8px' }}
+            position="relative"
+            zIndex={2}
           >
             Abdul Rahman.
           </Heading>
@@ -48,9 +67,9 @@ export default function Introduction() {
             fontSize="display2"
             fontWeight="medium"
             whiteSpace="pre-wrap"
-            letterSpacing={{ sm: '-1.2px', md: '-1.8px' }}
+            letterSpacing="-1.6px"
           >
-            <Box as="span" color="displayColor">
+            <Box color="displayColor" as="span">
               Software Engineer.
             </Box>{' '}
             A self-taught developer{' '}
@@ -91,6 +110,7 @@ export default function Introduction() {
                 colorScheme="gray"
                 leftIcon={<FaGithub />}
                 position="static"
+                size={isLargerThan800 ? 'md' : 'sm'}
               >
                 Github
               </Button>
@@ -105,6 +125,7 @@ export default function Introduction() {
                 leftIcon={<FaLinkedin />}
                 _hover={{ backgroundColor: '#0090db' }}
                 position="static"
+                size={isLargerThan800 ? 'md' : 'sm'}
               >
                 LinkedIn
               </Button>
@@ -123,6 +144,7 @@ export default function Introduction() {
                   background: '#f24b62',
                 }}
                 position="static"
+                size={isLargerThan800 ? 'md' : 'sm'}
               >
                 Email
               </Button>

@@ -25,6 +25,15 @@ const GlobalStyle = ({ children }) => {
             min-height: 100vh;
             background: #000;
           }
+          ::-webkit-scrollbar {
+            width: 8px;
+            background: #080808;
+          }
+
+          ::-webkit-scrollbar-thumb {
+            background: #111111;
+            border-radius: 8px;
+          }
         `}
       />
       {children}

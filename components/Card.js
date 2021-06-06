@@ -7,7 +7,6 @@ import {
   Stack,
   Divider,
   TagLabel,
-  useMediaQuery,
   Link,
 } from '@chakra-ui/react'
 import {
@@ -20,7 +19,7 @@ import {
   FaGithub,
   FaExternalLinkAlt,
 } from 'react-icons/fa'
-
+import useMediaQuery from '../hook/useMediaQuery'
 export default function Cards({
   imageURL,
   title,
@@ -53,7 +52,7 @@ export default function Cards({
     return values
   }
 
-  const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
+  const isLargerThan800 = useMediaQuery(800)
 
   const Tags = tag.map((item) => (
     <Tag colorScheme={getTag(item)[0]} size={isLargerThan800 ? 'md' : 'sm'}>
@@ -69,7 +68,7 @@ export default function Cards({
       minH="350px"
       maxH="500px"
       border="1px"
-      borderColor="borderColor"
+      borderColor={['#333', 'borderColor']}
     >
       <Image
         w="100%"
@@ -98,7 +97,9 @@ export default function Cards({
         </Stack>
         <Stack isInline>{Tags}</Stack>
         <Divider />
-        <Text color="textSecondary">{desc}</Text>
+        <Text color="textSecondary" fontSize={['sm', 'md']}>
+          {desc}
+        </Text>
       </Stack>
     </Stack>
   )

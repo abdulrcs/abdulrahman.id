@@ -9,6 +9,11 @@ import { createBreakpoints } from '@chakra-ui/theme-tools'
 //            = 100 * font_size_difference / viewport_difference
 //         ZZ = Minimum font-size stated in REM
 
+const config = {
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
+}
+
 const fluidType = (minFont, maxFont) => {
   let XX = 768 / 100
   let YY = (100 * (maxFont - minFont)) / (1920 - 768)
@@ -35,6 +40,7 @@ const fonts = {
 }
 
 const breakpoints = createBreakpoints({
+  base: '0em',
   sm: '30em',
   md: '48em',
   lg: '80em',
@@ -43,6 +49,7 @@ const breakpoints = createBreakpoints({
 
 const overrides = {
   ...chakraTheme,
+  config,
   colors,
   fonts,
   breakpoints,

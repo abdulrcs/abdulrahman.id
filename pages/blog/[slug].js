@@ -46,8 +46,15 @@ export default function Post({ metadata, source, tags }) {
           <title>{metadata.title}</title>
         </Head>
         <Stack my="15vh" justifyContent="center" alignItems="center">
-          <Stack w="95vw" maxW="680px" p="24px">
-            <Heading fontSize="5xl" color="displayColor">
+          <Stack
+            w={['100vw', '95vw']}
+            maxW="680px"
+            p={['20px', '20px', '24px', '24px']}
+          >
+            <Heading
+              fontSize={['3xl', '3xl', '5xl', '5xl']}
+              color="displayColor"
+            >
               {metadata.title}
             </Heading>
             <Stack isInline alignItems="center">
@@ -65,22 +72,22 @@ export default function Post({ metadata, source, tags }) {
                   size="xs"
                   src="https://avatars.githubusercontent.com/u/54136956?v=4"
                 />
-                <Text fontSize="sm" color="displayColor">
+                <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="displayColor">
                   Abdul Rahman /{' '}
                   {dateFormat(Date.parse(metadata.date), 'mmmm d yyyy')}
                 </Text>
               </Stack>
               <Stack>
-                <Text fontSize="sm" color="textSecondary">
+                <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textSecondary">
                   {metadata.readingTime}
                 </Text>
               </Stack>
             </Stack>
             <Image src={metadata.image} maxW="100%" mx="auto"></Image>
+            <PostContainer>
+              <MDXRemote {...source} components={MDXComponents} />
+            </PostContainer>
           </Stack>
-          <PostContainer>
-            <MDXRemote {...source} components={MDXComponents} />
-          </PostContainer>
         </Stack>
       </Container>
     </>

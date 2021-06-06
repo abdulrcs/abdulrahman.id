@@ -12,7 +12,7 @@ const Container = ({ enableTransition, children }) => {
         {children}
       </Flex>
       <Stack alignItems="center" mt={10} mb={5}>
-        <Text textAlign="center">
+        <Text textAlign="center" fontSize="sm">
           Designed and Developed by Abdul Rahman.
           <br />
           Built with{' '}

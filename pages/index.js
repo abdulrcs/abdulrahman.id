@@ -18,8 +18,8 @@ export default function Index() {
           spacing={20}
           justifyContent="center"
           alignItems="flex-start"
-          mx={['1vw', '10vw']}
-          mt="22.5vh"
+          px={['5vw', '10vw']}
+          mt={['15vh', '15vh', '22.5vh', '22.5vh']}
         >
           <Introduction />
           <Projects />

@@ -3,10 +3,7 @@ import { Stack } from '@chakra-ui/react'
 
 const PostContainer = styled(Stack)`
   &&& {
-    width: 95vw;
-    max-width: 680px;
-    padding: 24px;
-    padding-top: 0px;
+    padding-top: 24px;
     line-height: 32px;
     font-size: 16px;
     * {
