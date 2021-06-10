@@ -5,8 +5,9 @@ import { motion, useAnimation } from 'framer-motion'
 
 import Cards from './Card'
 import { Slide } from '@chakra-ui/transition'
+import Link from 'next/link'
 
-export default function FeaturedProjects() {
+export default function FeaturedProjects({ projects }) {
   function SlideUpWhenVisible({ children, slideFrom, threshold }) {
     const controls = useAnimation()
     const [ref, inView] = useInView({ threshold: threshold ? threshold : 0.35 })
@@ -49,41 +50,50 @@ export default function FeaturedProjects() {
               <Text fontSize={['md', 'xl']} color="textSecondary">
                 Here's some of my projects that I have worked on.
               </Text>
-              <Text fontSize={['md', 'xl']} color="button1">
-                Explore more &rarr;
-              </Text>
+              <Link href="/projects">
+                <a>
+                  <Text
+                    fontSize={['md', 'xl']}
+                    color="button1"
+                    transition="0.3s"
+                    _hover={{ letterSpacing: '2px' }}
+                  >
+                    Explore more &rarr;
+                  </Text>
+                </a>
+              </Link>
             </Stack>
           </SlideUpWhenVisible>
           <SlideUpWhenVisible slideFrom={1}>
             <Cards
-              imageURL="https://i.imgur.com/VY2D1A2.png"
-              title="creative@home"
-              desc="A website that provides roadmap for various fields in Programming and help people learn to code for free."
-              githubLink="https://github.com/varcode-project/creative-at-home"
-              deployLink="https://varcode-project.github.io/creative-at-home/"
-              tag={['Javascript', 'Sass']}
+              imageURL={projects[0].fields.imageUrl}
+              title={projects[0].fields.title}
+              desc={projects[0].fields.description}
+              githubLink={projects[0].fields.githubLink}
+              deployLink={projects[0].fields.deployLink}
+              tag={projects[0].fields.tags}
             />
           </SlideUpWhenVisible>
           <SlideUpWhenVisible slideFrom={0}>
             <Box mt={{ md: '-50%' }}>
               <Cards
-                imageURL="https://i.imgur.com/3nCKJ6U.png"
-                title="Opiniometer"
-                desc="A web app to analyze whether an opinion on specific topic is Positive or Negative based on recent tweets using Natural Language Processing (NLP) concept called Sentiment Analysis."
-                githubLink="https://github.com/abdulrcs/Opiniometer"
-                deployLink="http://abdulrahman.id/Opiniometer"
-                tag={['React', 'Python', 'Chart.js']}
+                imageURL={projects[1].fields.imageUrl}
+                title={projects[1].fields.title}
+                desc={projects[1].fields.description}
+                githubLink={projects[1].fields.githubLink}
+                deployLink={projects[1].fields.deployLink}
+                tag={projects[1].fields.tags}
               />
             </Box>
           </SlideUpWhenVisible>
-          <SlideUpWhenVisible slideFrom={1} threshold={1}>
+          <SlideUpWhenVisible slideFrom={1} threshold={0.8}>
             <Cards
-              imageURL="https://i.imgur.com/CKkK64o.png"
-              title="Prayer Time API"
-              desc="It's an easy to use API to get today's (and tomorrow!) prayer time in any city in the world, based on Muslim Pro."
-              githubLink="https://github.com/abdulrcs/Daily-Prayer-Time-API"
-              deployLink="https://dailyprayer.abdulrcs.repl.co/api/jakarta"
-              tag={['Python', 'Flask', 'Beautiful Soup']}
+              imageURL={projects[2].fields.imageUrl}
+              title={projects[2].fields.title}
+              desc={projects[2].fields.description}
+              githubLink={projects[2].fields.githubLink}
+              deployLink={projects[2].fields.deployLink}
+              tag={projects[2].fields.tags}
             />
           </SlideUpWhenVisible>
         </SimpleGrid>

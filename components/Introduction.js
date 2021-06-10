@@ -11,17 +11,17 @@ import {
 } from '@chakra-ui/react'
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
 import useMediaQuery from '../hook/useMediaQuery'
+import styled from '@emotion/styled'
 
 export default function Introduction() {
   const isLargerThan800 = useMediaQuery(800)
-
   return (
     <>
       <Stack spacing={10} justifyContent="flex-start" alignItems="flex-start">
         <SlideFade
           direction="top"
           in={true}
-          transition={{ enter: { duration: 0.4, delay: 0.6 } }}
+          transition={{ enter: { duration: 0.4, delay: 0.7 } }}
         >
           <Box position="relative">
             <Image
@@ -31,14 +31,14 @@ export default function Introduction() {
               position="absolute"
               top={{ base: '0', md: '-15' }}
               left={{ base: '-5', md: '-10' }}
-              zIndex={1}
+              zIndex={0}
             ></Image>
             <Text
               color="button1"
               fontSize="display2"
               fontWeight="medium"
               position="relative"
-              zIndex={2}
+              zIndex={1}
             >
               Hey there!, I'm-
             </Text>
@@ -51,7 +51,7 @@ export default function Introduction() {
             color="displayColor"
             letterSpacing={{ sm: '-1.2px', md: '-1.8px' }}
             position="relative"
-            zIndex={2}
+            zIndex={1}
           >
             Abdul Rahman.
           </Heading>
@@ -60,7 +60,7 @@ export default function Introduction() {
         <SlideFade
           direction="top"
           in={true}
-          transition={{ enter: { duration: 0.4, delay: 0.7 } }}
+          transition={{ enter: { duration: 0.4, delay: 0.8 } }}
         >
           <Heading
             color="textSecondary"
@@ -82,10 +82,10 @@ export default function Introduction() {
         <SlideFade
           direction="top"
           in={true}
-          transition={{ enter: { duration: 0.4, delay: 0.8 } }}
+          transition={{ enter: { duration: 0.4, delay: 0.9 } }}
         >
           <Text fontSize="display3" color="textSecondary">
-            🚀 Loves to build stuff with Javascript and Python.
+            🚀 Exploring opportunities and side projects.
             <br />
             <Stack isInline spacing={1}>
               <Box>🎓</Box>
@@ -98,7 +98,7 @@ export default function Introduction() {
         <SlideFade
           direction="top"
           in={true}
-          transition={{ enter: { duration: 0.4, delay: 0.9 } }}
+          transition={{ enter: { duration: 0.4, delay: 1.0 } }}
         >
           <Stack isInline spacing={4}>
             <Link
@@ -141,7 +141,7 @@ export default function Introduction() {
                 leftIcon={<FaEnvelope />}
                 transition="0.3s"
                 _hover={{
-                  background: '#f24b62',
+                  background: '#f04f65',
                 }}
                 position="static"
                 size={isLargerThan800 ? 'md' : 'sm'}

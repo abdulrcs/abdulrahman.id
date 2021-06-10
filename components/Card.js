@@ -18,8 +18,12 @@ import {
   FaCode,
   FaGithub,
   FaExternalLinkAlt,
+  FaLaravel,
+  FaBootstrap,
+  FaDatabase,
 } from 'react-icons/fa'
 import useMediaQuery from '../hook/useMediaQuery'
+
 export default function Cards({
   imageURL,
   title,
@@ -45,6 +49,15 @@ export default function Cards({
     } else if (tag == 'Flask') {
       values[0] = 'green'
       values[1] = FaPepperHot
+    } else if (tag == 'Laravel') {
+      values[0] = 'red'
+      values[1] = FaLaravel
+    } else if (tag == 'Bootstrap') {
+      values[0] = 'purple'
+      values[1] = FaBootstrap
+    } else if (tag == 'SQL') {
+      values[0] = 'blue'
+      values[1] = FaDatabase
     } else {
       values[0] = 'gray'
       values[1] = FaCode
@@ -55,7 +68,11 @@ export default function Cards({
   const isLargerThan800 = useMediaQuery(800)
 
   const Tags = tag.map((item) => (
-    <Tag colorScheme={getTag(item)[0]} size={isLargerThan800 ? 'md' : 'sm'}>
+    <Tag
+      key={item}
+      colorScheme={getTag(item)[0]}
+      size={isLargerThan800 ? 'md' : 'sm'}
+    >
       <TagLeftIcon as={getTag(item)[1]}></TagLeftIcon>
       <TagLabel>{item}</TagLabel>
     </Tag>
@@ -87,12 +104,16 @@ export default function Cards({
             alignItems="center"
             spacing={4}
           >
-            <Link href={githubLink}>
-              <FaGithub size={23} />
-            </Link>
-            <Link href={deployLink}>
-              <FaExternalLinkAlt size={20} />
-            </Link>
+            {githubLink && (
+              <Link href={githubLink}>
+                <FaGithub size={23} />
+              </Link>
+            )}
+            {deployLink && (
+              <Link href={deployLink}>
+                <FaExternalLinkAlt size={20} />
+              </Link>
+            )}
           </Stack>
         </Stack>
         <Stack isInline>{Tags}</Stack>
