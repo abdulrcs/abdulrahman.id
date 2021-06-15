@@ -24,6 +24,10 @@ export default function Navbar({ enableTransition }) {
   const isLargerThan768 = useMediaQuery(768)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const firstField = useRef()
+  const Bracket = styled.span`
+    color: #8f9094;
+    font-weight: 600;
+  `
   const NavbarDrawer = () => (
     <>
       <Drawer
@@ -35,7 +39,9 @@ export default function Navbar({ enableTransition }) {
         <DrawerOverlay />
         <DrawerContent backgroundColor="secondary">
           <DrawerCloseButton />
-          <DrawerHeader borderBottomWidth="1px">Navbar</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">
+            <Bracket>&#123;</Bracket>A<Bracket>&#125;</Bracket>
+          </DrawerHeader>
 
           <DrawerBody>
             <Stack spacing="24px">
@@ -78,14 +84,10 @@ export default function Navbar({ enableTransition }) {
     window.addEventListener('scroll', showNavbar)
   }, [])
 
-  const Bracket = styled.span`
-    color: #8f9094;
-    font-weight: 600;
-  `
   const navbarDuration = navbar == 2 ? (enableTransition ? 0.5 : 0) : 0.2
 
   return (
-    <>
+    <Box zIndex="99">
       <Slide
         direction="top"
         reverse
@@ -96,7 +98,6 @@ export default function Navbar({ enableTransition }) {
             : { enter: { duration: navbarDuration, delay: 0 } }
         }
         background="black"
-        zIndex={100}
       >
         <Flex
           as="nav"
@@ -143,6 +144,6 @@ export default function Navbar({ enableTransition }) {
         </Flex>
       </Slide>
       <NavbarDrawer />
-    </>
+    </Box>
   )
 }

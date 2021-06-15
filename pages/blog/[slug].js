@@ -19,7 +19,7 @@ import Container from '../../components/Container'
 import PostContainer from '../../components/PostContainer'
 import MDXComponents from '../../components/MDXComponents'
 
-export default function Post({ metadata, source, tags }) {
+export default function Post({ metadata, source, tags, views }) {
   const TagColor = (tag) => {
     // github, python, react, javascript, productivity, tutorial
     if (tag == 'career') return 'blue'
@@ -44,6 +44,26 @@ export default function Post({ metadata, source, tags }) {
       <Container>
         <Head>
           <title>{metadata.title}</title>
+          <meta name="title" content={metadata.title} />
+          <meta name="description" content={metadata.summary} />
+
+          <meta property="og:type" content="website" />
+          <meta
+            property="og:url"
+            content={`https://abdulrahman.id/blog/${metadata.slug}`}
+          />
+          <meta property="og:title" content={metadata.summary} />
+          <meta property="og:description" content={metadata.summary} />
+          <meta property="og:image" content={metadata.image} />
+
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta
+            property="twitter:url"
+            content={`https://abdulrahman.id/blog/${metadata.slug}`}
+          />
+          <meta property="twitter:title" content={metadata.title} />
+          <meta property="twitter:description" content={metadata.summary} />
+          <meta property="twitter:image" content={metadata.image} />
         </Head>
         <Stack my="15vh" justifyContent="center" alignItems="center">
           <Stack
@@ -72,14 +92,14 @@ export default function Post({ metadata, source, tags }) {
                   size="xs"
                   src="https://avatars.githubusercontent.com/u/54136956?v=4"
                 />
-                <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="displayColor">
+                <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textPrimary">
                   Abdul Rahman /{' '}
                   {dateFormat(Date.parse(metadata.date), 'mmmm d yyyy')}
                 </Text>
               </Stack>
               <Stack>
                 <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textSecondary">
-                  {metadata.readingTime}
+                  {metadata.readingTime} &bull; {views} views
                 </Text>
               </Stack>
             </Stack>
@@ -112,6 +132,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  const views = await fetch(`http://localhost:3000/api/views/${params.slug}`)
+    .then((res) => res.json())
+    .then((json) => json.views)
+
   let data = await client.getEntries({
     content_type: 'blogPosts',
     'fields.slug': params.slug,
@@ -133,6 +157,7 @@ export async function getStaticProps({ params }) {
       metadata: article,
       source: mdxSource,
       tags: tags,
+      views: views,
     },
   }
 }

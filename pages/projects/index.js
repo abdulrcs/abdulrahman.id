@@ -27,9 +27,43 @@ export default function Projects({ projects }) {
     <>
       <Container>
         <Head>
-          <title>Projects - Abdul Rahman</title>
-        </Head>
+          <title>Abdul Rahman - Software Engineer</title>
+          <meta name="title" content="Abdul Rahman - Software Engineer" />
+          <meta
+            name="description"
+            content="Software Engineer based in Indonesia."
+          />
 
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://abdulrahman.id/projects" />
+          <meta
+            property="og:title"
+            content="Abdul Rahman - Software Engineer"
+          />
+          <meta
+            property="og:description"
+            content="Software Engineer based in Indonesia."
+          />
+          <meta property="og:image" content="https://i.imgur.com/5Hy8R5D.png" />
+
+          <meta property="twitter:card" content="summary_large_image" />
+          <meta
+            property="twitter:url"
+            content="https://abdulrahman.id/projects"
+          />
+          <meta
+            property="twitter:title"
+            content="Abdul Rahman - Software Engineer"
+          />
+          <meta
+            property="twitter:description"
+            content="Software Engineer based in Indonesia."
+          />
+          <meta
+            property="twitter:image"
+            content="https://i.imgur.com/5Hy8R5D.png"
+          />
+        </Head>
         <Stack
           spacing={10}
           justifyContent="center"

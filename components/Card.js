@@ -82,10 +82,10 @@ export default function Cards({
     <Stack
       bg="secondary"
       borderRadius="10px"
-      minH="350px"
+      minH="320px"
       maxH="500px"
       border="1px"
-      borderColor={['#333', 'borderColor']}
+      borderColor={{ base: '#333', md: 'borderColor' }}
     >
       <Image
         w="100%"
@@ -105,12 +105,12 @@ export default function Cards({
             spacing={4}
           >
             {githubLink && (
-              <Link href={githubLink}>
+              <Link href={githubLink} color="white">
                 <FaGithub size={23} />
               </Link>
             )}
             {deployLink && (
-              <Link href={deployLink}>
+              <Link href={deployLink} color="white">
                 <FaExternalLinkAlt size={20} />
               </Link>
             )}

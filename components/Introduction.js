@@ -101,50 +101,33 @@ export default function Introduction() {
           transition={{ enter: { duration: 0.4, delay: 1.0 } }}
         >
           <Stack isInline spacing={4}>
-            <Link
-              href="https://github.com/abdulrcs"
-              _hover={{ textDecoration: 'none' }}
-              isExternal
-            >
+            <Link href="https://github.com/abdulrcs" isExternal>
               <Button
-                colorScheme="gray"
-                leftIcon={<FaGithub />}
+                leftIcon={<FaGithub color="#3CCF91" />}
                 position="static"
                 size={isLargerThan800 ? 'md' : 'sm'}
+                color="white"
               >
                 Github
               </Button>
             </Link>
-            <Link
-              href="https://linkedin.com/in/abdulrcs"
-              _hover={{ textDecoration: 'none' }}
-              isExternal
-            >
+            <Link href="https://linkedin.com/in/abdulrcs" isExternal>
               <Button
-                backgroundColor="#0077b5"
-                leftIcon={<FaLinkedin />}
-                _hover={{ backgroundColor: '#0090db' }}
+                leftIcon={<FaLinkedin color="#3CCF91" />}
                 position="static"
                 size={isLargerThan800 ? 'md' : 'sm'}
+                color="white"
               >
                 LinkedIn
               </Button>
             </Link>
-            <Link
-              href="mailto:abdulrcs1@gmail.com"
-              _hover={{ textDecoration: 'none' }}
-              isExternal
-            >
+            <Link href="mailto:abdulrcs1@gmail.com" isExternal>
               <Button
-                background="#e94057"
-                color="white"
-                leftIcon={<FaEnvelope />}
+                leftIcon={<FaEnvelope fill="#3CCF91" />}
                 transition="0.3s"
-                _hover={{
-                  background: '#f04f65',
-                }}
                 position="static"
                 size={isLargerThan800 ? 'md' : 'sm'}
+                color="white"
               >
                 Email
               </Button>

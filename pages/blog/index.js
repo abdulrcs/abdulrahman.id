@@ -22,26 +22,38 @@ export default function Index({ articles }) {
   const [query, setQuery] = useState('')
   const handleChange = (e) => setQuery(e.target.value)
   const isLargerThan1024 = useMediaQuery(1024)
-  const TagColor = (tag) => {
-    // github, python, react, javascript, productivity, tutorial
-    if (tag == 'career') return 'blue'
-    else if (tag == 'programming') return 'teal'
-    else if (tag == 'webdev') return 'purple'
-    else if (tag == 'github') return 'gray'
-    else if (tag == 'python') return 'yellow'
-    else if (tag == 'react') return 'cyan'
-    else if (tag == 'javascript') return 'yellow'
-    else if (tag == 'productivity') return 'orange'
-    else if (tag == 'tutorial') return 'green'
-    else return 'gray'
-  }
 
   return (
     <Container>
       <Head>
         <title>Blog - Abdul Rahman</title>
-      </Head>
+        <meta name="title" content="Blog - Abdul Rahman" />
+        <meta
+          name="description"
+          content="This is where I share my writings on programming, tutorials, and my experiences."
+        />
 
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://abdulrahman.id/blog" />
+        <meta property="og:title" content="Blog - Abdul Rahman" />
+        <meta
+          property="og:description"
+          content="This is where I share my writings on programming, tutorials, and my experiences."
+        />
+        <meta property="og:image" content="https://i.imgur.com/5Hy8R5D.png" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://abdulrahman.id/" />
+        <meta property="twitter:title" content="Blog - Abdul Rahman" />
+        <meta
+          property="twitter:description"
+          content="This is where I share my writings on programming, tutorials, and my experiences."
+        />
+        <meta
+          property="twitter:image"
+          content="https://i.imgur.com/5Hy8R5D.png"
+        />
+      </Head>
       <Stack
         as="main"
         spacing={5}
@@ -136,6 +148,8 @@ let client = require('contentful').createClient({
 export async function getStaticProps() {
   let data = await client.getEntries({
     content_type: 'blogPosts',
+    limit: 3,
+    order: 'sys.createdAt',
   })
 
   return {

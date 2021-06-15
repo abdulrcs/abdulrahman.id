@@ -1,62 +1,54 @@
 import { useEffect } from 'react'
-import { Stack, Heading, Text, SimpleGrid, Flex, Box } from '@chakra-ui/layout'
-import { useInView } from 'react-intersection-observer'
-import { motion, useAnimation } from 'framer-motion'
-
+import {
+  Stack,
+  Heading,
+  Text,
+  SimpleGrid,
+  Flex,
+  Box,
+  Link,
+} from '@chakra-ui/layout'
 import Cards from './Card'
-import { Slide } from '@chakra-ui/transition'
-import Link from 'next/link'
+import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
 
 export default function FeaturedProjects({ projects }) {
-  function SlideUpWhenVisible({ children, slideFrom, threshold }) {
-    const controls = useAnimation()
-    const [ref, inView] = useInView({ threshold: threshold ? threshold : 0.35 })
-
-    useEffect(() => {
-      if (inView) {
-        controls.start('visible')
-      }
-    }, [controls, inView])
-
-    return (
-      <motion.div
-        ref={ref}
-        animate={controls}
-        initial="hidden"
-        transition={{ duration: 0.4 }}
-        variants={{
-          visible: { opacity: 1, y: 0 },
-          hidden: { opacity: 0, y: 20 },
-        }}
-      >
-        {children}
-      </motion.div>
-    )
-  }
-
   return (
     <>
       <Stack spacing={8} w="full">
-        <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={8}>
-          <SlideUpWhenVisible slideFrom={0}>
-            <Stack
-              spacing={1}
-              fontFamily="Ubuntu"
-              textAlign={['center', 'left']}
-            >
-              <Text fontSize="2xl" color="displayColor">
-                All Creative Works.
-              </Text>
-              <Text fontSize={['md', 'xl']} color="textSecondary">
+        <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={16}>
+          <SlideUpWhenVisible threshold={0.1}>
+            <Stack spacing={1}>
+              <Stack
+                isInline
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Heading
+                  fontSize={{ base: 'xl', md: '2xl' }}
+                  color="displayColor"
+                  fontFamily="Ubuntu"
+                >
+                  All Creative Works.
+                </Heading>
+                <Link href="/projects">
+                  <a>
+                    <Text
+                      display={{ base: 'block', md: 'none' }}
+                      fontSize={{ base: 'sm', md: 'xl' }}
+                    >
+                      Explore more &rarr;
+                    </Text>
+                  </a>
+                </Link>
+              </Stack>
+              <Text fontSize={{ base: 'md', md: 'xl' }} color="textSecondary">
                 Here's some of my projects that I have worked on.
               </Text>
               <Link href="/projects">
                 <a>
                   <Text
-                    fontSize={['md', 'xl']}
-                    color="button1"
-                    transition="0.3s"
-                    _hover={{ letterSpacing: '2px' }}
+                    display={{ base: 'none', md: 'block' }}
+                    fontSize={{ base: 'md', md: 'xl' }}
                   >
                     Explore more &rarr;
                   </Text>
@@ -64,7 +56,7 @@ export default function FeaturedProjects({ projects }) {
               </Link>
             </Stack>
           </SlideUpWhenVisible>
-          <SlideUpWhenVisible slideFrom={1}>
+          <SlideUpWhenVisible>
             <Cards
               imageURL={projects[0].fields.imageUrl}
               title={projects[0].fields.title}
@@ -74,7 +66,7 @@ export default function FeaturedProjects({ projects }) {
               tag={projects[0].fields.tags}
             />
           </SlideUpWhenVisible>
-          <SlideUpWhenVisible slideFrom={0}>
+          <SlideUpWhenVisible>
             <Box mt={{ md: '-50%' }}>
               <Cards
                 imageURL={projects[1].fields.imageUrl}
@@ -86,7 +78,7 @@ export default function FeaturedProjects({ projects }) {
               />
             </Box>
           </SlideUpWhenVisible>
-          <SlideUpWhenVisible slideFrom={1} threshold={0.8}>
+          <SlideUpWhenVisible threshold={0.8}>
             <Cards
               imageURL={projects[2].fields.imageUrl}
               title={projects[2].fields.title}

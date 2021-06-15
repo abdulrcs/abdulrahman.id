@@ -4,61 +4,61 @@ import Container from '../components/Container'
 import Introduction from '../components/Introduction'
 import FeaturedProjects from '../components/FeaturedProjects'
 import LatestArticle from '../components/LatestArticle'
-
-export default function Index({ projects }) {
+import AboutMe from '../components/AboutMe'
+import ContactMe from '../components/ContactMe'
+export default function Index({ projects, aboutMe, articles }) {
   return (
     <>
       <Container enableTransition={true}>
         <Head>
-          <title>Home - Abdul Rahman</title>
           <title>Abdul Rahman - Software Engineer</title>
           <meta name="title" content="Abdul Rahman - Software Engineer" />
           <meta
             name="description"
-            content="Front-end Developer based in Indonesia."
+            content="Software Engineer based in Indonesia."
           />
 
           <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://metatags.io/" />
+          <meta property="og:url" content="https://abdulrahman.id" />
           <meta
             property="og:title"
             content="Abdul Rahman - Software Engineer"
           />
           <meta
             property="og:description"
-            content="Front-end Developer based in Indonesia."
+            content="Software Engineer based in Indonesia."
           />
-          <meta
-            property="og:image"
-            content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
-          />
+          <meta property="og:image" content="https://i.imgur.com/5Hy8R5D.png" />
 
           <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:url" content="https://metatags.io/" />
+          <meta property="twitter:url" content="https://abdulrahman.id/" />
           <meta
             property="twitter:title"
             content="Abdul Rahman - Software Engineer"
           />
           <meta
             property="twitter:description"
-            content="Front-end Developer based in Indonesia."
+            content="Software Engineer based in Indonesia."
           />
           <meta
             property="twitter:image"
-            content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png"
+            content="https://i.imgur.com/5Hy8R5D.png"
           />
         </Head>
 
         <Stack
           as="main"
-          spacing={20}
+          spacing="144px"
           justifyContent="center"
           alignItems="flex-start"
           px={['5vw', '10vw']}
           mt={['15vh', '15vh', '22.5vh', '22.5vh']}
         >
           <Introduction />
+          <AboutMe />
           <FeaturedProjects projects={projects} />
+          <LatestArticle articles={articles} />
+          <ContactMe />
         </Stack>
       </Container>
     </>
@@ -75,9 +75,16 @@ export async function getStaticProps() {
     content_type: 'featuredProjects',
     order: 'fields.order',
   })
+
+  let data2 = await client.getEntries({
+    content_type: 'blogPosts',
+    limit: 4,
+    order: 'sys.createdAt',
+  })
   return {
     props: {
       projects: data.items,
+      articles: data2.items.reverse(),
     },
   }
 }

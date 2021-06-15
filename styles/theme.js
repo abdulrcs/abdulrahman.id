@@ -29,7 +29,8 @@ const colors = {
   textPrimary: '#D1D5DB',
   textSecondary: '#8F9094',
   button1: '#3CCF91',
-  button2: '#5132BF',
+  button2: '#F6A20E',
+  button3: '#5132BF',
   borderColor: '#111111',
 }
 
@@ -47,8 +48,18 @@ const breakpoints = createBreakpoints({
   xl: '80em',
 })
 
+const Link = {
+  baseStyle: {
+    color: '#3CCF91',
+    _hover: { color: '#F6A20E', textDecoration: 'none' },
+  },
+}
+
 const overrides = {
   ...chakraTheme,
+  components: {
+    Link,
+  },
   config,
   colors,
   fonts,
