@@ -7,6 +7,7 @@ import {
   Stack,
   Divider,
   TagLabel,
+  Link,
 } from '@chakra-ui/react'
 import {
   FaReact,
@@ -15,9 +16,22 @@ import {
   FaJs,
   FaSass,
   FaCode,
+  FaGithub,
+  FaExternalLinkAlt,
+  FaLaravel,
+  FaBootstrap,
+  FaDatabase,
 } from 'react-icons/fa'
+import useMediaQuery from '../hook/useMediaQuery'
 
-export default function Cards({ imageURL, title, desc, projectURL, tag }) {
+export default function Cards({
+  imageURL,
+  title,
+  desc,
+  githubLink,
+  deployLink,
+  tag,
+}) {
   const getTag = (tag) => {
     let values = []
     if (tag == 'React') {
@@ -35,6 +49,15 @@ export default function Cards({ imageURL, title, desc, projectURL, tag }) {
     } else if (tag == 'Flask') {
       values[0] = 'green'
       values[1] = FaPepperHot
+    } else if (tag == 'Laravel') {
+      values[0] = 'red'
+      values[1] = FaLaravel
+    } else if (tag == 'Bootstrap') {
+      values[0] = 'purple'
+      values[1] = FaBootstrap
+    } else if (tag == 'SQL') {
+      values[0] = 'blue'
+      values[1] = FaDatabase
     } else {
       values[0] = 'gray'
       values[1] = FaCode
@@ -42,28 +65,62 @@ export default function Cards({ imageURL, title, desc, projectURL, tag }) {
     return values
   }
 
+  const isLargerThan800 = useMediaQuery(800)
+
   const Tags = tag.map((item) => (
-    <Tag colorScheme={getTag(item)[0]} size="md">
+    <Tag
+      key={item}
+      colorScheme={getTag(item)[0]}
+      size={isLargerThan800 ? 'md' : 'sm'}
+    >
       <TagLeftIcon as={getTag(item)[1]}></TagLeftIcon>
       <TagLabel>{item}</TagLabel>
     </Tag>
   ))
 
   return (
-    <Stack bg="secondary" borderRadius="10px" minH="350px" maxH="500px">
+    <Stack
+      bg="secondary"
+      borderRadius="10px"
+      minH="320px"
+      maxH="500px"
+      border="1px"
+      borderColor={{ base: '#333', md: 'borderColor' }}
+    >
       <Image
         w="100%"
         src={imageURL}
         transition="0.3s"
         borderRadius="10px 10px 0px 0px"
       ></Image>
-      <Stack px={5} py={3}>
-        <Text fontFamily="Ubuntu" fontSize="2xl" color="white">
-          {title}
-        </Text>
+      <Stack px={4} py={2}>
+        <Stack isInline justifyContent="space-between" alignItems="center">
+          <Text fontFamily="Ubuntu" fontSize="2xl" color="displayColor">
+            {title}
+          </Text>
+          <Stack
+            isInline
+            justifyContent="flex-end"
+            alignItems="center"
+            spacing={4}
+          >
+            {githubLink && (
+              <Link href={githubLink} color="white">
+                <FaGithub size={23} />
+              </Link>
+            )}
+            {deployLink && (
+              <Link href={deployLink} color="white">
+                <FaExternalLinkAlt size={20} />
+              </Link>
+            )}
+          </Stack>
+        </Stack>
         <Stack isInline>{Tags}</Stack>
         <Divider />
-        <Text color="textSecondary">{desc}</Text>
+        <Text color="textSecondary" fontSize={['sm', 'md']}>
+          {desc}
+        </Text>
       </Stack>
     </Stack>
   )

@@ -9,6 +9,11 @@ import { createBreakpoints } from '@chakra-ui/theme-tools'
 //            = 100 * font_size_difference / viewport_difference
 //         ZZ = Minimum font-size stated in REM
 
+const config = {
+  initialColorMode: 'dark',
+  useSystemColorMode: false,
+}
+
 const fluidType = (minFont, maxFont) => {
   let XX = 768 / 100
   let YY = (100 * (maxFont - minFont)) / (1920 - 768)
@@ -18,13 +23,15 @@ const fluidType = (minFont, maxFont) => {
 
 const colors = {
   background: '#12141D',
-  secondary: '#1E2029',
-  tertiary: '#35373F',
+  secondary: '#080808',
   complement: '#FA934F',
-  textPrimary: '#FFFFFF',
+  displayColor: '#FFFFFF',
+  textPrimary: '#D1D5DB',
   textSecondary: '#8F9094',
   button1: '#3CCF91',
-  button2: '#5132BF',
+  button2: '#F6A20E',
+  button3: '#5132BF',
+  borderColor: '#111111',
 }
 
 const fonts = {
@@ -34,14 +41,26 @@ const fonts = {
 }
 
 const breakpoints = createBreakpoints({
+  base: '0em',
   sm: '30em',
   md: '48em',
   lg: '80em',
   xl: '80em',
 })
 
+const Link = {
+  baseStyle: {
+    color: '#3CCF91',
+    _hover: { color: '#F6A20E', textDecoration: 'none' },
+  },
+}
+
 const overrides = {
   ...chakraTheme,
+  components: {
+    Link,
+  },
+  config,
   colors,
   fonts,
   breakpoints,
@@ -63,7 +82,7 @@ const overrides = {
     //   '6xl': fluidType(24, 48),
     //   '7xl': fluidType(32, 64),
     //   '8xl': fluidType(36, 72),
-    display: fluidType(72, 144),
+    display: fluidType(80, 144),
     display2: fluidType(24, 36),
     display3: fluidType(16, 24),
   },
