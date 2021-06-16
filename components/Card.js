@@ -8,7 +8,10 @@ import {
   Divider,
   TagLabel,
   Link,
+  Skeleton,
+  ScaleFade,
 } from '@chakra-ui/react'
+import { useState } from 'react'
 import {
   FaReact,
   FaPython,
@@ -23,7 +26,6 @@ import {
   FaDatabase,
 } from 'react-icons/fa'
 import useMediaQuery from '../hook/useMediaQuery'
-
 export default function Cards({
   imageURL,
   title,
@@ -77,7 +79,10 @@ export default function Cards({
       <TagLabel>{item}</TagLabel>
     </Tag>
   ))
-
+  const [loaded, setLoaded] = useState(false)
+  const handleLoaded = () => {
+    setTimeout(() => setLoaded(true), 1000)
+  }
   return (
     <Stack
       bg="secondary"
@@ -87,12 +92,16 @@ export default function Cards({
       border="1px"
       borderColor={{ base: '#333', md: 'borderColor' }}
     >
-      <Image
-        w="100%"
-        src={imageURL}
-        transition="0.3s"
-        borderRadius="10px 10px 0px 0px"
-      ></Image>
+      <ScaleFade in={loaded} transition={{ duration: 1 }}>
+        <Image
+          w="100%"
+          h="100%"
+          src={imageURL}
+          transition="0.3s"
+          borderRadius="10px 10px 0px 0px"
+          onLoad={handleLoaded}
+        ></Image>
+      </ScaleFade>
       <Stack px={4} py={2}>
         <Stack isInline justifyContent="space-between" alignItems="center">
           <Text fontFamily="Ubuntu" fontSize="2xl" color="displayColor">
