@@ -44,7 +44,7 @@ export default function Projects({ projects }) {
             property="og:description"
             content="Software Engineer based in Indonesia."
           />
-          <meta property="og:image" content="https://i.imgur.com/5Hy8R5D.png" />
+          <meta property="og:image" content="https://i.imgur.com/AOMvmeJ.png" />
 
           <meta property="twitter:card" content="summary_large_image" />
           <meta
@@ -61,7 +61,7 @@ export default function Projects({ projects }) {
           />
           <meta
             property="twitter:image"
-            content="https://i.imgur.com/5Hy8R5D.png"
+            content="https://i.imgur.com/AOMvmeJ.png"
           />
         </Head>
         <Stack

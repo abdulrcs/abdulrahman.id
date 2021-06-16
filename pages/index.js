@@ -28,7 +28,7 @@ export default function Index({ projects, aboutMe, articles }) {
             property="og:description"
             content="Software Engineer based in Indonesia."
           />
-          <meta property="og:image" content="https://i.imgur.com/5Hy8R5D.png" />
+          <meta property="og:image" content="https://i.imgur.com/AOMvmeJ.png" />
 
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:url" content="https://abdulrahman.id/" />
@@ -42,7 +42,7 @@ export default function Index({ projects, aboutMe, articles }) {
           />
           <meta
             property="twitter:image"
-            content="https://i.imgur.com/5Hy8R5D.png"
+            content="https://i.imgur.com/AOMvmeJ.png"
           />
         </Head>
 
