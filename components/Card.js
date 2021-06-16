@@ -84,15 +84,15 @@ export default function Cards({
     setTimeout(() => setLoaded(true), 1000)
   }
   return (
-    <Stack
-      bg="secondary"
-      borderRadius="10px"
-      minH="320px"
-      maxH="500px"
-      border="1px"
-      borderColor={{ base: '#333', md: 'borderColor' }}
-    >
-      <ScaleFade in={loaded} transition={{ duration: 1 }}>
+    <ScaleFade in={loaded} transition={{ duration: 1 }}>
+      <Stack
+        bg="secondary"
+        borderRadius="10px"
+        minH="320px"
+        maxH="500px"
+        border="1px"
+        borderColor={{ base: '#333', md: 'borderColor' }}
+      >
         <Image
           w="100%"
           h="100%"
@@ -101,36 +101,36 @@ export default function Cards({
           borderRadius="10px 10px 0px 0px"
           onLoad={handleLoaded}
         ></Image>
-      </ScaleFade>
-      <Stack px={4} py={2}>
-        <Stack isInline justifyContent="space-between" alignItems="center">
-          <Text fontFamily="Ubuntu" fontSize="2xl" color="displayColor">
-            {title}
-          </Text>
-          <Stack
-            isInline
-            justifyContent="flex-end"
-            alignItems="center"
-            spacing={4}
-          >
-            {githubLink && (
-              <Link href={githubLink} color="white">
-                <FaGithub size={23} />
-              </Link>
-            )}
-            {deployLink && (
-              <Link href={deployLink} color="white">
-                <FaExternalLinkAlt size={20} />
-              </Link>
-            )}
+        <Stack px={4} py={2}>
+          <Stack isInline justifyContent="space-between" alignItems="center">
+            <Text fontFamily="Ubuntu" fontSize="2xl" color="displayColor">
+              {title}
+            </Text>
+            <Stack
+              isInline
+              justifyContent="flex-end"
+              alignItems="center"
+              spacing={4}
+            >
+              {githubLink && (
+                <Link href={githubLink} color="white">
+                  <FaGithub size={23} />
+                </Link>
+              )}
+              {deployLink && (
+                <Link href={deployLink} color="white">
+                  <FaExternalLinkAlt size={20} />
+                </Link>
+              )}
+            </Stack>
           </Stack>
+          <Stack isInline>{Tags}</Stack>
+          <Divider />
+          <Text color="textSecondary" fontSize={['sm', 'md']}>
+            {desc}
+          </Text>
         </Stack>
-        <Stack isInline>{Tags}</Stack>
-        <Divider />
-        <Text color="textSecondary" fontSize={['sm', 'md']}>
-          {desc}
-        </Text>
       </Stack>
-    </Stack>
+    </ScaleFade>
   )
 }
