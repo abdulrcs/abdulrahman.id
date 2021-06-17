@@ -27,7 +27,7 @@ export default function ContactMe() {
               display={{ base: 'block', md: 'inline' }}
             >
               {' '}
-              Frontend Developer.
+              Front-end Developer.
             </chakra.span>
             <br /> Let's get in touch and talk more about your projects.
           </Text>
