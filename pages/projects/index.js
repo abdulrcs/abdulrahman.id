@@ -31,7 +31,7 @@ export default function Projects({ projects }) {
           <meta name="title" content="Abdul Rahman - Software Engineer" />
           <meta
             name="description"
-            content="Software Engineer based in Indonesia."
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
 
           <meta property="og:type" content="website" />
@@ -42,7 +42,7 @@ export default function Projects({ projects }) {
           />
           <meta
             property="og:description"
-            content="Software Engineer based in Indonesia."
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
           <meta property="og:image" content="https://i.imgur.com/AOMvmeJ.png" />
 
@@ -57,7 +57,7 @@ export default function Projects({ projects }) {
           />
           <meta
             property="twitter:description"
-            content="Software Engineer based in Indonesia."
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
           <meta
             property="twitter:image"

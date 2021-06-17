@@ -13,9 +13,10 @@ export default function Index({ projects, aboutMe, articles }) {
         <Head>
           <title>Abdul Rahman - Software Engineer</title>
           <meta name="title" content="Abdul Rahman - Software Engineer" />
+          <meta name="keywords" content="abdulrcs, abdulrcs website" />
           <meta
             name="description"
-            content="Software Engineer based in Indonesia."
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
 
           <meta property="og:type" content="website" />
@@ -26,7 +27,7 @@ export default function Index({ projects, aboutMe, articles }) {
           />
           <meta
             property="og:description"
-            content="Software Engineer based in Indonesia."
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
           <meta property="og:image" content="https://i.imgur.com/AOMvmeJ.png" />
 
@@ -38,7 +39,7 @@ export default function Index({ projects, aboutMe, articles }) {
           />
           <meta
             property="twitter:description"
-            content="Software Engineer based in Indonesia."
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
           <meta
             property="twitter:image"
