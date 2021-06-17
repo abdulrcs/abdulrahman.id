@@ -15,8 +15,15 @@ import {
 } from '@chakra-ui/react'
 import useMediaQuery from '../hook/useMediaQuery'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
+
 export default function AboutMe() {
   const isLargerThan800 = useMediaQuery(800)
+  const handleHover = (event) => {
+    async function callEvent() {
+      await fetch(`api/insight/events/${event}`)
+    }
+    callEvent()
+  }
   const MoreInfo = ({ text, content }) => {
     return (
       <>
@@ -26,7 +33,11 @@ export default function AboutMe() {
           placement={isLargerThan800 ? 'right' : 'bottom'}
         >
           <PopoverTrigger>
-            <chakra.span color="button1" cursor="help">
+            <chakra.span
+              onMouseOver={() => handleHover(`about_${text}`)}
+              color="button1"
+              cursor="help"
+            >
               {text}
             </chakra.span>
           </PopoverTrigger>
@@ -40,6 +51,7 @@ export default function AboutMe() {
       </>
     )
   }
+
   return (
     <>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
@@ -66,7 +78,9 @@ export default function AboutMe() {
               <MoreInfo
                 text="Software
               Engineer in a B2B Company"
-                content={<Image src="https://i.imgur.com/2vdHCro.png" />}
+                content={
+                  <Image src="https://i.imgur.com/2vdHCro.png" alt="linkedin" />
+                }
               />
               , I'm interested in building something awesome with code and
               automate tasks with code, currently focused in
@@ -104,12 +118,14 @@ export default function AboutMe() {
                 top={0}
                 right={0}
                 w={{ base: '100px', lg: '150px' }}
+                alt="decor"
               />
               <Image
                 src="https://i.imgur.com/CbbuXeI.png"
                 w="100%"
                 maxW={{ base: '300px', lg: '350px' }}
                 maxH={{ base: '300px', lg: '350px' }}
+                alt="Abdul Rahman"
               />
             </Box>
           </Flex>

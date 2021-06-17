@@ -6,7 +6,20 @@ import FeaturedProjects from '../components/FeaturedProjects'
 import LatestArticle from '../components/LatestArticle'
 import AboutMe from '../components/AboutMe'
 import ContactMe from '../components/ContactMe'
-export default function Index({ projects, aboutMe, articles }) {
+import { useEffect } from 'react'
+
+export default function Index({ projects, articles }) {
+  useEffect(() => {
+    let mounted = true
+    async function pageView() {
+      await fetch(`api/insight/views/home`)
+    }
+    if (mounted) pageView()
+    return () => {
+      mounted = false
+    }
+  }, [])
+
   return (
     <>
       <Container enableTransition={true}>

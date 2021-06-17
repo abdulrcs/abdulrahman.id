@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Stack,
   Heading,
@@ -22,6 +22,17 @@ export default function Index({ articles }) {
   const [query, setQuery] = useState('')
   const handleChange = (e) => setQuery(e.target.value)
   const isLargerThan1024 = useMediaQuery(1024)
+
+  useEffect(() => {
+    let mounted = true
+    async function pageView() {
+      await fetch(`api/insight/views/blog`)
+    }
+    if (mounted) pageView()
+    return () => {
+      mounted = false
+    }
+  }, [])
 
   return (
     <Container>

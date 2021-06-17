@@ -13,12 +13,14 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "contentful": "^8.3.7",
+    "cors": "^2.8.5",
     "dateformat": "^4.5.1",
     "firebase": "^8.6.7",
     "framer-motion": "^4",
     "gray-matter": "^4.0.3",
     "mdx-prism": "^0.3.1",
     "next": "10.2.0",
+    "next-connect": "^0.10.1",
     "next-google-fonts": "^2.2.0",
     "next-mdx-remote": "^3.0.2",
     "next-session": "^3.4.0",
@@ -31,6 +33,7 @@
     "remark-autolink-headings": "^6.0.1",
     "remark-capitalize": "^1.1.0",
     "remark-code-titles": "^0.1.1",
-    "remark-slug": "^6.0.0"
+    "remark-slug": "^6.0.0",
+    "universal-analytics": "^0.4.23"
   }
 }

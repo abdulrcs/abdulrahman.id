@@ -83,23 +83,30 @@ export default function Cards({
   const handleLoaded = () => {
     setTimeout(() => setLoaded(true), 1000)
   }
+  const handleClick = (event) => {
+    async function callEvent() {
+      await fetch(`api/insight/events/${event}`)
+    }
+    callEvent()
+  }
+
   return (
-    <ScaleFade in={loaded} transition={{ duration: 1 }}>
-      <Stack
-        bg="secondary"
-        borderRadius="10px"
-        minH="320px"
-        maxH="500px"
-        border="1px"
-        borderColor={{ base: '#333', md: 'borderColor' }}
-      >
+    <Stack
+      bg="secondary"
+      borderRadius="10px"
+      minH="320px"
+      maxH="500px"
+      border="1px"
+      borderColor={{ base: '#333', md: 'borderColor' }}
+    >
+      <ScaleFade in={loaded} transition={{ duration: 1 }}>
         <Image
           w="100%"
-          h="100%"
           src={imageURL}
           transition="0.3s"
           borderRadius="10px 10px 0px 0px"
           onLoad={handleLoaded}
+          alt="project image"
         ></Image>
         <Stack px={4} py={2}>
           <Stack isInline justifyContent="space-between" alignItems="center">
@@ -113,12 +120,22 @@ export default function Cards({
               spacing={4}
             >
               {githubLink && (
-                <Link href={githubLink} color="white">
+                <Link
+                  href={githubLink}
+                  color="white"
+                  onClick={() => handleClick(`githublink_${title}`)}
+                  isExternal
+                >
                   <FaGithub size={23} />
                 </Link>
               )}
               {deployLink && (
-                <Link href={deployLink} color="white">
+                <Link
+                  href={deployLink}
+                  color="white"
+                  onClick={() => handleClick(`deploylink_${title}`)}
+                  isExternal
+                >
                   <FaExternalLinkAlt size={20} />
                 </Link>
               )}
@@ -130,7 +147,7 @@ export default function Cards({
             {desc}
           </Text>
         </Stack>
-      </Stack>
-    </ScaleFade>
+      </ScaleFade>
+    </Stack>
   )
 }

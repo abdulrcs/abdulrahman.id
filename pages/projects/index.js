@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Stack,
   Heading,
@@ -23,6 +23,18 @@ export default function Projects({ projects }) {
   const handleChange = (e) => {
     setQuery(e.target.value)
   }
+
+  useEffect(() => {
+    let mounted = true
+    async function pageView() {
+      await fetch(`api/insight/views/projects`)
+    }
+    if (mounted) pageView()
+    return () => {
+      mounted = false
+    }
+  }, [])
+
   return (
     <>
       <Container>
@@ -97,6 +109,7 @@ export default function Projects({ projects }) {
               )
               .map((project) => (
                 <Cards
+                  key={project.fields.title}
                   imageURL={project.fields.imageUrl}
                   title={project.fields.title}
                   desc={project.fields.description}

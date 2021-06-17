@@ -103,7 +103,12 @@ export default function Post({ metadata, source, tags, views }) {
                 </Text>
               </Stack>
             </Stack>
-            <Image src={metadata.image} maxW="100%" mx="auto"></Image>
+            <Image
+              src={metadata.image}
+              maxW="100%"
+              mx="auto"
+              alt="illustration"
+            ></Image>
             <PostContainer>
               <MDXRemote {...source} components={MDXComponents} />
             </PostContainer>
@@ -132,7 +137,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const views = await fetch(`http://localhost:3000/api/views/${params.slug}`)
+  const views = await fetch(`api/views/${params.slug}`)
     .then((res) => res.json())
     .then((json) => json.views)
 
