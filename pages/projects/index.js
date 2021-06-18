@@ -1,18 +1,7 @@
 import { useState } from 'react'
-import {
-  Stack,
-  Heading,
-  Text,
-  SimpleGrid,
-  Flex,
-  Box,
-  Divider,
-} from '@chakra-ui/react'
-import { useInView } from 'react-intersection-observer'
-import { motion, useAnimation } from 'framer-motion'
+import { Stack, Heading, Text, SimpleGrid, Divider } from '@chakra-ui/react'
 
 import Cards from '../../components/Card'
-import { Slide } from '@chakra-ui/transition'
 import Container from '../../components/Container'
 import Head from 'next/head'
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
@@ -23,6 +12,7 @@ export default function Projects({ projects }) {
   const handleChange = (e) => {
     setQuery(e.target.value)
   }
+
   return (
     <>
       <Container>
@@ -31,7 +21,7 @@ export default function Projects({ projects }) {
           <meta name="title" content="Abdul Rahman - Software Engineer" />
           <meta
             name="description"
-            content="Software Engineer based in Indonesia."
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
 
           <meta property="og:type" content="website" />
@@ -42,9 +32,9 @@ export default function Projects({ projects }) {
           />
           <meta
             property="og:description"
-            content="Software Engineer based in Indonesia."
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
-          <meta property="og:image" content="https://i.imgur.com/5Hy8R5D.png" />
+          <meta property="og:image" content="https://i.imgur.com/AOMvmeJ.png" />
 
           <meta property="twitter:card" content="summary_large_image" />
           <meta
@@ -57,11 +47,11 @@ export default function Projects({ projects }) {
           />
           <meta
             property="twitter:description"
-            content="Software Engineer based in Indonesia."
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
           <meta
             property="twitter:image"
-            content="https://i.imgur.com/5Hy8R5D.png"
+            content="https://i.imgur.com/AOMvmeJ.png"
           />
         </Head>
         <Stack
@@ -97,6 +87,7 @@ export default function Projects({ projects }) {
               )
               .map((project) => (
                 <Cards
+                  key={project.fields.title}
                   imageURL={project.fields.imageUrl}
                   title={project.fields.title}
                   desc={project.fields.description}

@@ -1,14 +1,15 @@
 import {
   TagLeftIcon,
   Tag,
-  Heading,
   Text,
   Image,
   Stack,
   Divider,
   TagLabel,
   Link,
+  ScaleFade,
 } from '@chakra-ui/react'
+import { useState } from 'react'
 import {
   FaReact,
   FaPython,
@@ -23,6 +24,7 @@ import {
   FaDatabase,
 } from 'react-icons/fa'
 import useMediaQuery from '../hook/useMediaQuery'
+import ReactGA from 'react-ga'
 
 export default function Cards({
   imageURL,
@@ -77,6 +79,16 @@ export default function Cards({
       <TagLabel>{item}</TagLabel>
     </Tag>
   ))
+  const [loaded, setLoaded] = useState(false)
+  const handleLoaded = () => {
+    setTimeout(() => setLoaded(true), 1000)
+  }
+  const handleClick = (event) => {
+    ReactGA.event({
+      category: 'click',
+      action: event,
+    })
+  }
 
   return (
     <Stack
@@ -87,41 +99,59 @@ export default function Cards({
       border="1px"
       borderColor={{ base: '#333', md: 'borderColor' }}
     >
-      <Image
-        w="100%"
-        src={imageURL}
-        transition="0.3s"
-        borderRadius="10px 10px 0px 0px"
-      ></Image>
-      <Stack px={4} py={2}>
-        <Stack isInline justifyContent="space-between" alignItems="center">
-          <Text fontFamily="Ubuntu" fontSize="2xl" color="displayColor">
-            {title}
-          </Text>
-          <Stack
-            isInline
-            justifyContent="flex-end"
-            alignItems="center"
-            spacing={4}
-          >
-            {githubLink && (
-              <Link href={githubLink} color="white">
-                <FaGithub size={23} />
-              </Link>
-            )}
-            {deployLink && (
-              <Link href={deployLink} color="white">
-                <FaExternalLinkAlt size={20} />
-              </Link>
-            )}
+      <ScaleFade in={loaded} transition={{ duration: 1 }}>
+        <Image
+          w="100%"
+          src={imageURL}
+          transition="0.3s"
+          borderRadius="10px 10px 0px 0px"
+          onLoad={handleLoaded}
+          alt="project image"
+        ></Image>
+        <Stack px={4} py={2}>
+          <Stack isInline justifyContent="space-between" alignItems="center">
+            <Text fontFamily="Ubuntu" fontSize="2xl" color="displayColor">
+              {title}
+            </Text>
+            <Stack
+              isInline
+              justifyContent="flex-end"
+              alignItems="center"
+              spacing={4}
+            >
+              {githubLink && (
+                <Link
+                  href={githubLink}
+                  color="white"
+                  onClick={() =>
+                    handleClick(`githublink_${title.replace('@', '-at-')}`)
+                  }
+                  isExternal
+                >
+                  <FaGithub size={23} />
+                </Link>
+              )}
+              {deployLink && (
+                <Link
+                  href={deployLink}
+                  color="white"
+                  onClick={() =>
+                    handleClick(`deploylink_${title.replace('@', '-at')}`)
+                  }
+                  isExternal
+                >
+                  <FaExternalLinkAlt size={20} />
+                </Link>
+              )}
+            </Stack>
           </Stack>
+          <Stack isInline>{Tags}</Stack>
+          <Divider />
+          <Text color="textSecondary" fontSize={['sm', 'md']}>
+            {desc}
+          </Text>
         </Stack>
-        <Stack isInline>{Tags}</Stack>
-        <Divider />
-        <Text color="textSecondary" fontSize={['sm', 'md']}>
-          {desc}
-        </Text>
-      </Stack>
+      </ScaleFade>
     </Stack>
   )
 }

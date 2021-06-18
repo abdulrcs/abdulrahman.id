@@ -1,14 +1,5 @@
 import { useState } from 'react'
-import {
-  Stack,
-  Heading,
-  Text,
-  Divider,
-  Flex,
-  Box,
-  Tag,
-  TagLabel,
-} from '@chakra-ui/react'
+import { Stack, Heading, Text, Divider, Flex, Box } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Container from '../../components/Container'
@@ -30,7 +21,7 @@ export default function Index({ articles }) {
         <meta name="title" content="Blog - Abdul Rahman" />
         <meta
           name="description"
-          content="This is where I share my writings on programming, tutorials, and my experiences."
+          content="Writings on programming, tutorials, and my experiences."
         />
 
         <meta property="og:type" content="website" />
@@ -38,20 +29,20 @@ export default function Index({ articles }) {
         <meta property="og:title" content="Blog - Abdul Rahman" />
         <meta
           property="og:description"
-          content="This is where I share my writings on programming, tutorials, and my experiences."
+          content="Writings on programming, tutorials, and my experiences."
         />
-        <meta property="og:image" content="https://i.imgur.com/5Hy8R5D.png" />
+        <meta property="og:image" content="https://i.imgur.com/dWmBCSl.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://abdulrahman.id/" />
         <meta property="twitter:title" content="Blog - Abdul Rahman" />
         <meta
           property="twitter:description"
-          content="This is where I share my writings on programming, tutorials, and my experiences."
+          content="Writings on programming, tutorials, and my experiences."
         />
         <meta
           property="twitter:image"
-          content="https://i.imgur.com/5Hy8R5D.png"
+          content="https://i.imgur.com/dWmBCSl.png"
         />
       </Head>
       <Stack

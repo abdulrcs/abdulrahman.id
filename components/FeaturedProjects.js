@@ -1,17 +1,25 @@
-import { useEffect } from 'react'
 import {
+  Link,
   Stack,
   Heading,
   Text,
   SimpleGrid,
   Flex,
   Box,
-  Link,
 } from '@chakra-ui/layout'
+import NextLink from 'next/link'
 import Cards from './Card'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
+import ReactGA from 'react-ga'
 
 export default function FeaturedProjects({ projects }) {
+  const handleClick = (event) => {
+    ReactGA.event({
+      category: 'click',
+      action: event,
+    })
+  }
+
   return (
     <>
       <Stack spacing={8} w="full">
@@ -30,30 +38,37 @@ export default function FeaturedProjects({ projects }) {
                 >
                   All Creative Works.
                 </Heading>
-                <Link href="/projects">
-                  <a>
+                <NextLink href="/projects" passHref>
+                  <Link
+                    onClick={() => handleClick('featuredprojects_explore more')}
+                  >
                     <Text
                       display={{ base: 'block', md: 'none' }}
                       fontSize={{ base: 'sm', md: 'xl' }}
+                      color="button1"
+                      _hover={{ color: 'button2' }}
                     >
+                      {' '}
                       Explore more &rarr;
                     </Text>
-                  </a>
-                </Link>
+                  </Link>
+                </NextLink>
               </Stack>
               <Text fontSize={{ base: 'md', md: 'xl' }} color="textSecondary">
                 Here's some of my projects that I have worked on.
               </Text>
-              <Link href="/projects">
-                <a>
+              <NextLink href="/projects">
+                <Link
+                  onClick={() => handleClick('featuredprojects_explore more')}
+                >
                   <Text
                     display={{ base: 'none', md: 'block' }}
                     fontSize={{ base: 'md', md: 'xl' }}
                   >
                     Explore more &rarr;
                   </Text>
-                </a>
-              </Link>
+                </Link>
+              </NextLink>
             </Stack>
           </SlideUpWhenVisible>
           <SlideUpWhenVisible>

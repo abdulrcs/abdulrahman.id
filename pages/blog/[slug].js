@@ -6,7 +6,6 @@ import {
   Image,
   Tag,
   TagLabel,
-  HStack,
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -18,8 +17,9 @@ import readingTime from 'reading-time'
 import Container from '../../components/Container'
 import PostContainer from '../../components/PostContainer'
 import MDXComponents from '../../components/MDXComponents'
+import { useEffect, useState } from 'react'
 
-export default function Post({ metadata, source, tags, views }) {
+export default function Post({ metadata, source, tags }) {
   const TagColor = (tag) => {
     // github, python, react, javascript, productivity, tutorial
     if (tag == 'career') return 'blue'
@@ -38,7 +38,17 @@ export default function Post({ metadata, source, tags, views }) {
       <TagLabel>#{item.sys.id}</TagLabel>
     </Tag>
   ))
-
+  const [views, setViews] = useState('...')
+  useEffect(() => {
+    async function getViews() {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/views/${metadata.slug}`,
+      )
+        .then((res) => res.json())
+        .then((json) => setViews(json.views))
+    }
+    getViews()
+  }, [])
   return (
     <>
       <Container>
@@ -103,7 +113,12 @@ export default function Post({ metadata, source, tags, views }) {
                 </Text>
               </Stack>
             </Stack>
-            <Image src={metadata.image} maxW="100%" mx="auto"></Image>
+            <Image
+              src={metadata.image}
+              maxW="100%"
+              mx="auto"
+              alt="illustration"
+            ></Image>
             <PostContainer>
               <MDXRemote {...source} components={MDXComponents} />
             </PostContainer>
@@ -132,10 +147,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const views = await fetch(`http://localhost:3000/api/views/${params.slug}`)
-    .then((res) => res.json())
-    .then((json) => json.views)
-
   let data = await client.getEntries({
     content_type: 'blogPosts',
     'fields.slug': params.slug,
@@ -157,7 +168,6 @@ export async function getStaticProps({ params }) {
       metadata: article,
       source: mdxSource,
       tags: tags,
-      views: views,
     },
   }
 }

@@ -2,6 +2,7 @@ import { Heading } from '@chakra-ui/layout'
 import { Box, Flex, Link, Stack, Text, SimpleGrid } from '@chakra-ui/react'
 import dateFormat from 'dateformat'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
+import NextLink from 'next/link'
 
 export default function LatestArticle({ articles }) {
   return (
@@ -15,13 +16,13 @@ export default function LatestArticle({ articles }) {
           <Heading fontSize={{ base: 'xl', md: '2xl' }} fontFamily="Ubuntu">
             📰 Latest Article.
           </Heading>
-          <Link href="/projects">
-            <a>
+          <NextLink href="/projects">
+            <Link>
               <Text fontSize={{ base: 'sm', md: 'md' }}>
                 View all articles &rarr;
               </Text>
-            </a>
-          </Link>
+            </Link>
+          </NextLink>
         </Flex>
       </SlideUpWhenVisible>
       <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={{ base: 2, md: 4 }}>

@@ -2,8 +2,16 @@ import { Link, Button, chakra, Heading, Stack, Text } from '@chakra-ui/react'
 import useMediaQuery from '../hook/useMediaQuery'
 import { FaLinkedin, FaEnvelope, FaFileAlt } from 'react-icons/fa'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
+import ReactGA from 'react-ga'
+
 export default function ContactMe() {
   const isLargerThan800 = useMediaQuery(800)
+  const handleClick = (event) => {
+    ReactGA.event({
+      category: 'click',
+      action: event,
+    })
+  }
   return (
     <>
       <Stack
@@ -27,7 +35,7 @@ export default function ContactMe() {
               display={{ base: 'block', md: 'inline' }}
             >
               {' '}
-              Frontend Developer.
+              Front-end Developer.
             </chakra.span>
             <br /> Let's get in touch and talk more about your projects.
           </Text>
@@ -35,7 +43,11 @@ export default function ContactMe() {
 
         <SlideUpWhenVisible>
           <Stack isInline spacing={4}>
-            <Link href="https://linkedin.com/in/abdulrcs" isExternal>
+            <Link
+              href="https://linkedin.com/in/abdulrcs"
+              isExternal
+              onClick={() => handleClick('contact_linkedin')}
+            >
               <Button
                 leftIcon={<FaLinkedin fill="#3CCF91" />}
                 position="static"
@@ -45,7 +57,11 @@ export default function ContactMe() {
                 LinkedIn
               </Button>
             </Link>
-            <Link href="mailto:abdulrcs1@gmail.com" isExternal>
+            <Link
+              href="mailto:abdulrcs1@gmail.com"
+              isExternal
+              onClick={() => handleClick('contact_email')}
+            >
               <Button
                 color="white"
                 leftIcon={<FaEnvelope fill="#3CCF91" />}
@@ -59,6 +75,7 @@ export default function ContactMe() {
             <Link
               href="https://drive.google.com/file/d/1IvhcdThnfMAcPEHy6Yvq4o8vSaIi_ArV/view?usp=sharing"
               isExternal
+              onClick={() => handleClick('contact_resume')}
             >
               <Button
                 leftIcon={<FaFileAlt fill="#3CCF91" />}

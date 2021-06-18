@@ -4,17 +4,22 @@ import {
   Stack,
   Heading,
   Box,
-  Icon,
   Button,
   SlideFade,
   Image,
 } from '@chakra-ui/react'
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
 import useMediaQuery from '../hook/useMediaQuery'
-import styled from '@emotion/styled'
+import ReactGA from 'react-ga'
 
 export default function Introduction() {
   const isLargerThan800 = useMediaQuery(800)
+  const handleClick = (event) => {
+    ReactGA.event({
+      category: 'click',
+      action: event,
+    })
+  }
   return (
     <>
       <Stack spacing={10} justifyContent="flex-start" alignItems="flex-start">
@@ -32,6 +37,7 @@ export default function Introduction() {
               top={{ base: '0', md: '-15' }}
               left={{ base: '-5', md: '-10' }}
               zIndex={0}
+              alt=""
             ></Image>
             <Text
               color="button1"
@@ -107,6 +113,7 @@ export default function Introduction() {
                 position="static"
                 size={isLargerThan800 ? 'md' : 'sm'}
                 color="white"
+                onClick={() => handleClick('introduction_github')}
               >
                 Github
               </Button>
@@ -117,6 +124,7 @@ export default function Introduction() {
                 position="static"
                 size={isLargerThan800 ? 'md' : 'sm'}
                 color="white"
+                onClick={() => handleClick('introduction_linkedin')}
               >
                 LinkedIn
               </Button>
@@ -128,6 +136,7 @@ export default function Introduction() {
                 position="static"
                 size={isLargerThan800 ? 'md' : 'sm'}
                 color="white"
+                onClick={() => handleClick('introduction_email')}
               >
                 Email
               </Button>
