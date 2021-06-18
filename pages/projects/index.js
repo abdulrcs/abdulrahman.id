@@ -17,6 +17,7 @@ import Container from '../../components/Container'
 import Head from 'next/head'
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
 import { FaSearch } from 'react-icons/fa'
+import ReactGA from 'react-ga'
 
 export default function Projects({ projects }) {
   const [query, setQuery] = useState('')
@@ -25,14 +26,8 @@ export default function Projects({ projects }) {
   }
 
   useEffect(() => {
-    let mounted = true
-    async function pageView() {
-      await fetch(`api/insight/views/projects`)
-    }
-    if (mounted) pageView()
-    return () => {
-      mounted = false
-    }
+    ReactGA.initialize(process.env.NEXT_PUBLIC_UA_CODE)
+    ReactGA.pageview('/projects')
   }, [])
 
   return (

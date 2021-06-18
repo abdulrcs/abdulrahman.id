@@ -10,16 +10,16 @@ import {
 } from '@chakra-ui/react'
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
 import useMediaQuery from '../hook/useMediaQuery'
+import ReactGA from 'react-ga'
 
 export default function Introduction() {
   const isLargerThan800 = useMediaQuery(800)
   const handleClick = (event) => {
-    async function callEvent() {
-      await fetch(`api/insight/events/${event}`)
-    }
-    callEvent()
+    ReactGA.event({
+      category: 'click',
+      action: event,
+    })
   }
-
   return (
     <>
       <Stack spacing={10} justifyContent="flex-start" alignItems="flex-start">

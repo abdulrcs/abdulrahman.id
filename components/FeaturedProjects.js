@@ -10,14 +10,16 @@ import {
 import NextLink from 'next/link'
 import Cards from './Card'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
+import ReactGA from 'react-ga'
 
 export default function FeaturedProjects({ projects }) {
   const handleClick = (event) => {
-    async function callEvent() {
-      await fetch(`api/insight/events/${event}`)
-    }
-    callEvent()
+    ReactGA.event({
+      category: 'click',
+      action: event,
+    })
   }
+
   return (
     <>
       <Stack spacing={8} w="full">

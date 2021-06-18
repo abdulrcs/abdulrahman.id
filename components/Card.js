@@ -26,6 +26,8 @@ import {
   FaDatabase,
 } from 'react-icons/fa'
 import useMediaQuery from '../hook/useMediaQuery'
+import ReactGA from 'react-ga'
+
 export default function Cards({
   imageURL,
   title,
@@ -84,10 +86,10 @@ export default function Cards({
     setTimeout(() => setLoaded(true), 1000)
   }
   const handleClick = (event) => {
-    async function callEvent() {
-      await fetch(`api/insight/events/${event}`)
-    }
-    callEvent()
+    ReactGA.event({
+      category: 'click',
+      action: event,
+    })
   }
 
   return (
@@ -123,7 +125,9 @@ export default function Cards({
                 <Link
                   href={githubLink}
                   color="white"
-                  onClick={() => handleClick(`githublink_${title}`)}
+                  onClick={() =>
+                    handleClick(`githublink_${title.replace('@', '-at-')}`)
+                  }
                   isExternal
                 >
                   <FaGithub size={23} />
@@ -133,7 +137,9 @@ export default function Cards({
                 <Link
                   href={deployLink}
                   color="white"
-                  onClick={() => handleClick(`deploylink_${title}`)}
+                  onClick={() =>
+                    handleClick(`deploylink_${title.replace('@', '-at')}`)
+                  }
                   isExternal
                 >
                   <FaExternalLinkAlt size={20} />

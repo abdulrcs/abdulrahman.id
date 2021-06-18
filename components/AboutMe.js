@@ -15,14 +15,15 @@ import {
 } from '@chakra-ui/react'
 import useMediaQuery from '../hook/useMediaQuery'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
+import ReactGA from 'react-ga'
 
 export default function AboutMe() {
   const isLargerThan800 = useMediaQuery(800)
   const handleHover = (event) => {
-    async function callEvent() {
-      await fetch(`api/insight/events/${event}`)
-    }
-    callEvent()
+    ReactGA.event({
+      category: 'hover',
+      action: event,
+    })
   }
   const MoreInfo = ({ text, content }) => {
     return (

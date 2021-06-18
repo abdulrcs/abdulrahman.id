@@ -17,6 +17,7 @@ import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
 import useMediaQuery from '../../hook/useMediaQuery'
 import readingTime from 'reading-time'
 import dateFormat from 'dateformat'
+import ReactGA from 'react-ga'
 
 export default function Index({ articles }) {
   const [query, setQuery] = useState('')
@@ -24,14 +25,8 @@ export default function Index({ articles }) {
   const isLargerThan1024 = useMediaQuery(1024)
 
   useEffect(() => {
-    let mounted = true
-    async function pageView() {
-      await fetch(`api/insight/views/blog`)
-    }
-    if (mounted) pageView()
-    return () => {
-      mounted = false
-    }
+    ReactGA.initialize(process.env.NEXT_PUBLIC_UA_CODE)
+    ReactGA.pageview('/blog')
   }, [])
 
   return (

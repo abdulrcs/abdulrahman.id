@@ -7,17 +7,12 @@ import LatestArticle from '../components/LatestArticle'
 import AboutMe from '../components/AboutMe'
 import ContactMe from '../components/ContactMe'
 import { useEffect } from 'react'
+import ReactGA from 'react-ga'
 
 export default function Index({ projects, articles }) {
   useEffect(() => {
-    let mounted = true
-    async function pageView() {
-      await fetch(`api/insight/views/home`)
-    }
-    if (mounted) pageView()
-    return () => {
-      mounted = false
-    }
+    ReactGA.initialize(process.env.NEXT_PUBLIC_UA_CODE)
+    ReactGA.pageview('/')
   }, [])
 
   return (

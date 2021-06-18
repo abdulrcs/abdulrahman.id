@@ -2,16 +2,16 @@ import { Link, Button, chakra, Heading, Stack, Text } from '@chakra-ui/react'
 import useMediaQuery from '../hook/useMediaQuery'
 import { FaLinkedin, FaEnvelope, FaFileAlt } from 'react-icons/fa'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
+import ReactGA from 'react-ga'
 
 export default function ContactMe() {
   const isLargerThan800 = useMediaQuery(800)
   const handleClick = (event) => {
-    async function callEvent() {
-      await fetch(`api/insight/events/${event}`)
-    }
-    callEvent()
+    ReactGA.event({
+      category: 'click',
+      action: event,
+    })
   }
-
   return (
     <>
       <Stack
