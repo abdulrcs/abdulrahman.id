@@ -6,15 +6,8 @@ import FeaturedProjects from '../components/FeaturedProjects'
 import LatestArticle from '../components/LatestArticle'
 import AboutMe from '../components/AboutMe'
 import ContactMe from '../components/ContactMe'
-import { useEffect } from 'react'
-import ReactGA from 'react-ga'
 
 export default function Index({ projects, articles }) {
-  useEffect(() => {
-    ReactGA.initialize(process.env.NEXT_PUBLIC_UA_CODE)
-    ReactGA.pageview('/')
-  }, [])
-
   return (
     <>
       <Container enableTransition={true}>

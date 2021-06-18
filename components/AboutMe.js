@@ -119,7 +119,7 @@ export default function AboutMe() {
                 top={0}
                 right={0}
                 w={{ base: '100px', lg: '150px' }}
-                alt="decor"
+                alt=""
               />
               <Image
                 src="https://i.imgur.com/CbbuXeI.png"

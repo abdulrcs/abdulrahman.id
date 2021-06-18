@@ -1,14 +1,12 @@
 import {
   TagLeftIcon,
   Tag,
-  Heading,
   Text,
   Image,
   Stack,
   Divider,
   TagLabel,
   Link,
-  Skeleton,
   ScaleFade,
 } from '@chakra-ui/react'
 import { useState } from 'react'

@@ -1,34 +1,17 @@
-import { useEffect, useState } from 'react'
-import {
-  Stack,
-  Heading,
-  Text,
-  SimpleGrid,
-  Flex,
-  Box,
-  Divider,
-} from '@chakra-ui/react'
-import { useInView } from 'react-intersection-observer'
-import { motion, useAnimation } from 'framer-motion'
+import { useState } from 'react'
+import { Stack, Heading, Text, SimpleGrid, Divider } from '@chakra-ui/react'
 
 import Cards from '../../components/Card'
-import { Slide } from '@chakra-ui/transition'
 import Container from '../../components/Container'
 import Head from 'next/head'
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
 import { FaSearch } from 'react-icons/fa'
-import ReactGA from 'react-ga'
 
 export default function Projects({ projects }) {
   const [query, setQuery] = useState('')
   const handleChange = (e) => {
     setQuery(e.target.value)
   }
-
-  useEffect(() => {
-    ReactGA.initialize(process.env.NEXT_PUBLIC_UA_CODE)
-    ReactGA.pageview('/projects')
-  }, [])
 
   return (
     <>

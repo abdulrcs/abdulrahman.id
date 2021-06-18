@@ -37,7 +37,7 @@ export default function Introduction() {
               top={{ base: '0', md: '-15' }}
               left={{ base: '-5', md: '-10' }}
               zIndex={0}
-              alt="decor"
+              alt=""
             ></Image>
             <Text
               color="button1"

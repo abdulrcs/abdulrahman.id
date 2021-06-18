@@ -1,14 +1,5 @@
-import { useEffect, useState } from 'react'
-import {
-  Stack,
-  Heading,
-  Text,
-  Divider,
-  Flex,
-  Box,
-  Tag,
-  TagLabel,
-} from '@chakra-ui/react'
+import { useState } from 'react'
+import { Stack, Heading, Text, Divider, Flex, Box } from '@chakra-ui/react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Container from '../../components/Container'
@@ -17,17 +8,11 @@ import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
 import useMediaQuery from '../../hook/useMediaQuery'
 import readingTime from 'reading-time'
 import dateFormat from 'dateformat'
-import ReactGA from 'react-ga'
 
 export default function Index({ articles }) {
   const [query, setQuery] = useState('')
   const handleChange = (e) => setQuery(e.target.value)
   const isLargerThan1024 = useMediaQuery(1024)
-
-  useEffect(() => {
-    ReactGA.initialize(process.env.NEXT_PUBLIC_UA_CODE)
-    ReactGA.pageview('/blog')
-  }, [])
 
   return (
     <Container>
