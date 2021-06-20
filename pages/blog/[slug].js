@@ -4,8 +4,7 @@ import {
   Heading,
   Stack,
   Image,
-  Tag,
-  TagLabel,
+  ScaleFade,
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -19,25 +18,7 @@ import PostContainer from '../../components/PostContainer'
 import MDXComponents from '../../components/MDXComponents'
 import { useEffect, useState } from 'react'
 
-export default function Post({ metadata, source, tags }) {
-  const TagColor = (tag) => {
-    // github, python, react, javascript, productivity, tutorial
-    if (tag == 'career') return 'blue'
-    else if (tag == 'programming') return 'teal'
-    else if (tag == 'webdev') return 'purple'
-    else if (tag == 'github') return 'gray'
-    else if (tag == 'python') return 'yellow'
-    else if (tag == 'react') return 'cyan'
-    else if (tag == 'javascript') return 'yellow'
-    else if (tag == 'productivity') return 'orange'
-    else if (tag == 'tutorial') return 'green'
-    else return 'gray'
-  }
-  const Tags = tags.map((item) => (
-    <Tag as={item.sys.key} colorScheme={TagColor(item.sys.id)} size="md">
-      <TagLabel>#{item.sys.id}</TagLabel>
-    </Tag>
-  ))
+export default function Post({ metadata, source }) {
   const [views, setViews] = useState('...')
   useEffect(() => {
     async function getViews() {
@@ -55,6 +36,7 @@ export default function Post({ metadata, source, tags }) {
         <Head>
           <title>{metadata.title}</title>
           <meta name="title" content={metadata.title} />
+          <meta property="og:site_name" content="Abdul Rahman" />
           <meta name="description" content={metadata.summary} />
 
           <meta property="og:type" content="website" />
@@ -62,7 +44,7 @@ export default function Post({ metadata, source, tags }) {
             property="og:url"
             content={`https://abdulrahman.id/blog/${metadata.slug}`}
           />
-          <meta property="og:title" content={metadata.summary} />
+          <meta property="og:title" content={metadata.title} />
           <meta property="og:description" content={metadata.summary} />
           <meta property="og:image" content={metadata.image} />
 
@@ -87,9 +69,6 @@ export default function Post({ metadata, source, tags }) {
             >
               {metadata.title}
             </Heading>
-            <Stack isInline alignItems="center">
-              {Tags}
-            </Stack>
             <Stack
               py={4}
               isInline
@@ -100,7 +79,8 @@ export default function Post({ metadata, source, tags }) {
                 <Avatar
                   name="Abdul Rahman"
                   size="xs"
-                  src="https://avatars.githubusercontent.com/u/54136956?v=4"
+                  src="https://i.imgur.com/CbbuXeI.png"
+                  border="1px solid textPrimary"
                 />
                 <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textPrimary">
                   Abdul Rahman /{' '}
@@ -113,12 +93,25 @@ export default function Post({ metadata, source, tags }) {
                 </Text>
               </Stack>
             </Stack>
-            <Image
-              src={metadata.image}
-              maxW="100%"
-              mx="auto"
-              alt="illustration"
-            ></Image>
+            <Stack
+              bg="secondary"
+              borderRadius="10px"
+              minH="320px"
+              maxH="500px"
+              border="1px"
+              borderColor={{ base: '#333', md: 'borderColor' }}
+            >
+              <ScaleFade in={true}>
+                <Image
+                  src={metadata.image}
+                  borderRadius="10px"
+                  w="100%"
+                  h="100%"
+                  mx="auto"
+                  alt="illustration"
+                ></Image>
+              </ScaleFade>
+            </Stack>
             <PostContainer>
               <MDXRemote {...source} components={MDXComponents} />
             </PostContainer>
@@ -154,9 +147,7 @@ export async function getStaticProps({ params }) {
 
   const article = data.items[0].fields
   const source = article.body
-  const tags = data.items[0].metadata.tags
   article.readingTime = readingTime(source).text
-
   const mdxSource = await serialize(source, {
     mdxOptions: {
       rehypePlugins: [mdxPrism],
@@ -167,7 +158,6 @@ export async function getStaticProps({ params }) {
     props: {
       metadata: article,
       source: mdxSource,
-      tags: tags,
     },
   }
 }
