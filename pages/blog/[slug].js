@@ -36,7 +36,7 @@ export default function Post({ metadata, source }) {
             property="og:url"
             content={`https://abdulrahman.id/blog/${metadata.slug}`}
           />
-          <meta property="og:title" content={metadata.summary} />
+          <meta property="og:title" content={metadata.title} />
           <meta property="og:description" content={metadata.summary} />
           <meta property="og:image" content={metadata.image} />
 
