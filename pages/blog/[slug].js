@@ -71,8 +71,8 @@ export default function Post({ metadata, source }) {
             </Heading>
             <Stack
               py={4}
-              isInline
-              alignItems="center"
+              direction={{ base: 'column', md: 'row' }}
+              alignItems="baseline"
               justifyContent="space-between"
             >
               <Stack isInline alignItems="center">
@@ -84,7 +84,7 @@ export default function Post({ metadata, source }) {
                 />
                 <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textPrimary">
                   Abdul Rahman /{' '}
-                  {dateFormat(Date.parse(metadata.date), 'mmmm d yyyy')}
+                  {dateFormat(Date.parse(metadata.date), 'mmmm d, yyyy')}
                 </Text>
               </Stack>
               <Stack>
@@ -96,8 +96,7 @@ export default function Post({ metadata, source }) {
             <Stack
               bg="secondary"
               borderRadius="10px"
-              minH="320px"
-              maxH="500px"
+              minH="200px"
               border="1px"
               borderColor={{ base: '#333', md: 'borderColor' }}
             >
@@ -108,7 +107,7 @@ export default function Post({ metadata, source }) {
                   w="100%"
                   h="100%"
                   mx="auto"
-                  alt="illustration"
+                  alt=""
                 ></Image>
               </ScaleFade>
             </Stack>
