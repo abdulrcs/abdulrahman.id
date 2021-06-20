@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Text,
-  Heading,
-  Stack,
-  Image,
-  Tag,
-  TagLabel,
-} from '@chakra-ui/react'
+import { Avatar, Text, Heading, Stack, Image } from '@chakra-ui/react'
 import Head from 'next/head'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
@@ -19,25 +11,7 @@ import PostContainer from '../../components/PostContainer'
 import MDXComponents from '../../components/MDXComponents'
 import { useEffect, useState } from 'react'
 
-export default function Post({ metadata, source, tags }) {
-  const TagColor = (tag) => {
-    // github, python, react, javascript, productivity, tutorial
-    if (tag == 'career') return 'blue'
-    else if (tag == 'programming') return 'teal'
-    else if (tag == 'webdev') return 'purple'
-    else if (tag == 'github') return 'gray'
-    else if (tag == 'python') return 'yellow'
-    else if (tag == 'react') return 'cyan'
-    else if (tag == 'javascript') return 'yellow'
-    else if (tag == 'productivity') return 'orange'
-    else if (tag == 'tutorial') return 'green'
-    else return 'gray'
-  }
-  const Tags = tags.map((item) => (
-    <Tag as={item.sys.key} colorScheme={TagColor(item.sys.id)} size="md">
-      <TagLabel>#{item.sys.id}</TagLabel>
-    </Tag>
-  ))
+export default function Post({ metadata, source }) {
   const [views, setViews] = useState('...')
   useEffect(() => {
     async function getViews() {
@@ -87,9 +61,6 @@ export default function Post({ metadata, source, tags }) {
             >
               {metadata.title}
             </Heading>
-            <Stack isInline alignItems="center">
-              {Tags}
-            </Stack>
             <Stack
               py={4}
               isInline
@@ -100,7 +71,8 @@ export default function Post({ metadata, source, tags }) {
                 <Avatar
                   name="Abdul Rahman"
                   size="xs"
-                  src="https://avatars.githubusercontent.com/u/54136956?v=4"
+                  src="https://i.imgur.com/CbbuXeI.png"
+                  border="1px solid textPrimary"
                 />
                 <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textPrimary">
                   Abdul Rahman /{' '}
@@ -115,7 +87,8 @@ export default function Post({ metadata, source, tags }) {
             </Stack>
             <Image
               src={metadata.image}
-              maxW="100%"
+              w="100%"
+              h="100%"
               mx="auto"
               alt="illustration"
             ></Image>
@@ -154,9 +127,7 @@ export async function getStaticProps({ params }) {
 
   const article = data.items[0].fields
   const source = article.body
-  const tags = data.items[0].metadata.tags
   article.readingTime = readingTime(source).text
-
   const mdxSource = await serialize(source, {
     mdxOptions: {
       rehypePlugins: [mdxPrism],
@@ -167,7 +138,6 @@ export async function getStaticProps({ params }) {
     props: {
       metadata: article,
       source: mdxSource,
-      tags: tags,
     },
   }
 }
