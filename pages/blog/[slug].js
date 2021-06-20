@@ -71,8 +71,8 @@ export default function Post({ metadata, source }) {
             </Heading>
             <Stack
               py={4}
-              isInline
-              alignItems="center"
+              direction={{ base: 'column', md: 'row' }}
+              alignItems="baseline"
               justifyContent="space-between"
             >
               <Stack isInline alignItems="center">
@@ -84,7 +84,7 @@ export default function Post({ metadata, source }) {
                 />
                 <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textPrimary">
                   Abdul Rahman /{' '}
-                  {dateFormat(Date.parse(metadata.date), 'mmmm d yyyy')}
+                  {dateFormat(Date.parse(metadata.date), 'mmmm d, yyyy')}
                 </Text>
               </Stack>
               <Stack>
