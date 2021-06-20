@@ -36,6 +36,7 @@ export default function Post({ metadata, source }) {
         <Head>
           <title>{metadata.title}</title>
           <meta name="title" content={metadata.title} />
+          <meta property="og:site_name" content="Abdul Rahman" />
           <meta name="description" content={metadata.summary} />
 
           <meta property="og:type" content="website" />
