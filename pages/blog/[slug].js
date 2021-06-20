@@ -1,4 +1,11 @@
-import { Avatar, Text, Heading, Stack, Image } from '@chakra-ui/react'
+import {
+  Avatar,
+  Text,
+  Heading,
+  Stack,
+  Image,
+  ScaleFade,
+} from '@chakra-ui/react'
 import Head from 'next/head'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
