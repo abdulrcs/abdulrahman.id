@@ -93,14 +93,16 @@ export default function Post({ metadata, source }) {
               border="1px"
               borderColor={{ base: '#333', md: 'borderColor' }}
             >
-              <Image
-                src={metadata.image}
-                borderRadius="10px"
-                w="100%"
-                h="100%"
-                mx="auto"
-                alt="illustration"
-              ></Image>
+              <ScaleFade in={true}>
+                <Image
+                  src={metadata.image}
+                  borderRadius="10px"
+                  w="100%"
+                  h="100%"
+                  mx="auto"
+                  alt="illustration"
+                ></Image>
+              </ScaleFade>
             </Stack>
             <PostContainer>
               <MDXRemote {...source} components={MDXComponents} />
