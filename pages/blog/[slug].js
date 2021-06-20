@@ -85,13 +85,23 @@ export default function Post({ metadata, source }) {
                 </Text>
               </Stack>
             </Stack>
-            <Image
-              src={metadata.image}
-              w="100%"
-              h="100%"
-              mx="auto"
-              alt="illustration"
-            ></Image>
+            <Stack
+              bg="secondary"
+              borderRadius="10px"
+              minH="320px"
+              maxH="500px"
+              border="1px"
+              borderColor={{ base: '#333', md: 'borderColor' }}
+            >
+              <Image
+                src={metadata.image}
+                borderRadius="10px"
+                w="100%"
+                h="100%"
+                mx="auto"
+                alt="illustration"
+              ></Image>
+            </Stack>
             <PostContainer>
               <MDXRemote {...source} components={MDXComponents} />
             </PostContainer>
