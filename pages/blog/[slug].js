@@ -96,8 +96,7 @@ export default function Post({ metadata, source }) {
             <Stack
               bg="secondary"
               borderRadius="10px"
-              minH="320px"
-              maxH="500px"
+              minH="200px"
               border="1px"
               borderColor={{ base: '#333', md: 'borderColor' }}
             >
@@ -108,7 +107,7 @@ export default function Post({ metadata, source }) {
                   w="100%"
                   h="100%"
                   mx="auto"
-                  alt="illustration"
+                  alt=""
                 ></Image>
               </ScaleFade>
             </Stack>
