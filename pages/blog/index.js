@@ -100,7 +100,7 @@ export default function Index({ articles }) {
                   <Box as="span" fontSize="xs">
                     &bull;
                   </Box>{' '}
-                  2 min read
+                  {readingTime(article.fields.body).text}
                 </Text>
                 <Flex flexDirection="column" px={isLargerThan1024 ? 10 : 0}>
                   <Link href={'/blog/' + article.fields.slug}>

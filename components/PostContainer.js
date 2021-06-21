@@ -9,7 +9,7 @@ const PostContainer = styled(Stack)`
       box-sizing: border-box;
       margin: 0;
     }
-    * + * {
+    * + :not(code) {
       margin-top: 1.2rem;
     }
     li {
