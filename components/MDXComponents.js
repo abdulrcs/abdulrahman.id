@@ -1,6 +1,5 @@
 import {
   Box,
-  Alert,
   Code,
   Heading,
   Link,
@@ -10,6 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { jsx } from '@emotion/react'
 import NextLink from 'next/link'
+import Image from './ChakraNextImage'
 
 const CustomLink = (props) => {
   const { colorMode } = useColorMode()
@@ -96,6 +96,18 @@ const MDXComponents = {
   h4: (props) => <DocsHeading as="h4" size="sm" fontWeight="bold" {...props} />,
   h5: (props) => <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />,
   h6: (props) => <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />,
+  img: (props) => (
+    <Image
+      width={600}
+      height={300}
+      layout="responsive"
+      objectFit="contain"
+      w="auto"
+      h="auto"
+      mx="auto"
+      {...props}
+    />
+  ),
   inlineCode: (props) => (
     <Code colorScheme="blue" fontSize="0.84em" {...props} />
   ),

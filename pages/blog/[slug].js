@@ -3,8 +3,8 @@ import {
   Text,
   Heading,
   Stack,
-  Image,
   ScaleFade,
+  chakra,
 } from '@chakra-ui/react'
 import Head from 'next/head'
 import { serialize } from 'next-mdx-remote/serialize'
@@ -13,6 +13,7 @@ import mdxPrism from 'mdx-prism'
 import dateFormat from 'dateformat'
 import readingTime from 'reading-time'
 
+import Image from '../../components/ChakraNextImage'
 import Container from '../../components/Container'
 import PostContainer from '../../components/PostContainer'
 import MDXComponents from '../../components/MDXComponents'
@@ -100,16 +101,17 @@ export default function Post({ metadata, source }) {
               border="1px"
               borderColor={{ base: '#333', md: 'borderColor' }}
             >
-              <ScaleFade in={true}>
-                <Image
-                  src={metadata.image}
-                  borderRadius="10px"
-                  w="100%"
-                  h="100%"
-                  mx="auto"
-                  alt=""
-                ></Image>
-              </ScaleFade>
+              <Image
+                src={metadata.image}
+                borderRadius="10px"
+                width={1366}
+                height={892}
+                w="auto"
+                h="auto"
+                mx="auto"
+                alt=""
+                priority
+              ></Image>
             </Stack>
             <PostContainer>
               <MDXRemote {...source} components={MDXComponents} />

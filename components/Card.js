@@ -2,14 +2,13 @@ import {
   TagLeftIcon,
   Tag,
   Text,
-  Image,
   Stack,
   Divider,
   TagLabel,
   Link,
   ScaleFade,
+  chakra,
 } from '@chakra-ui/react'
-import { useState } from 'react'
 import {
   FaReact,
   FaPython,
@@ -25,6 +24,8 @@ import {
 } from 'react-icons/fa'
 import useMediaQuery from '../hook/useMediaQuery'
 import ReactGA from 'react-ga'
+
+import Image from './ChakraNextImage'
 
 export default function Cards({
   imageURL,
@@ -79,10 +80,6 @@ export default function Cards({
       <TagLabel>{item}</TagLabel>
     </Tag>
   ))
-  const [loaded, setLoaded] = useState(false)
-  const handleLoaded = () => {
-    setTimeout(() => setLoaded(true), 1000)
-  }
   const handleClick = (event) => {
     ReactGA.event({
       category: 'click',
@@ -99,13 +96,15 @@ export default function Cards({
       border="1px"
       borderColor={{ base: '#333', md: 'borderColor' }}
     >
-      <ScaleFade in={loaded} transition={{ duration: 1 }}>
+      <ScaleFade in={true} transition={{ duration: 1 }}>
         <Image
-          w="100%"
+          width={1250}
+          height={600}
+          w="auto"
+          h="auto"
           src={imageURL}
           transition="0.3s"
           borderRadius="10px 10px 0px 0px"
-          onLoad={handleLoaded}
           alt="project image"
         ></Image>
         <Stack px={4} py={2}>
