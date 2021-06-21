@@ -109,7 +109,7 @@ const MDXComponents = {
     />
   ),
   inlineCode: (props) => (
-    <Code colorScheme="blue" fontSize="0.84em" {...props} />
+    <Code colorScheme="blue" fontSize="0.84em" mt={-10} {...props} />
   ),
   br: (props) => <Box height="24px" {...props} />,
   hr: Hr,
