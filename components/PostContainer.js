@@ -4,7 +4,6 @@ import { Stack } from '@chakra-ui/react'
 const PostContainer = styled(Stack)`
   &&& {
     padding-top: 24px;
-    line-height: 32px;
     font-size: 16px;
     * {
       box-sizing: border-box;
