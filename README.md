@@ -2,9 +2,9 @@
 
 ---
 
-# ⚡ abdulrahman.id
+## ⚡ abdulrahman.id
 
-I've decided to open-source my latest portfolio website!, it has dynamic content management to add projects and posts using Contentful CMS, and was built using Next.js and Chakra UI.
+I've decided to open-source my latest portfolio website! it has dynamic content management to add projects and posts using Contentful CMS, and was built using Next.js and Chakra UI.
 
 Refer to [Next.js](https://nextjs.org/docs/) and [Chakra UI](https://chakra-ui.com/docs) documentation to learn more.
 
