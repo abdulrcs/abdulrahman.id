@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import {
   Button,
   Flex,
@@ -67,35 +67,16 @@ export default function Navbar({ enableTransition }) {
     </>
   )
 
-  const [navbar, setNavbar] = useState(2)
-
-  // Show navbar on scroll up, hide when scroll down.
-  let scrollValue = 0
-  const showNavbar = () => {
-    if (window.scrollY < scrollValue) {
-      setNavbar(1)
-    } else if (window.scrollY > 50) {
-      setNavbar(0)
-    }
-    scrollValue = window.scrollY
-  }
-
-  useEffect(() => {
-    window.addEventListener('scroll', showNavbar)
-  }, [])
-
-  const navbarDuration = navbar == 2 ? (enableTransition ? 0.5 : 0) : 0.2
-
   return (
     <Box zIndex="99">
       <Slide
         direction="top"
         reverse
-        in={navbar}
+        in={true}
         transition={
           enableTransition
-            ? { enter: { duration: navbarDuration, delay: 0.01 } }
-            : { enter: { duration: navbarDuration, delay: 0 } }
+            ? { enter: { duration: 0.5, delay: 0.01 } }
+            : { enter: { duration: 0, delay: 0 } }
         }
         background="black"
       >
