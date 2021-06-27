@@ -71,7 +71,7 @@ export default function AboutMe() {
             >
               Hey! I'm Abdul Rahman, I've been close to a computer since an
               early age, and been passionate about it ever since. <br />
-              <br /> I really like to build stuff using{' '}
+              <br /> I really liked to build stuff using{' '}
               <MoreInfo
                 text="no-code tools"
                 content="I used to make games without code using RPG Maker VX, and build a simple website with blogspot back in primary school."
