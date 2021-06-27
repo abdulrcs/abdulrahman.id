@@ -53,8 +53,8 @@ export default function Index({ projects, articles }) {
           spacing="144px"
           justifyContent="center"
           alignItems="flex-start"
-          px={['5vw', '10vw']}
-          mt={['15vh', '15vh', '22.5vh', '22.5vh']}
+          px={{ base: '5vw', md: '10vw' }}
+          mt={{ base: '15vh', md: '22.5vh' }}
         >
           <Introduction />
           <AboutMe />

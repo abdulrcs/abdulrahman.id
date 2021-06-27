@@ -29,26 +29,29 @@ export default function AboutMe() {
     return (
       <>
         {' '}
-        <Popover
-          trigger="hover"
-          placement={isLargerThan800 ? 'right' : 'bottom'}
-        >
-          <PopoverTrigger>
-            <chakra.span
-              onMouseOver={() => handleHover(`about_${text}`)}
-              color="button1"
-              cursor="help"
-            >
-              {text}
-            </chakra.span>
-          </PopoverTrigger>
-          <PopoverContent bg="secondary" borderColor="button1" color="white">
-            <PopoverArrow bg="textSecondary" />
-            <PopoverBody fontSize="sm" color="textPrimary">
-              {content}
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>{' '}
+        {isLargerThan800 ? (
+          <Popover trigger="hover" placement="right">
+            <PopoverTrigger>
+              <chakra.span
+                onMouseOver={() => handleHover(`about_${text}`)}
+                color="button1"
+                cursor="help"
+              >
+                {text}
+              </chakra.span>
+            </PopoverTrigger>
+            <PopoverContent bg="secondary" borderColor="button1" color="white">
+              <PopoverArrow bg="textSecondary" />
+              <PopoverBody fontSize="sm" color="textPrimary">
+                {content}
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        ) : (
+          <Text as="span" color="button1">
+            {text}
+          </Text>
+        )}{' '}
       </>
     )
   }

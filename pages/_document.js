@@ -11,7 +11,8 @@ export default class MyDocument extends NextDocument {
         <link
           href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
           rel="stylesheet"
-        ></link>
+        />
+        <meta name="theme-color" content="black" />
         <Head />
         <body>
           <Main />
