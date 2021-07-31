@@ -46,31 +46,29 @@ export default function LatestArticle({ articles }) {
                 _hover={{ textDecoration: 'none' }}
                 w="100%"
               >
-                <a>
-                  <Text color="textSecondary" fontSize="sm">
-                    {dateFormat(Date.parse(article.fields.date), 'mmmm d yyyy')}{' '}
-                    <Box as="span" fontSize="xs">
-                      &bull;
-                    </Box>{' '}
-                    2 min read
+                <Text color="textSecondary" fontSize="sm">
+                  {dateFormat(Date.parse(article.fields.date), 'mmmm d yyyy')}{' '}
+                  <Box as="span" fontSize="xs">
+                    &bull;
+                  </Box>{' '}
+                  2 min read
+                </Text>
+                <Flex flexDirection="column" px={0}>
+                  <Text
+                    color="displayColor"
+                    fontSize={{ base: 'md', md: 'xl' }}
+                    fontWeight="bold"
+                    cursor="pointer"
+                  >
+                    {article.fields.title}
                   </Text>
-                  <Flex flexDirection="column" px={0}>
-                    <Text
-                      color="displayColor"
-                      fontSize={{ base: 'md', md: 'xl' }}
-                      fontWeight="bold"
-                      cursor="pointer"
-                    >
-                      {article.fields.title}
-                    </Text>
-                    <Text
-                      fontSize={{ base: 'sm', md: 'md' }}
-                      color="textSecondary"
-                    >
-                      {article.fields.summary}
-                    </Text>
-                  </Flex>
-                </a>
+                  <Text
+                    fontSize={{ base: 'sm', md: 'md' }}
+                    color="textSecondary"
+                  >
+                    {article.fields.summary}
+                  </Text>
+                </Flex>
               </Link>
             </Stack>
           </SlideUpWhenVisible>
