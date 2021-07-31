@@ -96,61 +96,63 @@ export default function Cards({
       border="1px"
       borderColor={{ base: '#333', md: 'borderColor' }}
     >
-      <ScaleFade in={true} transition={{ duration: 1 }}>
-        <Image
-          width={1250}
-          height={600}
-          w="auto"
-          h="auto"
-          src={imageURL}
-          transition="0.3s"
-          borderRadius="10px 10px 0px 0px"
-          alt="project image"
-        ></Image>
-        <Stack px={4} py={2}>
-          <Stack isInline justifyContent="space-between" alignItems="center">
-            <Text fontFamily="Ubuntu" fontSize="2xl" color="displayColor">
-              {title}
-            </Text>
-            <Stack
-              isInline
-              justifyContent="flex-end"
-              alignItems="center"
-              spacing={4}
-            >
-              {githubLink && (
-                <Link
-                  href={githubLink}
-                  color="white"
-                  onClick={() =>
-                    handleClick(`githublink_${title.replace('@', '-at-')}`)
-                  }
-                  isExternal
-                >
-                  <FaGithub aria-label="github" size={23} />
-                </Link>
-              )}
-              {deployLink && (
-                <Link
-                  href={deployLink}
-                  color="white"
-                  onClick={() =>
-                    handleClick(`deploylink_${title.replace('@', '-at')}`)
-                  }
-                  isExternal
-                >
-                  <FaExternalLinkAlt aria-label="project link" size={20} />
-                </Link>
-              )}
+      <Link href={deployLink}>
+        <ScaleFade in={true} transition={{ duration: 1 }}>
+          <Image
+            width={1250}
+            height={600}
+            w="auto"
+            h="auto"
+            src={imageURL}
+            transition="0.3s"
+            borderRadius="10px 10px 0px 0px"
+            alt="project image"
+          ></Image>
+          <Stack px={4} py={2}>
+            <Stack isInline justifyContent="space-between" alignItems="center">
+              <Text fontFamily="Ubuntu" fontSize="2xl" color="displayColor">
+                {title}
+              </Text>
+              <Stack
+                isInline
+                justifyContent="flex-end"
+                alignItems="center"
+                spacing={4}
+              >
+                {githubLink && (
+                  <Link
+                    href={githubLink}
+                    color="white"
+                    onClick={() =>
+                      handleClick(`githublink_${title.replace('@', '-at-')}`)
+                    }
+                    isExternal
+                  >
+                    <FaGithub aria-label="github" size={23} />
+                  </Link>
+                )}
+                {deployLink && (
+                  <Link
+                    href={deployLink}
+                    color="white"
+                    onClick={() =>
+                      handleClick(`deploylink_${title.replace('@', '-at')}`)
+                    }
+                    isExternal
+                  >
+                    <FaExternalLinkAlt aria-label="project link" size={20} />
+                  </Link>
+                )}
+              </Stack>
             </Stack>
+            <Stack isInline>{Tags}</Stack>
+            <Divider />
+            <Text color="textSecondary" fontSize={['sm', 'md']}>
+              {desc}
+            </Text>
           </Stack>
-          <Stack isInline>{Tags}</Stack>
-          <Divider />
-          <Text color="textSecondary" fontSize={['sm', 'md']}>
-            {desc}
-          </Text>
-        </Stack>
-      </ScaleFade>
+        </ScaleFade>
+      </Link>
     </Stack>
   )
 }
