@@ -127,7 +127,7 @@ export default function Cards({
                   }
                   isExternal
                 >
-                  <FaGithub size={23} />
+                  <FaGithub aria-label="github" size={23} />
                 </Link>
               )}
               {deployLink && (
@@ -139,7 +139,7 @@ export default function Cards({
                   }
                   isExternal
                 >
-                  <FaExternalLinkAlt size={20} />
+                  <FaExternalLinkAlt aria-label="project link" size={20} />
                 </Link>
               )}
             </Stack>

@@ -13,6 +13,7 @@ import {
   PopoverBody,
   PopoverArrow,
 } from '@chakra-ui/react'
+
 import useMediaQuery from '../hook/useMediaQuery'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
 import ReactGA from 'react-ga'
@@ -30,7 +31,7 @@ export default function AboutMe() {
       <>
         {' '}
         {isLargerThan800 ? (
-          <Popover trigger="hover" placement="right">
+          <Popover trigger="hover" placement="right" isLazy>
             <PopoverTrigger>
               <chakra.span
                 onMouseOver={() => handleHover(`about_${text}`)}
@@ -83,7 +84,12 @@ export default function AboutMe() {
                 text="Software
               Engineer in a B2B Company"
                 content={
-                  <Image src="https://i.imgur.com/2vdHCro.png" alt="linkedin" />
+                  <Image
+                    w={306}
+                    h={102}
+                    src="https://i.imgur.com/2vdHCro.png"
+                    alt="linkedin"
+                  />
                 }
               />
               , I'm interested in building something awesome with code and
@@ -125,10 +131,9 @@ export default function AboutMe() {
                 alt=""
               />
               <Image
-                src="https://i.imgur.com/CbbuXeI.png"
-                w="100%"
-                maxW={{ base: '300px', lg: '350px' }}
-                maxH={{ base: '300px', lg: '350px' }}
+                src="https://i.imgur.com/ypIiclh.png"
+                w={{ base: '300px', lg: '350px' }}
+                h={{ base: '300px', lg: '350px' }}
                 alt="Abdul Rahman"
               />
             </Box>
