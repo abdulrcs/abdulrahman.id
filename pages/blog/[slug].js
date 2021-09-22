@@ -39,10 +39,17 @@ export default function Post({ metadata, source, views }) {
               alt: metadata.title,
             },
           ],
-          twitter: {
-            cardType: 'summary_large_image',
-          },
         }}
+        additionalMetaTags={[
+          { property: 'twitter:card', content: 'summary_large_image' },
+          {
+            property: 'twitter:url',
+            content: `https://abdulrahman.id/blog/${metadata.slug}`,
+          },
+          { property: 'twitter:title', content: metadata.title },
+          { property: 'twitter:description', content: metadata.summary },
+          { property: 'twitter:image', content: metadata.image },
+        ]}
       />
       <ArticleJsonLd
         url={`https://abdulrahman.id/blog/${metadata.slug}`}
