@@ -1,14 +1,10 @@
-import {
-  Avatar,
-  Text,
-  Heading,
-  Stack,
-  ScaleFade,
-  chakra,
-} from '@chakra-ui/react'
-import Head from 'next/head'
+import { useEffect, useState } from 'react'
+import { Avatar, Text, Heading, Stack } from '@chakra-ui/react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
+
+import { ArticleJsonLd, NextSeo } from 'next-seo'
+
 import mdxPrism from 'mdx-prism'
 import dateFormat from 'dateformat'
 import readingTime from 'reading-time'
@@ -17,7 +13,6 @@ import Image from '../../components/ChakraNextImage'
 import Container from '../../components/Container'
 import PostContainer from '../../components/PostContainer'
 import MDXComponents from '../../components/MDXComponents'
-import { useEffect, useState } from 'react'
 
 export default function Post({ metadata, source }) {
   const [views, setViews] = useState('...')
@@ -33,31 +28,39 @@ export default function Post({ metadata, source }) {
   }, [])
   return (
     <>
+      <NextSeo
+        title={metadata.title}
+        description={metadata.summary}
+        openGraph={{
+          title: metadata.title,
+          description: metadata.summary,
+          type: 'article',
+          article: {
+            authors: ['Abdul Rahman'],
+            publishedTime: metadata.date,
+            modifiedTime: metadata.date,
+            tags: ['Programming', 'Web Development', 'Software Engineering'],
+          },
+          images: [
+            {
+              url: metadata.image,
+              alt: metadata.title,
+            },
+          ],
+        }}
+      />
+      <ArticleJsonLd
+        url={`https://abdulrahman.id/blog/${metadata.slug}`}
+        title={metadata.title}
+        images={[metadata.image]}
+        datePublished={metadata.date}
+        dateModified={metadata.date}
+        authorName="Abdul Rahman"
+        publisherName="Abdul Rahman"
+        publisherLogo="https://i.imgur.com/CbbuXeI.png"
+        description={metadata.summary}
+      />
       <Container>
-        <Head>
-          <title>{metadata.title}</title>
-          <meta name="title" content={metadata.title} />
-          <meta property="og:site_name" content="Abdul Rahman" />
-          <meta name="description" content={metadata.summary} />
-
-          <meta property="og:type" content="website" />
-          <meta
-            property="og:url"
-            content={`https://abdulrahman.id/blog/${metadata.slug}`}
-          />
-          <meta property="og:title" content={metadata.title} />
-          <meta property="og:description" content={metadata.summary} />
-          <meta property="og:image" content={metadata.image} />
-
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta
-            property="twitter:url"
-            content={`https://abdulrahman.id/blog/${metadata.slug}`}
-          />
-          <meta property="twitter:title" content={metadata.title} />
-          <meta property="twitter:description" content={metadata.summary} />
-          <meta property="twitter:image" content={metadata.image} />
-        </Head>
         <Stack my="15vh" justifyContent="center" alignItems="center">
           <Stack
             w={['100vw', '95vw']}

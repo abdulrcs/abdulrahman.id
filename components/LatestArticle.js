@@ -28,24 +28,33 @@ export default function LatestArticle({ articles }) {
       <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={{ base: 2, md: 4 }}>
         {articles.map((article, index) => (
           <SlideUpWhenVisible>
-            <Stack
-              direction="column"
-              alignItems="flex-start"
-              bg="secondary"
-              _hover={{ bg: '#111' }}
-              transition="0.3s"
-              border="1px"
-              borderColor={{ base: '#333', md: 'borderColor' }}
-              borderRadius="10px"
-              p={5}
-              justifyContent="flex-start"
-              display={index % 2 == 0 ? { base: 'none', md: 'block' } : 'block'}
+            <Link
+              href={'/blog/' + article.fields.slug}
+              _hover={{ textDecoration: 'none' }}
+              _focus={{ outline: 'none' }}
+              w="100%"
             >
-              <Link
-                href={'/blog/' + article.fields.slug}
-                _hover={{ textDecoration: 'none' }}
-                w="100%"
+              <Stack
+                direction="column"
+                alignItems="flex-start"
+                bg="secondary"
+                _hover={{ bg: '#111' }}
+                transition="0.3s"
+                border="1px"
+                borderColor={{ base: '#333', md: 'borderColor' }}
+                borderRadius="10px"
+                p={5}
+                justifyContent="flex-start"
+                space={2}
               >
+                <Text
+                  color="displayColor"
+                  fontSize={{ base: 'md', md: 'xl' }}
+                  fontWeight="bold"
+                  cursor="pointer"
+                >
+                  {article.fields.title}
+                </Text>
                 <Text color="textSecondary" fontSize="sm">
                   {dateFormat(Date.parse(article.fields.date), 'mmmm d yyyy')}{' '}
                   <Box as="span" fontSize="xs">
@@ -53,24 +62,8 @@ export default function LatestArticle({ articles }) {
                   </Box>{' '}
                   2 min read
                 </Text>
-                <Flex flexDirection="column" px={0}>
-                  <Text
-                    color="displayColor"
-                    fontSize={{ base: 'md', md: 'xl' }}
-                    fontWeight="bold"
-                    cursor="pointer"
-                  >
-                    {article.fields.title}
-                  </Text>
-                  <Text
-                    fontSize={{ base: 'sm', md: 'md' }}
-                    color="textSecondary"
-                  >
-                    {article.fields.summary}
-                  </Text>
-                </Flex>
-              </Link>
-            </Stack>
+              </Stack>
+            </Link>
           </SlideUpWhenVisible>
         ))}
       </SimpleGrid>
