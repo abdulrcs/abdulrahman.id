@@ -20,7 +20,10 @@ export default function Post({ metadata, source, views }) {
       <NextSeo
         title={metadata.title}
         description={metadata.summary}
+        canonical={`https://abdulrahman.id/blog/${metadata.slug}`}
         openGraph={{
+          url: `https://abdulrahman.id/blog/${metadata.slug}`,
+          site_name: 'Abdul Rahman',
           title: metadata.title,
           description: metadata.summary,
           type: 'article',
@@ -37,6 +40,16 @@ export default function Post({ metadata, source, views }) {
             },
           ],
         }}
+        additionalMetaTags={[
+          { property: 'twitter:card', content: 'summary_large_image' },
+          {
+            property: 'twitter:url',
+            content: `https://abdulrahman.id/blog/${metadata.slug}`,
+          },
+          { property: 'twitter:title', content: metadata.title },
+          { property: 'twitter:description', content: metadata.summary },
+          { property: 'twitter:image', content: metadata.image },
+        ]}
       />
       <ArticleJsonLd
         url={`https://abdulrahman.id/blog/${metadata.slug}`}
