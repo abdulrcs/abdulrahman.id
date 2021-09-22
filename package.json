@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start"
   },
   "dependencies": {
@@ -23,7 +24,9 @@
     "next-connect": "^0.10.1",
     "next-google-fonts": "^2.2.0",
     "next-mdx-remote": "^3.0.2",
+    "next-seo": "^4.28.1",
     "next-session": "^3.4.0",
+    "next-sitemap": "^1.6.168",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-ga": "^3.3.0",

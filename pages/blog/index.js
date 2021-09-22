@@ -85,7 +85,7 @@ export default function Index({ articles }) {
                   color="textSecondary"
                   display={isLargerThan1024 ? 'block' : 'none'}
                 >
-                  {dateFormat(Date.parse(article.fields.date), 'mmmm d yyyy')}
+                  {dateFormat(Date.parse(article.fields.date), 'mmm d yyyy')}
                   <br />{' '}
                   <Text fontSize="sm" textAlign="right">
                     {readingTime(article.fields.body).text}
@@ -96,7 +96,7 @@ export default function Index({ articles }) {
                   fontSize="sm"
                   display={isLargerThan1024 ? 'none' : 'block'}
                 >
-                  {dateFormat(Date.parse(article.fields.date), 'mmmm d yyyy')}{' '}
+                  {dateFormat(Date.parse(article.fields.date), 'mmm d yyyy')}{' '}
                   <Box as="span" fontSize="xs">
                     &bull;
                   </Box>{' '}
@@ -139,13 +139,13 @@ let client = require('contentful').createClient({
 export async function getStaticProps() {
   let data = await client.getEntries({
     content_type: 'blogPosts',
-    limit: 3,
+    limit: 50,
     order: 'sys.createdAt',
   })
 
   return {
     props: {
-      articles: data.items,
+      articles: data.items.reverse(),
     },
   }
 }
