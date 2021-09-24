@@ -96,7 +96,7 @@ export default function Cards({
       border="1px"
       borderColor={{ base: '#333', md: 'borderColor' }}
     >
-      <Link href={deployLink}>
+      <Link href={deployLink} isExternal>
         <ScaleFade in={true} transition={{ duration: 1 }}>
           <Image
             width={1250}
