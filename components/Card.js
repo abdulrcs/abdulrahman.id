@@ -22,6 +22,7 @@ import {
   FaBootstrap,
   FaDatabase,
 } from 'react-icons/fa'
+import { SiNextDotJs } from 'react-icons/si'
 import useMediaQuery from '../hook/useMediaQuery'
 import ReactGA from 'react-ga'
 
@@ -61,7 +62,12 @@ export default function Cards({
     } else if (tag == 'SQL') {
       values[0] = 'blue'
       values[1] = FaDatabase
-    } else {
+    }
+    else if (tag == 'Next.js') {
+      values[0] = 'blue'
+      values[1] = SiNextDotJs
+    }
+    else {
       values[0] = 'gray'
       values[1] = FaCode
     }
