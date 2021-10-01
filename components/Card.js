@@ -64,7 +64,7 @@ export default function Cards({
       values[1] = FaDatabase
     }
     else if (tag == 'Next.js') {
-      values[0] = 'blue'
+      values[0] = 'gray'
       values[1] = SiNextDotJs
     }
     else {
