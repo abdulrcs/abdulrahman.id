@@ -79,10 +79,9 @@ export default function AboutMe() {
               />
               back in 2010, and from that, I explored how to code myself,
               fast-forward to today, I do programming in various languages and
-              technologies, and had the privilege to worked as a{' '}
+              technologies, and had the privilege to worked in a{' '}
               <MoreInfo
-                text="Software
-              Engineer in a B2B Company"
+                text="B2B Company"
                 content={
                   <Image
                     w={306}
@@ -92,11 +91,23 @@ export default function AboutMe() {
                   />
                 }
               />
-              , I'm interested in building something awesome with code and
-              automate tasks with code, currently focused in
+              and a
               <MoreInfo
-                text="Web Development,"
-                content="Building web-apps using Javascript Frameworks (React.js and Next.js)"
+                text="Recruitment Company"
+                content={
+                  <Image
+                    w={306}
+                    h={102}
+                    src="https://i.imgur.com/pIW4urk.png"
+                    alt="linkedin"
+                  />
+                }
+              />
+              I'm interested in building something awesome with code and
+              automate tasks with code, currently focused on
+              <MoreInfo
+                text="Web & Mobile Development,"
+                content="Building Web and Mobile Applications using Javascript Frameworks (React, React Native and Next.js)"
               />
               <MoreInfo
                 text="Open Source"
