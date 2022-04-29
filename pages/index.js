@@ -7,7 +7,7 @@ import LatestArticle from '../components/LatestArticle'
 import AboutMe from '../components/AboutMe'
 import ContactMe from '../components/ContactMe'
 
-export default function Index({ projects, articles }) {
+export default function Index({ introduction, projects, articles, contactMe }) {
   return (
     <>
       <Container enableTransition={true}>
@@ -56,11 +56,11 @@ export default function Index({ projects, articles }) {
           px={{ base: '5vw', md: '10vw' }}
           mt={{ base: '15vh', md: '22.5vh' }}
         >
-          <Introduction />
+          <Introduction introduction={introduction} />
           <AboutMe />
           <FeaturedProjects projects={projects} />
           <LatestArticle articles={articles} />
-          <ContactMe />
+          <ContactMe contactMe={contactMe} />
         </Stack>
       </Container>
     </>
@@ -83,10 +83,25 @@ export async function getStaticProps() {
     limit: 4,
     order: 'sys.createdAt',
   })
+
+  let data3 = await client.getEntries({
+    content_type: 'introduction',
+    limit: 2,
+    order: 'sys.createdAt',
+  })
+
+  let data4 = await client.getEntries({
+    content_type: 'contactMe',
+    limit: 1,
+    order: 'sys.createdAt',
+  })
+
   return {
     props: {
       projects: data.items,
       articles: data2.items.reverse(),
+      introduction: data3.items,
+      contactMe: data4.items,
     },
   }
 }

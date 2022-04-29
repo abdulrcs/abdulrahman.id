@@ -4,9 +4,9 @@ import { FaLinkedin, FaEnvelope, FaFileAlt } from 'react-icons/fa'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
 import ReactGA from 'react-ga'
 
-export default function ContactMe() {
+export default function ContactMe({ contactMe }) {
   const isLargerThan800 = useMediaQuery(800)
-  const handleClick = (event) => {
+  const handleClick = event => {
     ReactGA.event({
       category: 'click',
       action: event,
@@ -29,15 +29,16 @@ export default function ContactMe() {
 
         <SlideUpWhenVisible>
           <Text fontSize="md" color="textSecondary" textAlign="center">
-            I'm currently open to work as a{' '}
+            {contactMe[0].fields.title}{' '}
             <chakra.span
               color="button1"
               display={{ base: 'block', md: 'inline' }}
             >
               {' '}
-              Front-end Developer.
+              {contactMe[0].fields.highlightText}
             </chakra.span>
-            <br /> Let's get in touch and talk more about your projects.
+            <br />
+            {contactMe[0].fields.description}
           </Text>
         </SlideUpWhenVisible>
 

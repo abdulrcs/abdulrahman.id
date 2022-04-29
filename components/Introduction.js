@@ -12,9 +12,9 @@ import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
 import useMediaQuery from '../hook/useMediaQuery'
 import ReactGA from 'react-ga'
 
-export default function Introduction() {
+export default function Introduction({ introduction }) {
   const isLargerThan800 = useMediaQuery(800)
-  const handleClick = (event) => {
+  const handleClick = event => {
     ReactGA.event({
       category: 'click',
       action: event,
@@ -50,10 +50,8 @@ export default function Introduction() {
             </Text>
           </Box>
           <Heading
-            color="textPrimary"
             fontSize="display"
             lineHeight={'95%'}
-            fontSize="display"
             color="displayColor"
             letterSpacing={{ sm: '-1.2px', md: '-1.8px' }}
             position="relative"
@@ -91,12 +89,21 @@ export default function Introduction() {
           transition={{ enter: { duration: 0.4, delay: 0.9 } }}
         >
           <Text fontSize="display3" color="textSecondary">
-            🚀 Exploring opportunities and side projects.
+            {introduction[0].fields.emoji} {introduction[0].fields.description}
             <br />
             <Stack isInline spacing={1}>
-              <Box>🎓</Box>
+              <Box>{introduction[1].fields.emoji}</Box>
               <Box>
-                Currently an Informatics Student at Universitas Negeri Surabaya.
+                {introduction[1].fields.description}{' '}
+                <Link
+                  isExternal
+                  rel="noreferrer"
+                  href={introduction[1].fields.companyUrl}
+                  onClick={() => handleClick('Introduction_companyUrl')}
+                >
+                  {introduction[1].fields.company}
+                </Link>
+                .
               </Box>
             </Stack>
           </Text>
