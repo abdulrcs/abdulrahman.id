@@ -23,10 +23,12 @@ Create an `.env.local` and follow the variable name based on `.env.example` and 
 3. Choose "I create content"  <br>
 4. Go to content model and start to add content type  <br>
 
-> 📌  In this portfolio website, it has 3 Content type which is:
+> 📌  In this portfolio website, it has 5 Content type which is:
 > 1. BlogPosts
 > 2. FeaturedProjects
 > 3. Projects
+> 4. Introduction
+> 5. ContactMe
 > 
 > You must add this exact name since it's the ID that's used in the code.
 
@@ -35,6 +37,9 @@ Create an `.env.local` and follow the variable name based on `.env.example` and 
 	![](https://i.imgur.com/PhC2Quk.png)
 	![](https://i.imgur.com/OD1oWG2.png)
 	![](https://i.imgur.com/nIkloDk.png)
+	![](https://user-images.githubusercontent.com/54136956/166127110-7baaef65-87b1-4f89-bbf5-eae3207f9ba6.png)
+	![image](https://user-images.githubusercontent.com/54136956/166127116-66f51c82-8944-4cf6-9ecf-cdcc6e2b10a2.png)
+
 6. Go to settings -> API Keys -> Content Delivery / Preview tokens -> "Your space name"
 copy the Space ID and Content Delivery API access token  <br>
 7. Put it into the environment variables according to `.env.example` and you're all set! <br>
