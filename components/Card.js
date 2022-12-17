@@ -22,7 +22,7 @@ import {
   FaBootstrap,
   FaDatabase,
 } from 'react-icons/fa'
-import { SiNextDotJs } from 'react-icons/si'
+import { SiNextdotjs, SiChakraui } from 'react-icons/si'
 import useMediaQuery from '../hook/useMediaQuery'
 import ReactGA from 'react-ga'
 
@@ -65,7 +65,11 @@ export default function Cards({
     }
     else if (tag == 'Next.js') {
       values[0] = 'gray'
-      values[1] = SiNextDotJs
+      values[1] = SiNextdotjs
+    }
+    else if (tag == 'Chakra UI') {
+      values[0] = 'teal'
+      values[1] = SiChakraui
     }
     else {
       values[0] = 'gray'
