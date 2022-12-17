@@ -84,6 +84,8 @@ export default function Index({ articles }) {
                 <Text
                   color="textSecondary"
                   display={isLargerThan1024 ? 'block' : 'none'}
+                  width={100}
+                  textAlign="right"
                 >
                   {dateFormat(Date.parse(article.fields.date), 'mmm d yyyy')}
                   <br />{' '}

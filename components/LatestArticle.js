@@ -9,6 +9,7 @@ export default function LatestArticle({ articles }) {
     <Stack
       spacing={5}
       w="100%"
+      h={100}
       display={articles.length < 2 ? 'none' : 'block'}
     >
       <SlideUpWhenVisible>
@@ -53,7 +54,11 @@ export default function LatestArticle({ articles }) {
                   fontWeight="bold"
                   cursor="pointer"
                 >
-                  {article.fields.title}
+                  {article.fields.title.length > 54 ? (
+                    <>{article.fields.title.substring(0, 54)}...</>
+                  ) : (
+                    article.fields.title
+                  )}
                 </Text>
                 <Text color="textSecondary" fontSize="sm">
                   {dateFormat(Date.parse(article.fields.date), 'mmmm d yyyy')}{' '}
