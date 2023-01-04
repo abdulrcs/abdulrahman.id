@@ -30,7 +30,7 @@ export default function Index({ introduction, projects, articles, contactMe }) {
             property="og:description"
             content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
-          <meta property="og:image" content="https://i.imgur.com/AOMvmeJ.png" />
+          <meta property="og:image" content="https://imagizer.imageshack.com/a/img922/7423/0P3Xty.png" />
 
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:url" content="https://abdulrahman.id/" />
@@ -44,7 +44,7 @@ export default function Index({ introduction, projects, articles, contactMe }) {
           />
           <meta
             property="twitter:image"
-            content="https://i.imgur.com/AOMvmeJ.png"
+            content="https://imagizer.imageshack.com/a/img922/7423/0P3Xty.png"
           />
         </Head>
 

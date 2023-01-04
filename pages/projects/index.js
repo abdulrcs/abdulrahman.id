@@ -34,7 +34,7 @@ export default function Projects({ projects }) {
             property="og:description"
             content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
-          <meta property="og:image" content="https://i.imgur.com/AOMvmeJ.png" />
+          <meta property="og:image" content="https://imagizer.imageshack.com/a/img923/3917/IFUVhm.png" />
 
           <meta property="twitter:card" content="summary_large_image" />
           <meta
@@ -51,7 +51,7 @@ export default function Projects({ projects }) {
           />
           <meta
             property="twitter:image"
-            content="https://i.imgur.com/AOMvmeJ.png"
+            content="https://imagizer.imageshack.com/a/img923/3917/IFUVhm.png"
           />
         </Head>
         <Stack

@@ -31,7 +31,7 @@ export default function Index({ articles }) {
           property="og:description"
           content="Writings on programming, tutorials, and my experiences."
         />
-        <meta property="og:image" content="https://i.imgur.com/dWmBCSl.png" />
+        <meta property="og:image" content="https://imagizer.imageshack.com/a/img924/6408/mSltwm.png" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://abdulrahman.id/" />
@@ -42,7 +42,7 @@ export default function Index({ articles }) {
         />
         <meta
           property="twitter:image"
-          content="https://i.imgur.com/dWmBCSl.png"
+          content="https://imagizer.imageshack.com/a/img923/7612/A5tDeP.png"
         />
       </Head>
       <Stack

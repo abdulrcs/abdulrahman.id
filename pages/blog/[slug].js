@@ -59,7 +59,7 @@ export default function Post({ metadata, source, views }) {
         dateModified={metadata.date}
         authorName="Abdul Rahman"
         publisherName="Abdul Rahman"
-        publisherLogo="https://i.imgur.com/CbbuXeI.png"
+        publisherLogo="https://imagizer.imageshack.com/a/img923/7612/A5tDeP.png"
         description={metadata.summary}
       />
       <Container>
@@ -85,7 +85,7 @@ export default function Post({ metadata, source, views }) {
                 <Avatar
                   name="Abdul Rahman"
                   size="xs"
-                  src="https://i.imgur.com/CbbuXeI.png"
+                  src="https://imagizer.imageshack.com/a/img923/7612/A5tDeP.png"
                   border="1px solid textPrimary"
                 />
                 <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textPrimary">

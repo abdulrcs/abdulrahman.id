@@ -95,14 +95,18 @@ export default function Introduction({ introduction }) {
               <Box>{introduction[1].fields.emoji}</Box>
               <Box>
                 {introduction[1].fields.description}{' '}
-                <Link
-                  isExternal
-                  rel="noreferrer"
-                  href={introduction[1].fields.companyUrl}
-                  onClick={() => handleClick('Introduction_companyUrl')}
-                >
-                  {introduction[1].fields.company}
-                </Link>
+                {introduction[1].fields.companyUrl ? (
+                  <Link
+                    isExternal
+                    rel="noreferrer"
+                    href={introduction[1].fields.companyUrl}
+                    onClick={() => handleClick('Introduction_companyUrl')}
+                  >
+                    {introduction[1].fields.company}
+                  </Link>
+                ) : (
+                  <Box as="span" color="button1">{introduction[1].fields.company}</Box>
+                )}
                 .
               </Box>
             </Stack>

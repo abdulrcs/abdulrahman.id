@@ -42,7 +42,7 @@ export default function AboutMe() {
               </chakra.span>
             </PopoverTrigger>
             <PopoverContent bg="secondary" borderColor="button1" color="white">
-              <PopoverArrow bg="textSecondary" />
+              <PopoverArrow bg="button1" />
               <PopoverBody fontSize="sm" color="textPrimary">
                 {content}
               </PopoverBody>
@@ -81,25 +81,25 @@ export default function AboutMe() {
               fast-forward to today, I do programming in various languages and
               technologies, and had the privilege to worked in a{' '}
               <MoreInfo
-                text="B2B Company"
-                content={
-                  <Image
-                    w={306}
-                    h={102}
-                    src="https://i.imgur.com/2vdHCro.png"
-                    alt="linkedin"
-                  />
-                }
-              />
-              and a
-              <MoreInfo
                 text="Recruitment Company"
                 content={
                   <Image
                     w={306}
                     h={102}
-                    src="https://i.imgur.com/pIW4urk.png"
-                    alt="linkedin"
+                    src="https://imagizer.imageshack.com/a/img923/541/alNCHs.png"
+                    alt="linkedin Qneksi"
+                  />
+                }
+              />
+              and a
+              <MoreInfo
+                text="SaaS Company"
+                content={
+                  <Image
+                    w={306}
+                    h={102}
+                    src="https://imagizer.imageshack.com/a/img922/6137/c0cugn.png"
+                    alt="linkedin Qasir"
                   />
                 }
               />
@@ -142,9 +142,10 @@ export default function AboutMe() {
                 alt=""
               />
               <Image
-                src="https://i.imgur.com/ypIiclh.png"
+                src="https://imagizer.imageshack.com/a/img923/7612/A5tDeP.png"
                 w={{ base: '300px', lg: '350px' }}
                 h={{ base: '300px', lg: '350px' }}
+                borderRadius="50%"
                 alt="Abdul Rahman"
               />
             </Box>
