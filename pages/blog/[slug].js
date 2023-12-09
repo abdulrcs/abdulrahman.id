@@ -13,11 +13,14 @@ import Image from '../../components/ChakraNextImage'
 import Container from '../../components/Container'
 import PostContainer from '../../components/PostContainer'
 import MDXComponents from '../../components/MDXComponents'
+import { useRouter } from 'next/router'
 
 export default function Post({ metadata, source}) {
   const [views, setViews] = useState('...')
+  const router = useRouter()
+  const { slug } = router.query
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/views/${params.slug}`)
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/views/${slug}`)
       .then((res) => res.json())
       .then((json) => setViews(json.views));
   }, []);
