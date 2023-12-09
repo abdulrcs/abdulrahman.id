@@ -14,7 +14,13 @@ import Container from '../../components/Container'
 import PostContainer from '../../components/PostContainer'
 import MDXComponents from '../../components/MDXComponents'
 
-export default function Post({ metadata, source, views }) {
+export default function Post({ metadata, source}) {
+  const [views, setViews] = useState('...')
+  useEffect(() => {
+    fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/views/${params.slug}`)
+      .then((res) => res.json())
+      .then((json) => setViews(json.views));
+  }, []);
   return (
     <>
       <NextSeo
@@ -160,17 +166,10 @@ export async function getStaticProps({ params }) {
     },
   })
 
-  const views = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/views/${params.slug}`,
-  )
-    .then((res) => res.json())
-    .then((json) => json.views)
-
   return {
     props: {
       metadata: article,
       source: mdxSource,
-      views: views,
     },
     revalidate: 30,
   }

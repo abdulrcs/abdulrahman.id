@@ -20,6 +20,7 @@ export default function Introduction({ introduction }) {
       action: event,
     })
   }
+
   return (
     <>
       <Stack spacing={10} justifyContent="flex-start" alignItems="flex-start">

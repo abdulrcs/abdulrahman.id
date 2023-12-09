@@ -31,7 +31,10 @@ export default function Index({ articles }) {
           property="og:description"
           content="Writings on programming, tutorials, and my experiences."
         />
-        <meta property="og:image" content="https://imagizer.imageshack.com/a/img924/6408/mSltwm.png" />
+        <meta
+          property="og:image"
+          content="https://imagizer.imageshack.com/a/img924/6408/mSltwm.png"
+        />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://abdulrahman.id/" />
@@ -106,23 +109,19 @@ export default function Index({ articles }) {
                 </Text>
                 <Flex flexDirection="column" px={isLargerThan1024 ? 10 : 0}>
                   <Link href={'/blog/' + article.fields.slug}>
-                    <a>
-                      <Text
-                        color="displayColor"
-                        fontSize="xl"
-                        fontWeight="bold"
-                        cursor="pointer"
-                      >
-                        {article.fields.title}
-                      </Text>
-                      <Text color="textSecondary">
-                        {article.fields.summary}
-                      </Text>
+                    <Text
+                      color="displayColor"
+                      fontSize="xl"
+                      fontWeight="bold"
+                      cursor="pointer"
+                    >
+                      {article.fields.title}
+                    </Text>
+                    <Text color="textSecondary">{article.fields.summary}</Text>
 
-                      <Text color="button1" cursor="pointer">
-                        Learn more &rarr;
-                      </Text>
-                    </a>
+                    <Text color="button1" cursor="pointer">
+                      Learn more &rarr;
+                    </Text>
                   </Link>
                 </Flex>
               </Stack>
