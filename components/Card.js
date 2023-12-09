@@ -24,7 +24,7 @@ import {
 } from 'react-icons/fa'
 import { SiNextdotjs, SiChakraui } from 'react-icons/si'
 import useMediaQuery from '../hook/useMediaQuery'
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga4'
 
 import Image from './ChakraNextImage'
 

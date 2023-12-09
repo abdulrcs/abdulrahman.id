@@ -10,7 +10,7 @@ import {
 import NextLink from 'next/link'
 import Cards from './Card'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga4'
 
 export default function FeaturedProjects({ projects }) {
   const handleClick = (event) => {

@@ -16,7 +16,7 @@ import {
 
 import useMediaQuery from '../hook/useMediaQuery'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga4'
 
 export default function AboutMe() {
   const isLargerThan800 = useMediaQuery(800)

@@ -2,7 +2,7 @@ import { Link, Button, chakra, Heading, Stack, Text } from '@chakra-ui/react'
 import useMediaQuery from '../hook/useMediaQuery'
 import { FaLinkedin, FaEnvelope, FaFileAlt } from 'react-icons/fa'
 import SlideUpWhenVisible from '../hook/SlideUpWhenVisible'
-import ReactGA from 'react-ga'
+import ReactGA from 'react-ga4'
 
 export default function ContactMe({ contactMe }) {
   const isLargerThan800 = useMediaQuery(800)
