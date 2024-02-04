@@ -142,7 +142,7 @@ export default function AboutMe() {
                 alt=""
               />
               <Image
-                src="https://imagizer.imageshack.com/a/img923/7612/A5tDeP.png"
+                src="https://i.imgur.com/jHFMo9A.jpeg"
                 w={{ base: '300px', lg: '350px' }}
                 h={{ base: '300px', lg: '350px' }}
                 borderRadius="50%"
