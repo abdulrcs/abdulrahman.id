@@ -51,6 +51,7 @@ export default function Index({ introduction, projects, articles, contactMe }) {
         <Stack
           as="main"
           spacing="144px"
+          pb='144px'
           justifyContent="center"
           alignItems="flex-start"
           px={{ base: '5vw', md: '10vw' }}

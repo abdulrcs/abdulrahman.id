@@ -9,7 +9,7 @@ export default function LatestArticle({ articles }) {
     <Stack
       spacing={5}
       w="100%"
-      h={100}
+      h='auto'
       display={articles.length < 2 ? 'none' : 'block'}
     >
       <SlideUpWhenVisible>

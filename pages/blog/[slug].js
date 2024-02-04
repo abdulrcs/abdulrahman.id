@@ -94,7 +94,7 @@ export default function Post({ metadata, source}) {
                 <Avatar
                   name="Abdul Rahman"
                   size="xs"
-                  src="https://imagizer.imageshack.com/a/img923/7612/A5tDeP.png"
+                  src="https://i.imgur.com/jHFMo9A.jpeg"
                   border="1px solid textPrimary"
                 />
                 <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textPrimary">

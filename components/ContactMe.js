@@ -13,10 +13,8 @@ export default function ContactMe({ contactMe }) {
     })
   }
   return (
-    <>
       <Stack
         spacing={10}
-        h="70vh"
         w="100%"
         alignItems="center"
         justifyContent="center"
@@ -91,6 +89,5 @@ export default function ContactMe({ contactMe }) {
           </Stack>
         </SlideUpWhenVisible>
       </Stack>
-    </>
   )
 }
