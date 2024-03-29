@@ -97,16 +97,7 @@ const MDXComponents = {
   h5: (props) => <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />,
   h6: (props) => <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />,
   img: (props) => (
-    <Image
-      width={600}
-      height={300}
-      layout="responsive"
-      objectFit="contain"
-      w="auto"
-      h="auto"
-      mx="auto"
-      {...props}
-    />
+    <Image width={600} height={300} objectFit="contain" {...props} />
   ),
   inlineCode: (props) => (
     <Code colorScheme="blue" fontSize="0.84em" mt={-10} {...props} />

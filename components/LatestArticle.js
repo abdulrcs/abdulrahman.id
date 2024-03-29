@@ -9,7 +9,7 @@ export default function LatestArticle({ articles }) {
     <Stack
       spacing={5}
       w="100%"
-      h='auto'
+      h="auto"
       display={articles.length < 2 ? 'none' : 'block'}
     >
       <SlideUpWhenVisible>
@@ -28,7 +28,7 @@ export default function LatestArticle({ articles }) {
       </SlideUpWhenVisible>
       <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={{ base: 2, md: 4 }}>
         {articles.map((article, index) => (
-          <SlideUpWhenVisible>
+          <SlideUpWhenVisible key={index}>
             <Link
               href={'/blog/' + article.fields.slug}
               _hover={{ textDecoration: 'none' }}
@@ -37,7 +37,7 @@ export default function LatestArticle({ articles }) {
             >
               <Stack
                 direction="column"
-                alignItems="flex-start"
+                alignItems="flex"
                 bg="secondary"
                 _hover={{ bg: '#111' }}
                 transition="0.3s"
@@ -45,14 +45,16 @@ export default function LatestArticle({ articles }) {
                 borderColor={{ base: '#333', md: 'borderColor' }}
                 borderRadius="10px"
                 p={5}
-                justifyContent="flex-start"
+                justifyContent="space-between"
                 space={2}
+                minH={{ base: 'auto', md: '130px' }}
               >
                 <Text
                   color="displayColor"
                   fontSize={{ base: 'md', md: 'xl' }}
                   fontWeight="bold"
                   cursor="pointer"
+                  noOfLines={2}
                 >
                   {article.fields.title.length > 54 ? (
                     <>{article.fields.title.substring(0, 54)}...</>
