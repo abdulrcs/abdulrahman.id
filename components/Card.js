@@ -1,32 +1,31 @@
 import {
-  TagLeftIcon,
-  Tag,
-  Text,
-  Stack,
+  Center,
   Divider,
-  TagLabel,
+  Image,
   Link,
   ScaleFade,
-  chakra,
+  Stack,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  Text,
 } from '@chakra-ui/react'
-import {
-  FaReact,
-  FaPython,
-  FaPepperHot,
-  FaJs,
-  FaSass,
-  FaCode,
-  FaGithub,
-  FaExternalLinkAlt,
-  FaLaravel,
-  FaBootstrap,
-  FaDatabase,
-} from 'react-icons/fa'
-import { SiNextdotjs, SiChakraui } from 'react-icons/si'
-import useMediaQuery from '../hook/useMediaQuery'
 import ReactGA from 'react-ga4'
-
-import Image from './ChakraNextImage'
+import {
+  FaBootstrap,
+  FaCode,
+  FaDatabase,
+  FaExternalLinkAlt,
+  FaGithub,
+  FaJs,
+  FaLaravel,
+  FaPepperHot,
+  FaPython,
+  FaReact,
+  FaSass,
+} from 'react-icons/fa'
+import { SiChakraui, SiNextdotjs } from 'react-icons/si'
+import useMediaQuery from '../hook/useMediaQuery'
 
 export default function Cards({
   imageURL,
@@ -62,16 +61,13 @@ export default function Cards({
     } else if (tag == 'SQL') {
       values[0] = 'blue'
       values[1] = FaDatabase
-    }
-    else if (tag == 'Next.js') {
+    } else if (tag == 'Next.js') {
       values[0] = 'gray'
       values[1] = SiNextdotjs
-    }
-    else if (tag == 'Chakra UI') {
+    } else if (tag == 'Chakra UI') {
       values[0] = 'teal'
       values[1] = SiChakraui
-    }
-    else {
+    } else {
       values[0] = 'gray'
       values[1] = FaCode
     }
@@ -108,16 +104,16 @@ export default function Cards({
     >
       <Link href={deployLink} isExternal>
         <ScaleFade in={true} transition={{ duration: 1 }}>
-          <Image
-            width={1250}
-            height={600}
-            w="auto"
-            h="auto"
-            src={imageURL}
-            transition="0.3s"
-            borderRadius="10px 10px 0px 0px"
-            alt="project image"
-          ></Image>
+          <Center w="auto">
+            <Image
+              w="100%"
+              h="auto"
+              src={imageURL}
+              transition="0.3s"
+              borderRadius="10px 10px 0px 0px"
+              alt={title}
+            />
+          </Center>
           <Stack px={4} py={2}>
             <Stack isInline justifyContent="space-between" alignItems="center">
               <Text fontFamily="Ubuntu" fontSize="2xl" color="displayColor">

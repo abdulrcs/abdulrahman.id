@@ -80,6 +80,7 @@ export default function Index({ articles }) {
             )
             .map((article) => (
               <Stack
+                key={article.sys.id}
                 direction={isLargerThan1024 ? 'row' : 'column'}
                 alignItems="flex-start"
                 justifyContent="flex-start"
