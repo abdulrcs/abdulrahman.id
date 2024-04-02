@@ -9,7 +9,9 @@ import useMediaQuery from '../../hook/useMediaQuery'
 import readingTime from 'reading-time'
 import dateFormat from 'dateformat'
 
-export default function Index({ articles }) {
+import { GithubBlog } from '@rena.to/github-blog'
+
+export default function Index({ posts }) {
   const [query, setQuery] = useState('')
   const handleChange = (e) => setQuery(e.target.value)
   const isLargerThan1024 = useMediaQuery(1024)
@@ -74,13 +76,13 @@ export default function Index({ articles }) {
         </InputGroup>
         <Divider />
         <Stack spacing={5}>
-          {articles
+          {posts
             .filter((e) =>
-              e.fields.title.toLowerCase().includes(query.toLowerCase()),
+              e.post.title.toLowerCase().includes(query.toLowerCase()),
             )
-            .map((article) => (
+            .map(({ post }) => (
               <Stack
-                key={article.sys.id}
+                key={post.frontmatter.slug}
                 direction={isLargerThan1024 ? 'row' : 'column'}
                 alignItems="flex-start"
                 justifyContent="flex-start"
@@ -91,10 +93,10 @@ export default function Index({ articles }) {
                   width={100}
                   textAlign="right"
                 >
-                  {dateFormat(Date.parse(article.fields.date), 'mmm d yyyy')}
+                  {dateFormat(Date.parse(post.frontmatter.date), 'mmm d yyyy')}
                   <br />{' '}
                   <Text fontSize="sm" textAlign="right">
-                    {readingTime(article.fields.body).text}
+                    {post.frontmatter.readingTime}
                   </Text>
                 </Text>
                 <Text
@@ -102,23 +104,25 @@ export default function Index({ articles }) {
                   fontSize="sm"
                   display={isLargerThan1024 ? 'none' : 'block'}
                 >
-                  {dateFormat(Date.parse(article.fields.date), 'mmm d yyyy')}{' '}
+                  {dateFormat(Date.parse(post.frontmatter.date), 'mmm d yyyy')}{' '}
                   <Box as="span" fontSize="xs">
                     &bull;
                   </Box>{' '}
-                  {readingTime(article.fields.body).text}
+                  {post.frontmatter.readingTime}
                 </Text>
                 <Flex flexDirection="column" px={isLargerThan1024 ? 10 : 0}>
-                  <Link href={'/blog/' + article.fields.slug}>
+                  <Link href={'/blog/' + post.frontmatter.slug}>
                     <Text
                       color="displayColor"
                       fontSize="xl"
                       fontWeight="bold"
                       cursor="pointer"
                     >
-                      {article.fields.title}
+                      {post.title}
                     </Text>
-                    <Text color="textSecondary">{article.fields.summary}</Text>
+                    <Text color="textSecondary">
+                      {post.frontmatter.summary}
+                    </Text>
 
                     <Text color="button1" cursor="pointer">
                       Learn more &rarr;
@@ -133,21 +137,23 @@ export default function Index({ articles }) {
   )
 }
 
-let client = require('contentful').createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-})
-
 export async function getStaticProps() {
-  let data = await client.getEntries({
-    content_type: 'blogPosts',
-    limit: 50,
-    order: 'sys.createdAt',
+  const blog = new GithubBlog({
+    repo: 'abdulrcs/abdulrahman.id',
+    token: process.env.GITHUB_TOKEN,
+  })
+  const posts = await blog.getPosts({
+    query: {
+      author: 'abdulrcs',
+      type: 'post',
+      state: 'published',
+    },
+    pager: { limit: 10, offset: 0 },
   })
 
   return {
     props: {
-      articles: data.items.reverse(),
+      posts: posts.edges,
     },
   }
 }

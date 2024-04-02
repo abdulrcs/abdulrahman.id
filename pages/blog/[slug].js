@@ -1,5 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Avatar, Text, Heading, Stack } from '@chakra-ui/react'
+import {
+  Avatar,
+  Text,
+  Heading,
+  Stack,
+  Spinner,
+  Center,
+  HStack,
+} from '@chakra-ui/react'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 
@@ -15,6 +23,10 @@ import PostContainer from '../../components/PostContainer'
 import MDXComponents from '../../components/MDXComponents'
 import { useRouter } from 'next/router'
 
+import { GithubBlog } from '@rena.to/github-blog'
+
+import useUtterances from '../../hook/useUtterances'
+
 export default function Post({ metadata, source }) {
   const [views, setViews] = useState('...')
   const router = useRouter()
@@ -24,14 +36,17 @@ export default function Post({ metadata, source }) {
       .then((res) => res.json())
       .then((json) => setViews(json.views))
   }, [])
+
+  const { isCommentsLoading } = useUtterances('comments', metadata.title)
+
   return (
     <>
       <NextSeo
         title={metadata.title}
         description={metadata.summary}
-        canonical={`https://abdulrahman.id/blog/${metadata.slug}`}
+        canonical={`https://abdulrahman.id/blog/${slug}`}
         openGraph={{
-          url: `https://abdulrahman.id/blog/${metadata.slug}`,
+          url: `https://abdulrahman.id/blog/${slug}`,
           site_name: 'Abdul Rahman',
           title: metadata.title,
           description: metadata.summary,
@@ -44,7 +59,7 @@ export default function Post({ metadata, source }) {
           },
           images: [
             {
-              url: metadata.image,
+              url: metadata.frontmatter.image,
               alt: metadata.title,
             },
           ],
@@ -53,17 +68,17 @@ export default function Post({ metadata, source }) {
           { property: 'twitter:card', content: 'summary_large_image' },
           {
             property: 'twitter:url',
-            content: `https://abdulrahman.id/blog/${metadata.slug}`,
+            content: `https://abdulrahman.id/blog/${slug}`,
           },
           { property: 'twitter:title', content: metadata.title },
           { property: 'twitter:description', content: metadata.summary },
-          { property: 'twitter:image', content: metadata.image },
+          { property: 'twitter:image', content: metadata.frontmatter.image },
         ]}
       />
       <ArticleJsonLd
-        url={`https://abdulrahman.id/blog/${metadata.slug}`}
+        url={`https://abdulrahman.id/blog/${slug}`}
         title={metadata.title}
-        images={[metadata.image]}
+        images={[metadata.frontmatter.image]}
         datePublished={metadata.date}
         dateModified={metadata.date}
         authorName="Abdul Rahman"
@@ -116,7 +131,7 @@ export default function Post({ metadata, source }) {
               borderColor={{ base: '#333', md: 'borderColor' }}
             >
               <Image
-                src={metadata.image}
+                src={metadata.frontmatter.image}
                 borderRadius="10px"
                 width={1366}
                 height={892}
@@ -129,6 +144,17 @@ export default function Post({ metadata, source }) {
             </Stack>
             <PostContainer>
               <MDXRemote {...source} components={MDXComponents} />
+              {isCommentsLoading && (
+                <Center flexDirection="column" pt={8}>
+                  <Spinner thickness="5px" w="56px" h="56px" color="#058d92" />
+                  <Text color="textSecondary" fontSize="sm" pt={2}>
+                    Loading comments...
+                  </Text>
+                </Center>
+              )}
+              <Stack opacity={isCommentsLoading ? 0 : 1}>
+                <div id="comments" />
+              </Stack>
             </PostContainer>
           </Stack>
         </Stack>
@@ -137,30 +163,41 @@ export default function Post({ metadata, source }) {
   )
 }
 
-let client = require('contentful').createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-})
-
 export async function getStaticPaths() {
-  let data = await client.getEntries({
-    content_type: 'blogPosts',
+  const blog = new GithubBlog({
+    repo: 'abdulrcs/abdulrahman.id',
+    token: process.env.GITHUB_TOKEN,
   })
+
+  const data = await blog.getPosts({
+    query: {
+      author: 'abdulrcs',
+      type: 'post',
+      state: 'published',
+    },
+    pager: { limit: 10, offset: 0 },
+  })
+
   return {
-    paths: data.items.map((item) => ({
-      params: { slug: item.fields.slug },
+    paths: data.edges.map(({ post }) => ({
+      params: { slug: post.frontmatter.slug },
     })),
     fallback: false,
   }
 }
 
 export async function getStaticProps({ params }) {
-  let data = await client.getEntries({
-    content_type: 'blogPosts',
-    'fields.slug': params.slug,
+  const blog = new GithubBlog({
+    repo: 'abdulrcs/abdulrahman.id',
+    token: process.env.GITHUB_TOKEN,
   })
-
-  const article = data.items[0].fields
+  const data = await blog.getPost({
+    query: {
+      author: 'abdulrcs',
+      search: params.slug,
+    },
+  })
+  const article = data.post
   const source = article.body
   article.readingTime = readingTime(source).text
   const mdxSource = await serialize(source, {
