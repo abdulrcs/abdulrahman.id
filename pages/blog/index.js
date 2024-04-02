@@ -146,7 +146,6 @@ export async function getStaticProps() {
     query: {
       author: 'abdulrcs',
       type: 'post',
-      state: 'published',
     },
     pager: { limit: 10, offset: 0 },
   })
