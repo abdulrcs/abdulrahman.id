@@ -27,7 +27,7 @@ import { GithubBlog } from '@rena.to/github-blog'
 
 import useUtterances from '../../hook/useUtterances'
 
-export default function Post({ metadata, source }) {
+export default function Post({ metadata, publishedDate, source }) {
   const [views, setViews] = useState('...')
   const router = useRouter()
   const { slug } = router.query
@@ -53,8 +53,8 @@ export default function Post({ metadata, source }) {
           type: 'article',
           article: {
             authors: ['Abdul Rahman'],
-            publishedTime: metadata.date,
-            modifiedTime: metadata.date,
+            publishedTime: publishedDate,
+            modifiedTime: publishedDate,
             tags: ['Programming', 'Web Development', 'Software Engineering'],
           },
           images: [
@@ -79,8 +79,8 @@ export default function Post({ metadata, source }) {
         url={`https://abdulrahman.id/blog/${slug}`}
         title={metadata.title}
         images={[metadata.frontmatter.image]}
-        datePublished={metadata.date}
-        dateModified={metadata.date}
+        datePublished={publishedDate}
+        dateModified={publishedDate}
         authorName="Abdul Rahman"
         publisherName="Abdul Rahman"
         publisherLogo="https://imagizer.imageshack.com/a/img923/7612/A5tDeP.png"
@@ -114,7 +114,7 @@ export default function Post({ metadata, source }) {
                 />
                 <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textPrimary">
                   Abdul Rahman /{' '}
-                  {dateFormat(Date.parse(metadata.date), 'mmmm d, yyyy')}
+                  {dateFormat(Date.parse(publishedDate), 'mmmm d, yyyy')}
                 </Text>
               </Stack>
               <Stack>
@@ -209,6 +209,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       metadata: article,
+      publishedDate: new Date(article.frontmatter.date).toISOString(),
       source: mdxSource,
     },
     revalidate: 30,
