@@ -1,6 +1,6 @@
 {
   "name": "abdulrahman.id",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,6 +13,7 @@
     "@chakra-ui/react": "^1.6.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@rena.to/github-blog": "^0.4.2",
     "contentful": "^8.3.7",
     "cors": "^2.8.5",
     "dateformat": "^4.5.1",
