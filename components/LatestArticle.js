@@ -70,7 +70,7 @@ export default function LatestArticle({ articles }) {
                   <Box as="span" fontSize="xs">
                     &bull;
                   </Box>{' '}
-                  2 min read
+                  {article.frontmatter.readingTime}
                 </Text>
               </Stack>
             </Link>
