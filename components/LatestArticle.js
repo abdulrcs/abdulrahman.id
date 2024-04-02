@@ -30,7 +30,7 @@ export default function LatestArticle({ articles }) {
         {articles.map((article, index) => (
           <SlideUpWhenVisible key={index}>
             <Link
-              href={'/blog/' + article.fields.slug}
+              href={'/blog/' + article.frontmatter.slug}
               _hover={{ textDecoration: 'none' }}
               _focus={{ outline: 'none' }}
               w="100%"
@@ -56,14 +56,17 @@ export default function LatestArticle({ articles }) {
                   cursor="pointer"
                   noOfLines={2}
                 >
-                  {article.fields.title.length > 54 ? (
-                    <>{article.fields.title.substring(0, 54)}...</>
+                  {article.title.length > 100 ? (
+                    <>{article.title.substring(0, 100)}...</>
                   ) : (
-                    article.fields.title
+                    article.title
                   )}
                 </Text>
                 <Text color="textSecondary" fontSize="sm">
-                  {dateFormat(Date.parse(article.fields.date), 'mmmm d yyyy')}{' '}
+                  {dateFormat(
+                    Date.parse(article.frontmatter.date),
+                    'mmmm d yyyy',
+                  )}{' '}
                   <Box as="span" fontSize="xs">
                     &bull;
                   </Box>{' '}

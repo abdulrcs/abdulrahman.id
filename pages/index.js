@@ -7,6 +7,8 @@ import LatestArticle from '../components/LatestArticle'
 import AboutMe from '../components/AboutMe'
 import ContactMe from '../components/ContactMe'
 
+import { GithubBlog } from '@rena.to/github-blog'
+
 export default function Index({ introduction, projects, articles, contactMe }) {
   return (
     <>
@@ -30,7 +32,10 @@ export default function Index({ introduction, projects, articles, contactMe }) {
             property="og:description"
             content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
-          <meta property="og:image" content="https://imagizer.imageshack.com/a/img922/7423/0P3Xty.png" />
+          <meta
+            property="og:image"
+            content="https://imagizer.imageshack.com/a/img922/7423/0P3Xty.png"
+          />
 
           <meta property="twitter:card" content="summary_large_image" />
           <meta property="twitter:url" content="https://abdulrahman.id/" />
@@ -51,7 +56,7 @@ export default function Index({ introduction, projects, articles, contactMe }) {
         <Stack
           as="main"
           spacing="144px"
-          pb='144px'
+          pb="144px"
           justifyContent="center"
           alignItems="flex-start"
           px={{ base: '5vw', md: '10vw' }}
@@ -79,10 +84,17 @@ export async function getStaticProps() {
     order: 'fields.order',
   })
 
-  let data2 = await client.getEntries({
-    content_type: 'blogPosts',
-    limit: 4,
-    order: 'sys.createdAt',
+  const blog = new GithubBlog({
+    repo: 'abdulrcs/abdulrahman.id',
+    token: process.env.GITHUB_TOKEN,
+  })
+  let data2 = await blog.getPosts({
+    query: {
+      author: 'abdulrcs',
+      type: 'post',
+      state: 'published',
+    },
+    pager: { limit: 4, offset: 0 },
   })
 
   let data3 = await client.getEntries({
@@ -100,7 +112,7 @@ export async function getStaticProps() {
   return {
     props: {
       projects: data.items,
-      articles: data2.items.reverse(),
+      articles: data2.edges.map((edge) => edge.post),
       introduction: data3.items,
       contactMe: data4.items,
     },
