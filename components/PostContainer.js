@@ -31,6 +31,9 @@ const PostContainer = styled(Stack)`
       display: block;
       margin: auto;
     }
+    a:hover {
+      text-decoration: underline;
+    }
   }
 `
 export default PostContainer
