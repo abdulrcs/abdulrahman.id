@@ -94,7 +94,7 @@ export async function getStaticProps() {
       type: 'post',
       state: 'published',
     },
-    pager: { limit: 4, offset: 0 },
+    pager: { limit: 10, offset: 0 },
   })
 
   let data3 = await client.getEntries({
@@ -112,7 +112,14 @@ export async function getStaticProps() {
   return {
     props: {
       projects: data.items,
-      articles: data2.edges.map((edge) => edge.post),
+      articles: data2.edges
+        .sort(
+          (a, b) =>
+            Date.parse(b.post.frontmatter.date) -
+            Date.parse(a.post.frontmatter.date),
+        )
+        .map((edge) => edge.post)
+        .slice(0, 4),
       introduction: data3.items,
       contactMe: data4.items,
     },
