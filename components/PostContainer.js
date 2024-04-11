@@ -19,13 +19,15 @@ const PostContainer = styled(Stack)`
       padding: 16px;
       color: rgba(255, 255, 255, 0.82);
       border-left: 0.25em solid;
-      border-color: #3ccf91;
+      border-color: gray;
       background: #080808;
     }
     blockquote p {
       font-style: italic;
     }
     img {
+      width: auto;
+      height: auto;
       display: block;
       margin: auto;
     }

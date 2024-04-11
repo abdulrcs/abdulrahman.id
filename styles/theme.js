@@ -51,7 +51,7 @@ const breakpoints = createBreakpoints({
 const Link = {
   baseStyle: {
     color: '#3CCF91',
-    _hover: { color: '#F6A20E', textDecoration: 'none' },
+    _hover: { textDecoration: 'underline' },
   },
 }
 

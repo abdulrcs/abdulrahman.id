@@ -6,7 +6,6 @@ import Container from '../../components/Container'
 import { FaSearch } from 'react-icons/fa'
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
 import useMediaQuery from '../../hook/useMediaQuery'
-import readingTime from 'reading-time'
 import dateFormat from 'dateformat'
 
 import { GithubBlog } from '@rena.to/github-blog'
@@ -153,7 +152,11 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: posts.edges,
+      posts: posts.edges.sort(
+        (a, b) =>
+          Date.parse(b.post.frontmatter.date) -
+          Date.parse(a.post.frontmatter.date),
+      ),
     },
   }
 }
