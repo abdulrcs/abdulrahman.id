@@ -18,23 +18,23 @@ const Container = ({ enableTransition, children }) => {
     return (
       <>
         <Navbar enableTransition={enableTransition} />
-        <Flex as="main" justifyContent="center" flexDirection="column">
+        <Flex as="main" justify="center" direction="column">
           {children}
         </Flex>
         <Stack alignItems="center" mt={10} mb={5}>
-          <Text textAlign="center" fontSize="sm">
+          <Text fontSize="sm" textAlign="center">
             Designed and Developed by Abdul Rahman.
             <br />
             Built with{' '}
-            <chakra.span fontWeight="semibold" color="button1">
+            <chakra.span color="button1" fontWeight="semibold">
               Next.js
             </chakra.span>{' '}
             &{' '}
-            <chakra.span fontWeight="semibold" color="button1">
+            <chakra.span color="button1" fontWeight="semibold">
               Chakra UI
             </chakra.span>
             . Hosted on{' '}
-            <chakra.span fontWeight="semibold" color="button1">
+            <chakra.span color="button1" fontWeight="semibold">
               Vercel
             </chakra.span>
             .

@@ -18,47 +18,50 @@ export default function Projects({ projects }) {
       <Container>
         <Head>
           <title>Abdul Rahman - Software Engineer</title>
-          <meta name="title" content="Abdul Rahman - Software Engineer" />
+          <meta content="Abdul Rahman - Software Engineer" name="title" />
           <meta
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
             name="description"
-            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
           />
 
-          <meta property="og:type" content="website" />
-          <meta property="og:url" content="https://abdulrahman.id/projects" />
+          <meta content="website" property="og:type" />
+          <meta content="https://abdulrahman.id/projects" property="og:url" />
           <meta
+            content="Abdul Rahman - Software Engineer"
             property="og:title"
-            content="Abdul Rahman - Software Engineer"
           />
           <meta
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
             property="og:description"
-            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
-          />
-          <meta property="og:image" content="https://imagizer.imageshack.com/a/img923/3917/IFUVhm.png" />
-
-          <meta property="twitter:card" content="summary_large_image" />
-          <meta
-            property="twitter:url"
-            content="https://abdulrahman.id/projects"
           />
           <meta
-            property="twitter:title"
-            content="Abdul Rahman - Software Engineer"
-          />
-          <meta
-            property="twitter:description"
-            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
-          />
-          <meta
-            property="twitter:image"
             content="https://imagizer.imageshack.com/a/img923/3917/IFUVhm.png"
+            property="og:image"
+          />
+
+          <meta content="summary_large_image" property="twitter:card" />
+          <meta
+            content="https://abdulrahman.id/projects"
+            property="twitter:url"
+          />
+          <meta
+            content="Abdul Rahman - Software Engineer"
+            property="twitter:title"
+          />
+          <meta
+            content="Software Engineer based in Indonesia, an undergraduate student at Universitas Negeri Surabaya."
+            property="twitter:description"
+          />
+          <meta
+            content="https://imagizer.imageshack.com/a/img923/3917/IFUVhm.png"
+            property="twitter:image"
           />
         </Head>
         <Stack
-          spacing={10}
           justifyContent="center"
-          px={['5vw', '10vw']}
           my={['15vh', '15vh', '22.5vh', '22.5vh']}
+          px={['5vw', '10vw']}
+          spacing={10}
         >
           <Stack spacing={5}>
             {' '}
@@ -70,10 +73,12 @@ export default function Projects({ projects }) {
               here's an archive of things that I've worked on.
             </Text>
             <InputGroup maxW="400px">
-              <InputRightElement pointerEvents="none" children={<FaSearch />} />
+              <InputRightElement pointerEvents="none">
+                <FaSearch />
+              </InputRightElement>
               <Input
-                type="text"
                 placeholder="Search projects"
+                type="text"
                 value={query}
                 onChange={handleChange}
               />
@@ -88,12 +93,12 @@ export default function Projects({ projects }) {
               .map((project) => (
                 <Cards
                   key={project.fields.title}
-                  imageURL={project.fields.imageUrl}
-                  title={project.fields.title}
+                  deployLink={project.fields.deployLink}
                   desc={project.fields.description}
                   githubLink={project.fields.githubLink}
-                  deployLink={project.fields.deployLink}
+                  imageURL={project.fields.imageUrl}
                   tag={project.fields.tags}
+                  title={project.fields.title}
                 />
               ))}
           </SimpleGrid>

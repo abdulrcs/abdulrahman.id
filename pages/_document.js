@@ -4,21 +4,21 @@ export default class MyDocument extends NextDocument {
   render() {
     return (
       <Html lang="en">
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
         <link
           as="style"
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
-          rel="stylesheet preload prefetch"
           onload="this.onload=null;this.rel='stylesheet'"
+          rel="stylesheet preload prefetch"
         />
         <link
           as="style"
           href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap"
-          rel="stylesheet preload prefetch"
           onload="this.onload=null;this.rel='stylesheet'"
+          rel="stylesheet preload prefetch"
         />
-        <meta name="theme-color" content="black" />
+        <meta content="black" name="theme-color" />
         <Head />
         <body>
           <Main />

@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-export default async (req, res) => {
+const views = async (req, res) => {
   var firebaseConfig = {
     apiKey: process.env.FIREBASE_REACT_APP_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -32,3 +32,5 @@ export default async (req, res) => {
     res.json({ views: 1 })
   }
 }
+
+export default views

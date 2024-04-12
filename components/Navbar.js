@@ -31,13 +31,13 @@ export default function Navbar({ enableTransition }) {
   const NavbarDrawer = () => (
     <>
       <Drawer
-        isOpen={isOpen}
-        placement="right"
         initialFocusRef={firstField}
+        isOpen={isOpen}
         onClose={onClose}
+        placement="right"
       >
         <DrawerOverlay />
-        <DrawerContent backgroundColor="secondary">
+        <DrawerContent bgColor="secondary">
           <DrawerCloseButton />
           <DrawerHeader borderBottomWidth="1px">
             <Bracket>&#123;</Bracket>A<Bracket>&#125;</Bracket>
@@ -45,18 +45,18 @@ export default function Navbar({ enableTransition }) {
 
           <DrawerBody>
             <Stack spacing="24px">
-              <NextLink href="/" passHref>
-                <Button as="a" variant="ghost" fontSize="16px">
+              <NextLink passHref href="/">
+                <Button as="a" fontSize="16px" variant="ghost">
                   Home
                 </Button>
               </NextLink>
-              <NextLink href="/projects" passHref>
-                <Button as="a" variant="ghost" fontSize="16px">
+              <NextLink passHref href="/projects">
+                <Button as="a" fontSize="16px" variant="ghost">
                   Projects
                 </Button>
               </NextLink>
-              <NextLink href="/blog" passHref>
-                <Button as="a" variant="ghost" fontSize="16px">
+              <NextLink passHref href="/blog">
+                <Button as="a" fontSize="16px" variant="ghost">
                   Blog
                 </Button>
               </NextLink>
@@ -71,50 +71,50 @@ export default function Navbar({ enableTransition }) {
     <Box zIndex="99">
       <Slide
         direction="top"
-        reverse
-        in={true}
+        bg="black"
         transition={
           enableTransition
             ? { enter: { duration: 0.5, delay: 0.01 } }
             : { enter: { duration: 0, delay: 0 } }
         }
-        background="black"
+        in={true}
+        reverse
       >
         <Flex
           as="nav"
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="center"
-          width="100%"
+          align="center"
+          justify="space-between"
+          direction="row"
+          w="100%"
           px="3vw"
           py="3"
+          bg="black"
           borderBottom="0.5px solid #1e2029"
-          background="black"
         >
-          <NextLink href="/" passHref>
+          <NextLink passHref href="/">
             <Text
-              cursor="pointer"
               color="displayColor"
-              fontWeight="bold"
               fontSize="32px"
+              fontWeight="bold"
+              cursor="pointer"
             >
               <Bracket>&#123;</Bracket>A<Bracket>&#125;</Bracket>
             </Text>
           </NextLink>
           {isLargerThan768 ? (
             <Box color="textSecondary">
-              <NextLink href="/" passHref>
-                <Button as="a" variant="ghost" p="4" ml="3vw" fontSize="16px">
+              <NextLink passHref href="/">
+                <Button as="a" ml="3vw" p="4" fontSize="16px" variant="ghost">
                   Home
                 </Button>
               </NextLink>
-              <NextLink href="/projects" passHref>
-                <Button as="a" variant="ghost" p="4" ml="3vw" fontSize="16px">
+              <NextLink passHref href="/projects">
+                <Button as="a" ml="3vw" p="4" fontSize="16px" variant="ghost">
                   Projects
                 </Button>
               </NextLink>
-              <NextLink href="/blog" passHref>
-                <Button as="a" variant="ghost" p="4" ml="3vw" fontSize="16px">
+              <NextLink passHref href="/blog">
+                <Button as="a" ml="3vw" p="4" fontSize="16px" variant="ghost">
                   Blog
                 </Button>
               </NextLink>{' '}

@@ -23,7 +23,7 @@ const CustomLink = (props) => {
 
   if (isInternalLink) {
     return (
-      <NextLink href={href} passHref>
+      <NextLink passHref href={href}>
         <Link color={color[colorMode]} {...props} />
       </NextLink>
     )
@@ -50,24 +50,24 @@ const DocsHeading = (props) => (
       '&[id]:hover a': { opacity: 1 },
     }}
     {...props}
-    mb="1em"
     mt="2em"
+    mb="1em"
   >
     <Box pointerEvents="auto">
       {props.children}
       {props.id && (
         <Box
-          aria-label="anchor"
           as="a"
+          ml="0.375rem"
           color="blue.500"
           fontWeight="normal"
-          outline="none"
+          opacity="0"
           _focus={{
             opacity: 1,
             boxShadow: 'outline',
           }}
-          opacity="0"
-          ml="0.375rem"
+          outline="none"
+          aria-label="anchor"
           href={`#${props.id}`}
         >
           #
@@ -84,30 +84,30 @@ const Hr = () => {
     dark: 'gray.600',
   }
 
-  return <Divider borderColor={borderColor[colorMode]} my={4} w="100%" />
+  return <Divider w="100%" my={4} borderColor={borderColor[colorMode]} />
 }
 
 const MDXComponents = {
   h1: (props) => (
-    <Heading as="h1" size="xl" my={4} color="displayColor" {...props} />
+    <Heading as="h1" my={4} color="displayColor" size="xl" {...props} />
   ),
-  h2: (props) => <DocsHeading as="h2" size="lg" fontWeight="bold" {...props} />,
-  h3: (props) => <DocsHeading as="h3" size="md" fontWeight="bold" {...props} />,
-  h4: (props) => <DocsHeading as="h4" size="sm" fontWeight="bold" {...props} />,
-  h5: (props) => <DocsHeading as="h5" size="sm" fontWeight="bold" {...props} />,
-  h6: (props) => <DocsHeading as="h6" size="xs" fontWeight="bold" {...props} />,
+  h2: (props) => <DocsHeading as="h2" fontWeight="bold" size="lg" {...props} />,
+  h3: (props) => <DocsHeading as="h3" fontWeight="bold" size="md" {...props} />,
+  h4: (props) => <DocsHeading as="h4" fontWeight="bold" size="sm" {...props} />,
+  h5: (props) => <DocsHeading as="h5" fontWeight="bold" size="sm" {...props} />,
+  h6: (props) => <DocsHeading as="h6" fontWeight="bold" size="xs" {...props} />,
   img: (props) => (
-    <Image width={600} height={300} objectFit="contain" {...props} />
+    <Image height={300} objectFit="contain" width={600} {...props} alt="" />
   ),
   inlineCode: (props) => (
-    <Code colorScheme="blue" fontSize="0.84em" mt={-10} {...props} />
+    <Code mt={-10} fontSize="0.84em" colorScheme="blue" {...props} />
   ),
-  br: (props) => <Box height="24px" {...props} />,
+  br: (props) => <Box h="24px" {...props} />,
   hr: Hr,
   a: CustomLink,
   p: (props) => <Text as="p" mt={0} lineHeight="tall" {...props} />,
-  ul: (props) => <Box as="ul" pt={2} pl={4} ml={2} {...props} />,
-  ol: (props) => <Box as="ol" pt={2} pl={4} ml={2} {...props} />,
+  ul: (props) => <Box as="ul" ml={2} pt={2} pl={4} {...props} />,
+  ol: (props) => <Box as="ol" ml={2} pt={2} pl={4} {...props} />,
   li: (props) => <Box as="li" pb={1} {...props} />,
 }
 

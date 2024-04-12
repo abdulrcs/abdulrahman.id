@@ -7,14 +7,14 @@ import NextLink from 'next/link'
 export default function LatestArticle({ articles }) {
   return (
     <Stack
-      spacing={5}
+      display={articles.length < 2 ? 'none' : 'block'}
       w="100%"
       h="auto"
-      display={articles.length < 2 ? 'none' : 'block'}
+      spacing={5}
     >
       <SlideUpWhenVisible>
-        <Flex alignItems="center" justifyContent="space-between">
-          <Heading fontSize={{ base: 'xl', md: '2xl' }} fontFamily="Ubuntu">
+        <Flex align="center" justify="space-between">
+          <Heading fontFamily="Ubuntu" fontSize={{ base: 'xl', md: '2xl' }}>
             📰 Latest Article.
           </Heading>
           <NextLink href="/projects">
@@ -30,24 +30,24 @@ export default function LatestArticle({ articles }) {
         {articles.map((article, index) => (
           <SlideUpWhenVisible key={index}>
             <Link
-              href={'/blog/' + article.frontmatter.slug}
+              w="100%"
               _hover={{ textDecoration: 'none' }}
               _focus={{ outline: 'none' }}
-              w="100%"
+              href={'/blog/' + article.frontmatter.slug}
             >
               <Stack
-                direction="column"
                 alignItems="flex"
+                justifyContent="space-between"
+                direction="column"
+                minH={{ base: 'auto', md: '130px' }}
+                p={5}
                 bg="secondary"
-                _hover={{ bg: '#111' }}
-                transition="0.3s"
                 border="1px"
                 borderColor={{ base: '#333', md: 'borderColor' }}
                 borderRadius="10px"
-                p={5}
-                justifyContent="space-between"
+                _hover={{ bg: '#111' }}
+                transition="0.3s"
                 space={2}
-                minH={{ base: 'auto', md: '130px' }}
               >
                 <Text
                   color="displayColor"

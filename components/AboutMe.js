@@ -31,19 +31,19 @@ export default function AboutMe() {
       <>
         {' '}
         {isLargerThan800 ? (
-          <Popover trigger="hover" placement="right" isLazy>
+          <Popover isLazy placement="right" trigger="hover">
             <PopoverTrigger>
               <chakra.span
-                onMouseOver={() => handleHover(`about_${text}`)}
                 color="button1"
                 cursor="help"
+                onMouseOver={() => handleHover(`about_${text}`)}
               >
                 {text}
               </chakra.span>
             </PopoverTrigger>
-            <PopoverContent bg="secondary" borderColor="button1" color="white">
+            <PopoverContent color="white" bg="secondary" borderColor="button1">
               <PopoverArrow bg="button1" />
-              <PopoverBody fontSize="sm" color="textPrimary">
+              <PopoverBody color="textPrimary" fontSize="sm">
                 {content}
               </PopoverBody>
             </PopoverContent>
@@ -74,49 +74,49 @@ export default function AboutMe() {
               early age, and been passionate about it ever since. <br />
               <br /> I really liked to build stuff using{' '}
               <MoreInfo
-                text="no-code tools"
                 content="I used to make games without code using RPG Maker VX, and build a simple website with blogspot back in primary school."
+                text="no-code tools"
               />
               back in 2010, and from that, I explored how to code myself,
               fast-forward to today, I do programming in various languages and
               technologies, and had the privilege to worked in a{' '}
               <MoreInfo
-                text="Recruitment Company"
                 content={
                   <Image
                     w={306}
                     h={102}
-                    src="https://imagizer.imageshack.com/a/img923/541/alNCHs.png"
                     alt="linkedin Qneksi"
+                    src="https://imagizer.imageshack.com/a/img923/541/alNCHs.png"
                   />
                 }
+                text="Recruitment Company"
               />
               and a
               <MoreInfo
-                text="SaaS Company"
                 content={
                   <Image
                     w={306}
                     h={102}
-                    src="https://imagizer.imageshack.com/a/img922/6137/c0cugn.png"
                     alt="linkedin Qasir"
+                    src="https://imagizer.imageshack.com/a/img922/6137/c0cugn.png"
                   />
                 }
+                text="SaaS Company"
               />
               I'm interested in building something awesome with code and
               automate tasks with code, currently focused on
               <MoreInfo
-                text="Web & Mobile Development,"
                 content="Building Web and Mobile Applications using Javascript Frameworks (React, React Native and Next.js)"
+                text="Web & Mobile Development,"
               />
               <MoreInfo
-                text="Open Source"
                 content="I really like the idea of contributing new features to open source projects that can be useful to other people."
+                text="Open Source"
               />
               and
               <MoreInfo
-                text="Competitive Programming"
                 content="Competitive Programming helped me to sharpen my Algorithms and Problem Solving skills."
+                text="Competitive Programming"
               />
               <br />
               <br />
@@ -126,27 +126,27 @@ export default function AboutMe() {
           </Stack>
         </SlideUpWhenVisible>
         <SlideUpWhenVisible>
-          <Flex alignItems="center" justifyContent="center" position="relative">
+          <Flex pos="relative" align="center" justify="center">
             <Box
               maxW={{ base: '300px', lg: '350px' }}
               maxH={{ base: '300px', lg: '350px' }}
             >
               <Image
-                src="https://svgsilh.com/svg/26432.svg"
-                filter="invert(0.1)"
+                pos="absolute"
                 zIndex={3}
-                position="absolute"
                 top={0}
                 right={0}
                 w={{ base: '100px', lg: '150px' }}
                 alt=""
+                filter="invert(0.1)"
+                src="https://svgsilh.com/svg/26432.svg"
               />
               <Image
-                src="https://i.imgur.com/jHFMo9A.jpeg"
                 w={{ base: '300px', lg: '350px' }}
                 h={{ base: '300px', lg: '350px' }}
                 borderRadius="50%"
                 alt="Abdul Rahman"
+                src="https://i.imgur.com/jHFMo9A.jpeg"
               />
             </Box>
           </Flex>

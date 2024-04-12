@@ -35,16 +35,25 @@ export default function Post({ metadata, publishedDate, source }) {
     fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/views/${slug}`)
       .then((res) => res.json())
       .then((json) => setViews(json.views))
-  }, [])
+  }, [slug])
 
   const { isCommentsLoading } = useUtterances('comments', metadata.title)
 
   return (
     <>
       <NextSeo
-        title={metadata.title}
-        description={metadata.summary}
+        additionalMetaTags={[
+          { property: 'twitter:card', content: 'summary_large_image' },
+          {
+            property: 'twitter:url',
+            content: `https://abdulrahman.id/blog/${slug}`,
+          },
+          { property: 'twitter:title', content: metadata.title },
+          { property: 'twitter:description', content: metadata.summary },
+          { property: 'twitter:image', content: metadata.frontmatter.image },
+        ]}
         canonical={`https://abdulrahman.id/blog/${slug}`}
+        description={metadata.summary}
         openGraph={{
           url: `https://abdulrahman.id/blog/${slug}`,
           site_name: 'Abdul Rahman',
@@ -64,90 +73,81 @@ export default function Post({ metadata, publishedDate, source }) {
             },
           ],
         }}
-        additionalMetaTags={[
-          { property: 'twitter:card', content: 'summary_large_image' },
-          {
-            property: 'twitter:url',
-            content: `https://abdulrahman.id/blog/${slug}`,
-          },
-          { property: 'twitter:title', content: metadata.title },
-          { property: 'twitter:description', content: metadata.summary },
-          { property: 'twitter:image', content: metadata.frontmatter.image },
-        ]}
+        title={metadata.title}
       />
       <ArticleJsonLd
-        url={`https://abdulrahman.id/blog/${slug}`}
-        title={metadata.title}
-        images={[metadata.frontmatter.image]}
-        datePublished={publishedDate}
-        dateModified={publishedDate}
         authorName="Abdul Rahman"
-        publisherName="Abdul Rahman"
-        publisherLogo="https://imagizer.imageshack.com/a/img923/7612/A5tDeP.png"
+        dateModified={publishedDate}
+        datePublished={publishedDate}
         description={metadata.summary}
+        images={[metadata.frontmatter.image]}
+        publisherLogo="https://imagizer.imageshack.com/a/img923/7612/A5tDeP.png"
+        publisherName="Abdul Rahman"
+        title={metadata.title}
+        url={`https://abdulrahman.id/blog/${slug}`}
       />
       <Container>
-        <Stack my="15vh" justifyContent="center" alignItems="center">
+        <Stack alignItems="center" justifyContent="center" my="15vh">
           <Stack
             w={['100vw', '95vw']}
             maxW="680px"
             p={['20px', '20px', '24px', '24px']}
           >
             <Heading
-              fontSize={['3xl', '3xl', '5xl', '5xl']}
               color="displayColor"
+              fontSize={['3xl', '3xl', '5xl', '5xl']}
             >
               {metadata.title}
             </Heading>
             <Stack
-              py={4}
-              direction={{ base: 'column', md: 'row' }}
               alignItems="baseline"
               justifyContent="space-between"
+              direction={{ base: 'column', md: 'row' }}
+              py={4}
             >
-              <Stack isInline alignItems="center">
+              <Stack alignItems="center" isInline>
                 <Avatar
+                  border="1px solid textPrimary"
                   name="Abdul Rahman"
                   size="xs"
                   src="https://i.imgur.com/jHFMo9A.jpeg"
-                  border="1px solid textPrimary"
                 />
-                <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textPrimary">
+                <Text color="textPrimary" fontSize={['xs', 'xs', 'sm', 'sm']}>
                   Abdul Rahman /{' '}
                   {dateFormat(Date.parse(publishedDate), 'mmmm d, yyyy')}
                 </Text>
               </Stack>
               <Stack>
-                <Text fontSize={['xs', 'xs', 'sm', 'sm']} color="textSecondary">
+                <Text color="textSecondary" fontSize={['xs', 'xs', 'sm', 'sm']}>
                   {metadata.readingTime} &bull; {views} views
                 </Text>
               </Stack>
             </Stack>
             <Stack
-              bg="secondary"
-              borderRadius="10px"
               minH="200px"
+              bg="secondary"
               border="1px"
               borderColor={{ base: '#333', md: 'borderColor' }}
+              borderRadius="10px"
             >
               <Image
-                src={metadata.frontmatter.image}
-                borderRadius="10px"
-                width={1366}
-                height={892}
-                w="100%"
-                h="auto"
-                mx="auto"
-                alt=""
                 priority
+                alt=""
+                borderRadius="10px"
+                h="auto"
+                height={892}
+                mx="auto"
+                src={metadata.frontmatter.image}
+                w="100%"
+                width={1366}
               ></Image>
             </Stack>
             <PostContainer>
               <MDXRemote {...source} components={MDXComponents} />
               {isCommentsLoading && (
-                <Center flexDirection="column" pt={8}>
-                  <Spinner thickness="5px" w="56px" h="56px" color="#058d92" />
-                  <Text color="textSecondary" fontSize="sm" pt={2}>
+                <Center flexDir="column" pt={8}>
+                  <Spinner w="56px" h="56px" color="#058d92" thickness="5px" />
+                  <Text pt={2} color="textSecondary" fontSize="sm">
                     Loading comments...
                   </Text>
                 </Center>

@@ -32,21 +32,21 @@ export default function FeaturedProjects({ projects }) {
                 justifyContent="space-between"
               >
                 <Heading
-                  fontSize={{ base: 'xl', md: '2xl' }}
                   color="displayColor"
                   fontFamily="Ubuntu"
+                  fontSize={{ base: 'xl', md: '2xl' }}
                 >
                   All Creative Works.
                 </Heading>
-                <NextLink href="/projects" passHref>
+                <NextLink passHref href="/projects">
                   <Link
                     onClick={() => handleClick('featuredprojects_explore more')}
                   >
                     <Text
+                      _hover={{ color: 'button2' }}
+                      color="button1"
                       display={{ base: 'block', md: 'none' }}
                       fontSize={{ base: 'sm', md: 'xl' }}
-                      color="button1"
-                      _hover={{ color: 'button2' }}
                     >
                       {' '}
                       Explore more &rarr;
@@ -54,7 +54,7 @@ export default function FeaturedProjects({ projects }) {
                   </Link>
                 </NextLink>
               </Stack>
-              <Text fontSize={{ base: 'md', md: 'xl' }} color="textSecondary">
+              <Text color="textSecondary" fontSize={{ base: 'md', md: 'xl' }}>
                 Here's some of my projects that I have worked on.
               </Text>
               <NextLink href="/projects">
@@ -73,34 +73,34 @@ export default function FeaturedProjects({ projects }) {
           </SlideUpWhenVisible>
           <SlideUpWhenVisible>
             <Cards
-              imageURL={projects[0].fields.imageUrl}
-              title={projects[0].fields.title}
+              deployLink={projects[0].fields.deployLink}
               desc={projects[0].fields.description}
               githubLink={projects[0].fields.githubLink}
-              deployLink={projects[0].fields.deployLink}
+              imageURL={projects[0].fields.imageUrl}
               tag={projects[0].fields.tags}
+              title={projects[0].fields.title}
             />
           </SlideUpWhenVisible>
           <SlideUpWhenVisible>
             <Box mt={{ md: '-50%' }}>
               <Cards
-                imageURL={projects[1].fields.imageUrl}
-                title={projects[1].fields.title}
+                deployLink={projects[1].fields.deployLink}
                 desc={projects[1].fields.description}
                 githubLink={projects[1].fields.githubLink}
-                deployLink={projects[1].fields.deployLink}
+                imageURL={projects[1].fields.imageUrl}
                 tag={projects[1].fields.tags}
+                title={projects[1].fields.title}
               />
             </Box>
           </SlideUpWhenVisible>
           <SlideUpWhenVisible threshold={0.8}>
             <Cards
-              imageURL={projects[2].fields.imageUrl}
-              title={projects[2].fields.title}
+              deployLink={projects[2].fields.deployLink}
               desc={projects[2].fields.description}
               githubLink={projects[2].fields.githubLink}
-              deployLink={projects[2].fields.deployLink}
+              imageURL={projects[2].fields.imageUrl}
               tag={projects[2].fields.tags}
+              title={projects[2].fields.title}
             />
           </SlideUpWhenVisible>
         </SimpleGrid>

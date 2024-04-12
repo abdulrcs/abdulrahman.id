@@ -95,56 +95,56 @@ export default function Cards({
 
   return (
     <Stack
-      bg="secondary"
-      borderRadius="10px"
       minH="320px"
       maxH="500px"
+      bg="secondary"
       border="1px"
       borderColor={{ base: '#333', md: 'borderColor' }}
+      borderRadius="10px"
     >
       <Link href={deployLink} isExternal>
-        <ScaleFade in={true} transition={{ duration: 1 }}>
+        <ScaleFade transition={{ duration: 1 }} in={true}>
           <Center w="auto">
             <Image
               w="100%"
               h="auto"
-              src={imageURL}
-              transition="0.3s"
               borderRadius="10px 10px 0px 0px"
+              transition="0.3s"
               alt={title}
+              src={imageURL}
             />
           </Center>
           <Stack px={4} py={2}>
-            <Stack isInline justifyContent="space-between" alignItems="center">
-              <Text fontFamily="Ubuntu" fontSize="2xl" color="displayColor">
+            <Stack alignItems="center" justifyContent="space-between" isInline>
+              <Text color="displayColor" fontFamily="Ubuntu" fontSize="2xl">
                 {title}
               </Text>
               <Stack
-                isInline
-                justifyContent="flex-end"
                 alignItems="center"
+                justifyContent="flex-end"
+                isInline
                 spacing={4}
               >
                 {githubLink && (
                   <Link
-                    href={githubLink}
                     color="white"
+                    href={githubLink}
+                    isExternal
                     onClick={() =>
                       handleClick(`githublink_${title.replace('@', '-at-')}`)
                     }
-                    isExternal
                   >
                     <FaGithub aria-label="github" size={23} />
                   </Link>
                 )}
                 {deployLink && (
                   <Link
-                    href={deployLink}
                     color="white"
+                    href={deployLink}
+                    isExternal
                     onClick={() =>
                       handleClick(`deploylink_${title.replace('@', '-at')}`)
                     }
-                    isExternal
                   >
                     <FaExternalLinkAlt aria-label="project link" size={20} />
                   </Link>

@@ -14,7 +14,7 @@ import ReactGA from 'react-ga4'
 
 export default function Introduction({ introduction }) {
   const isLargerThan800 = useMediaQuery(800)
-  const handleClick = event => {
+  const handleClick = (event) => {
     ReactGA.event({
       category: 'click',
       action: event,
@@ -23,40 +23,40 @@ export default function Introduction({ introduction }) {
 
   return (
     <>
-      <Stack spacing={10} justifyContent="flex-start" alignItems="flex-start">
+      <Stack alignItems="flex-start" justifyContent="flex-start" spacing={10}>
         <SlideFade
           direction="top"
-          in={true}
           transition={{ enter: { duration: 0.4, delay: 0.7 } }}
+          in={true}
         >
-          <Box position="relative">
+          <Box pos="relative">
             <Image
-              src="https://svgsilh.com/svg/26432.svg"
-              filter="invert(0.1)"
-              w={{ base: '70px', md: '150px' }}
-              position="absolute"
+              pos="absolute"
+              zIndex={0}
               top={{ base: '0', md: '-15' }}
               left={{ base: '-5', md: '-10' }}
-              zIndex={0}
+              w={{ base: '70px', md: '150px' }}
               alt=""
+              filter="invert(0.1)"
+              src="https://svgsilh.com/svg/26432.svg"
             ></Image>
             <Text
+              pos="relative"
+              zIndex={1}
               color="button1"
               fontSize="display2"
               fontWeight="medium"
-              position="relative"
-              zIndex={1}
             >
               Hey there!, I'm-
             </Text>
           </Box>
           <Heading
+            pos="relative"
+            zIndex={1}
+            color="displayColor"
             fontSize="display"
             lineHeight={'95%'}
-            color="displayColor"
             letterSpacing={{ sm: '-1.2px', md: '-1.8px' }}
-            position="relative"
-            zIndex={1}
           >
             Abdul Rahman.
           </Heading>
@@ -64,17 +64,17 @@ export default function Introduction({ introduction }) {
 
         <SlideFade
           direction="top"
-          in={true}
           transition={{ enter: { duration: 0.4, delay: 0.8 } }}
+          in={true}
         >
           <Heading
             color="textSecondary"
             fontSize="display2"
             fontWeight="medium"
-            whiteSpace="pre-wrap"
             letterSpacing="-1.6px"
+            whiteSpace="pre-wrap"
           >
-            <Box color="displayColor" as="span">
+            <Box as="span" color="displayColor">
               Software Engineer.
             </Box>{' '}
             A self-taught developer{' '}
@@ -86,10 +86,10 @@ export default function Introduction({ introduction }) {
 
         <SlideFade
           direction="top"
-          in={true}
           transition={{ enter: { duration: 0.4, delay: 0.9 } }}
+          in={true}
         >
-          <Text fontSize="display3" color="textSecondary">
+          <Text color="textSecondary" fontSize="display3">
             {introduction[0].fields.emoji} {introduction[0].fields.description}
             <br />
             <Stack isInline spacing={1}>
@@ -98,15 +98,17 @@ export default function Introduction({ introduction }) {
                 {introduction[1].fields.description}{' '}
                 {introduction[1].fields.companyUrl ? (
                   <Link
-                    isExternal
-                    rel="noreferrer"
                     href={introduction[1].fields.companyUrl}
+                    isExternal
                     onClick={() => handleClick('Introduction_companyUrl')}
+                    rel="noreferrer"
                   >
                     {introduction[1].fields.company}
                   </Link>
                 ) : (
-                  <Box as="span" color="button1">{introduction[1].fields.company}</Box>
+                  <Box as="span" color="button1">
+                    {introduction[1].fields.company}
+                  </Box>
                 )}
                 .
               </Box>
@@ -115,40 +117,40 @@ export default function Introduction({ introduction }) {
         </SlideFade>
         <SlideFade
           direction="top"
-          in={true}
           transition={{ enter: { duration: 0.4, delay: 1.0 } }}
+          in={true}
         >
           <Stack isInline spacing={4}>
             <Link href="https://github.com/abdulrcs" isExternal>
               <Button
-                leftIcon={<FaGithub color="#3CCF91" />}
-                position="static"
-                size={isLargerThan800 ? 'md' : 'sm'}
+                pos="static"
                 color="white"
+                leftIcon={<FaGithub color="#3CCF91" />}
                 onClick={() => handleClick('introduction_github')}
+                size={isLargerThan800 ? 'md' : 'sm'}
               >
                 Github
               </Button>
             </Link>
             <Link href="https://linkedin.com/in/abdulrcs" isExternal>
               <Button
-                leftIcon={<FaLinkedin color="#3CCF91" />}
-                position="static"
-                size={isLargerThan800 ? 'md' : 'sm'}
+                pos="static"
                 color="white"
+                leftIcon={<FaLinkedin color="#3CCF91" />}
                 onClick={() => handleClick('introduction_linkedin')}
+                size={isLargerThan800 ? 'md' : 'sm'}
               >
                 LinkedIn
               </Button>
             </Link>
             <Link href="mailto:abdulrcs1@gmail.com" isExternal>
               <Button
-                leftIcon={<FaEnvelope fill="#3CCF91" />}
-                transition="0.3s"
-                position="static"
-                size={isLargerThan800 ? 'md' : 'sm'}
+                pos="static"
                 color="white"
+                transition="0.3s"
+                leftIcon={<FaEnvelope fill="#3CCF91" />}
                 onClick={() => handleClick('introduction_email')}
+                size={isLargerThan800 ? 'md' : 'sm'}
               >
                 Email
               </Button>

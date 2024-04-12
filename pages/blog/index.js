@@ -19,43 +19,43 @@ export default function Index({ posts }) {
     <Container>
       <Head>
         <title>Blog - Abdul Rahman</title>
-        <meta name="title" content="Blog - Abdul Rahman" />
+        <meta content="Blog - Abdul Rahman" name="title" />
         <meta
+          content="Writings on programming, tutorials, and my experiences."
           name="description"
-          content="Writings on programming, tutorials, and my experiences."
         />
 
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://abdulrahman.id/blog" />
-        <meta property="og:title" content="Blog - Abdul Rahman" />
+        <meta content="website" property="og:type" />
+        <meta content="https://abdulrahman.id/blog" property="og:url" />
+        <meta content="Blog - Abdul Rahman" property="og:title" />
         <meta
+          content="Writings on programming, tutorials, and my experiences."
           property="og:description"
-          content="Writings on programming, tutorials, and my experiences."
         />
         <meta
-          property="og:image"
           content="https://imagizer.imageshack.com/a/img924/6408/mSltwm.png"
+          property="og:image"
         />
 
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://abdulrahman.id/" />
-        <meta property="twitter:title" content="Blog - Abdul Rahman" />
+        <meta content="summary_large_image" property="twitter:card" />
+        <meta content="https://abdulrahman.id/" property="twitter:url" />
+        <meta content="Blog - Abdul Rahman" property="twitter:title" />
         <meta
-          property="twitter:description"
           content="Writings on programming, tutorials, and my experiences."
+          property="twitter:description"
         />
         <meta
-          property="twitter:image"
           content="https://imagizer.imageshack.com/a/img923/7612/A5tDeP.png"
+          property="twitter:image"
         />
       </Head>
       <Stack
         as="main"
-        spacing={5}
-        justifyContent="center"
         alignItems="flex-start"
-        px={['5vw', '10vw']}
+        justifyContent="center"
         my={['15vh', '15vh', '22.5vh', '22.5vh']}
+        px={['5vw', '10vw']}
+        spacing={5}
       >
         <Heading color="displayColor" fontSize={{ base: '4xl', md: '6xl' }}>
           Blog
@@ -65,10 +65,12 @@ export default function Index({ posts }) {
           experiences.
         </Text>
         <InputGroup maxW="400px">
-          <InputRightElement pointerEvents="none" children={<FaSearch />} />
+          <InputRightElement pointerEvents="none">
+            <FaSearch />
+          </InputRightElement>
           <Input
-            type="text"
             placeholder="Search articles"
+            type="text"
             value={query}
             onChange={handleChange}
           />
@@ -82,14 +84,14 @@ export default function Index({ posts }) {
             .map(({ post }) => (
               <Stack
                 key={post.frontmatter.slug}
-                direction={isLargerThan1024 ? 'row' : 'column'}
                 alignItems="flex-start"
                 justifyContent="flex-start"
+                direction={isLargerThan1024 ? 'row' : 'column'}
               >
                 <Text
-                  color="textSecondary"
                   display={isLargerThan1024 ? 'block' : 'none'}
-                  width={100}
+                  w={100}
+                  color="textSecondary"
                   textAlign="right"
                 >
                   {dateFormat(Date.parse(post.frontmatter.date), 'mmm d yyyy')}
@@ -99,9 +101,9 @@ export default function Index({ posts }) {
                   </Text>
                 </Text>
                 <Text
+                  display={isLargerThan1024 ? 'none' : 'block'}
                   color="textSecondary"
                   fontSize="sm"
-                  display={isLargerThan1024 ? 'none' : 'block'}
                 >
                   {dateFormat(Date.parse(post.frontmatter.date), 'mmm d yyyy')}{' '}
                   <Box as="span" fontSize="xs">
@@ -109,7 +111,7 @@ export default function Index({ posts }) {
                   </Box>{' '}
                   {post.frontmatter.readingTime}
                 </Text>
-                <Flex flexDirection="column" px={isLargerThan1024 ? 10 : 0}>
+                <Flex direction="column" px={isLargerThan1024 ? 10 : 0}>
                   <Link href={'/blog/' + post.frontmatter.slug}>
                     <Text
                       color="displayColor"
