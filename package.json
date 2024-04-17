@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^7.6.0",
-    "eslint-plugin-chakra-ui": "^0.11.0"
+    "eslint-plugin-chakra-ui": "^0.11.0",
+    "typescript": "^5.4.5"
   }
 }
