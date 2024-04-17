@@ -1,11 +1,11 @@
 import {
-  Avatar,
   Box,
   Center,
   Divider,
   HStack,
   Heading,
   Image,
+  Link,
   Spinner,
   Stack,
   Text,
@@ -14,11 +14,12 @@ import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import { useEffect, useState } from 'react'
 
+import ReactGA from 'react-ga4'
+
 import mdxPrism from 'mdx-prism'
 
 import readingTime from 'reading-time'
 
-import dateFormat from 'dateformat'
 import { useRouter } from 'next/router'
 import Container from '../../components/Container'
 import MDXComponents from '../../components/MDXComponents'
@@ -26,6 +27,7 @@ import ProjectContainer from '../../components/ProjectContainer'
 
 import { GithubBlog } from '@rena.to/github-blog'
 
+import { FaGithub, FaLink, FaPersonBooth, FaUser } from 'react-icons/fa'
 import NextSeoData from '../../components/NextSeoData'
 import useUtterances from '../../hook/useUtterances'
 
@@ -64,6 +66,13 @@ export default function Post({ metadata, publishedDate, source, toc }) {
     }
   }, [toc])
 
+  const handleClick = (event) => {
+    ReactGA.event({
+      category: 'click',
+      action: event,
+    })
+  }
+
   const { isCommentsLoading } = useUtterances('comments', metadata.title)
 
   return (
@@ -99,31 +108,52 @@ export default function Post({ metadata, publishedDate, source, toc }) {
             >
               {metadata.title}
             </Heading>
-            <HStack
-              alignItems="center"
-              justifyContent="space-between"
-              direction={{ base: 'column', md: 'row' }}
-              py={4}
-            >
-              <Stack alignItems="center" isInline>
-                <Avatar
-                  border="1px solid textPrimary"
-                  name="Abdul Rahman"
-                  size="xs"
-                  src="https://i.imgur.com/jBZ9o8U.png"
-                />
+            <Text color="textPrimary" fontSize={['xs', 'xs', 'sm', 'sm']}>
+              {metadata.frontmatter.summary}
+            </Text>
+            <HStack spacing={2}>
+              <Text color="textPrimary" fontSize={['xs', 'xs', 'sm', 'sm']}>
+                {views} views
+              </Text>
+              {metadata.frontmatter.githubLink && (
+                <>
+                  <Text>-</Text>
+                  <HStack alignItems="center">
+                    <FaGithub fontSize="20px" />
+                    <Link
+                      fontSize={['xs', 'xs', 'sm', 'sm']}
+                      href={metadata.frontmatter.githubLink}
+                      isExternal
+                      onClick={() => handleClick(`${metadata.title}_github`)}
+                    >
+                      Github
+                    </Link>
+                  </HStack>
+                </>
+              )}
 
-                <Text color="textPrimary" fontSize={['xs', 'xs', 'sm', 'sm']}>
-                  Abdul Rahman /{' '}
-                  {dateFormat(Date.parse(publishedDate), 'mmmm d, yyyy')}
-                </Text>
-              </Stack>
-
-              <Stack>
-                <Text color="textSecondary" fontSize={['xs', 'xs', 'sm', 'sm']}>
-                  {metadata.readingTime} &bull; {views} views
-                </Text>
-              </Stack>
+              {metadata.frontmatter.deployLink && (
+                <>
+                  <Text>-</Text>
+                  <HStack>
+                    <FaLink fontSize="18px" />
+                    <Link
+                      fontSize={['xs', 'xs', 'sm', 'sm']}
+                      href={metadata.frontmatter.deployLink}
+                      isExternal
+                      onClick={() => handleClick(`${metadata.title}_livesite`)}
+                    >
+                      Live Site
+                    </Link>
+                  </HStack>
+                </>
+              )}
+            </HStack>
+            <HStack>
+              <FaUser fill="#D1D5DB" fontSize="14px" />
+              <Text color="#D1D5DB" fontSize={['xs', 'xs', 'sm', 'sm']}>
+                {metadata.frontmatter.category}
+              </Text>
             </HStack>
           </Stack>
 
@@ -194,7 +224,7 @@ export async function getStaticPaths() {
   const data = await blog.getPosts({
     query: {
       author: 'abdulrcs',
-      type: 'post',
+      type: 'project',
       state: 'published',
     },
     pager: { limit: 10, offset: 0 },

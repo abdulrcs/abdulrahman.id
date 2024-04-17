@@ -126,16 +126,17 @@ export default function AboutMe() {
           </Stack>
         </SlideUpWhenVisible>
         <SlideUpWhenVisible>
-          <Flex pos="relative" align="center" justify="center">
+          <Flex align="center" justify="center">
             <Box
+              pos="relative"
               maxW={{ base: '300px', lg: '350px' }}
               maxH={{ base: '300px', lg: '350px' }}
             >
               <Image
                 pos="absolute"
                 zIndex={3}
-                top={0}
-                right={0}
+                top="0px"
+                right={{ base: '-32px', lg: '-64px' }}
                 w={{ base: '100px', lg: '150px' }}
                 alt=""
                 filter="invert(0.1)"
@@ -146,7 +147,7 @@ export default function AboutMe() {
                 h={{ base: '300px', lg: '350px' }}
                 borderRadius="50%"
                 alt="Abdul Rahman"
-                src="https://i.imgur.com/jHFMo9A.jpeg"
+                src="https://i.imgur.com/jBZ9o8U.png"
               />
             </Box>
           </Flex>

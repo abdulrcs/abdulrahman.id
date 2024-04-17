@@ -1,15 +1,15 @@
 import {
   Box,
   Code,
+  Divider,
+  HStack,
   Heading,
+  Image,
   Link,
   Text,
-  Divider,
   useColorMode,
 } from '@chakra-ui/react'
-import { jsx } from '@emotion/react'
 import NextLink from 'next/link'
-import Image from './ChakraNextImage'
 
 const CustomLink = (props) => {
   const { colorMode } = useColorMode()
@@ -33,48 +33,47 @@ const CustomLink = (props) => {
 }
 
 const DocsHeading = (props) => (
-  <Heading
-    css={{
-      scrollMarginTop: '100px',
-      scrollSnapMargin: '100px', // Safari
-      '&[id]': {
-        pointerEvents: 'none',
-      },
-      '&[id]:before': {
-        display: 'block',
-        height: ' 6rem',
-        marginTop: '-6rem',
-        visibility: 'hidden',
-        content: `""`,
-      },
-      '&[id]:hover a': { opacity: 1 },
-    }}
-    {...props}
-    mt="2em"
-    mb="1em"
+  <HStack
+    pl={props.as === 'h2' && 4}
+    borderLeft={props.as === 'h2' && '4px solid #3CCF91'}
   >
-    <Box pointerEvents="auto">
-      {props.children}
-      {props.id && (
+    <Link
+      color="displayColor"
+      _hover={{
+        textDecoration: 'none !important',
+        '.heading-anchor': {
+          visibility: 'visible',
+        },
+      }}
+      cursor="pointer"
+      outline="none"
+      href={`#${props.id}`}
+    >
+      <Heading
+        as={props.as}
+        fontSize={props.as === 'h2' ? '1.75em' : '1.25em'}
+        pointerEvents="auto"
+        css={{
+          scrollMarginTop: '80px',
+          scrollSnapMargin: '80px', // Safari
+          cursor: 'pointer',
+        }}
+        id={props.id}
+      >
+        {props.children}
         <Box
-          as="a"
-          ml="0.375rem"
-          color="blue.500"
-          fontWeight="normal"
-          opacity="0"
-          _focus={{
-            opacity: 1,
-            boxShadow: 'outline',
-          }}
-          outline="none"
+          className="heading-anchor"
+          as="span"
+          pl={2}
+          color="logoGrey"
+          visibility="hidden"
           aria-label="anchor"
-          href={`#${props.id}`}
         >
           #
         </Box>
-      )}
-    </Box>
-  </Heading>
+      </Heading>
+    </Link>
+  </HStack>
 )
 
 const Hr = () => {
@@ -91,14 +90,52 @@ const MDXComponents = {
   h1: (props) => (
     <Heading as="h1" my={4} color="displayColor" size="xl" {...props} />
   ),
-  h2: (props) => <DocsHeading as="h2" fontWeight="bold" size="lg" {...props} />,
-  h3: (props) => <DocsHeading as="h3" fontWeight="bold" size="md" {...props} />,
-  h4: (props) => <DocsHeading as="h4" fontWeight="bold" size="sm" {...props} />,
-  h5: (props) => <DocsHeading as="h5" fontWeight="bold" size="sm" {...props} />,
-  h6: (props) => <DocsHeading as="h6" fontWeight="bold" size="xs" {...props} />,
-  img: (props) => (
-    <Image height={300} objectFit="contain" width={600} {...props} alt="" />
+  h2: (props) => (
+    <DocsHeading
+      as="h2"
+      id={props.children}
+      fontWeight="bold"
+      size="lg"
+      {...props}
+    />
   ),
+  h3: (props) => (
+    <DocsHeading
+      as="h3"
+      id={props.children}
+      fontWeight="bold"
+      size="md"
+      {...props}
+    />
+  ),
+  h4: (props) => (
+    <DocsHeading
+      as="h4"
+      id={props.children}
+      fontWeight="bold"
+      size="sm"
+      {...props}
+    />
+  ),
+  h5: (props) => (
+    <DocsHeading
+      as="h5"
+      id={props.children}
+      fontWeight="bold"
+      size="sm"
+      {...props}
+    />
+  ),
+  h6: (props) => (
+    <DocsHeading
+      as="h6"
+      id={props.children}
+      fontWeight="bold"
+      size="xs"
+      {...props}
+    />
+  ),
+  img: (props) => <Image w="100%" objectFit="contain" {...props} alt="" />,
   inlineCode: (props) => (
     <Code mt={-10} fontSize="0.84em" colorScheme="blue" {...props} />
   ),
@@ -106,8 +143,8 @@ const MDXComponents = {
   hr: Hr,
   a: CustomLink,
   p: (props) => <Text as="p" mt={0} lineHeight="tall" {...props} />,
-  ul: (props) => <Box as="ul" ml={2} pt={2} pl={4} {...props} />,
-  ol: (props) => <Box as="ol" ml={2} pt={2} pl={4} {...props} />,
+  ul: (props) => <Box as="ul" ml={2} pt={2} pl="1.625em" {...props} />,
+  ol: (props) => <Box as="ol" ml={2} pt={2} pl="1.625em" {...props} />,
   li: (props) => <Box as="li" pb={1} {...props} />,
 }
 

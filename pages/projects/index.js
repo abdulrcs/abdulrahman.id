@@ -6,6 +6,7 @@ import Container from '../../components/Container'
 import Head from 'next/head'
 import { Input, InputGroup, InputRightElement } from '@chakra-ui/input'
 import { FaSearch } from 'react-icons/fa'
+import { GithubBlog } from '@rena.to/github-blog'
 
 export default function Projects({ projects }) {
   const [query, setQuery] = useState('')
@@ -59,8 +60,7 @@ export default function Projects({ projects }) {
         </Head>
         <Stack
           justifyContent="center"
-          my={['15vh', '15vh', '22.5vh', '22.5vh']}
-          px={['5vw', '10vw']}
+          my={{ base: '15vh', md: '16vh' }}
           spacing={10}
         >
           <Stack spacing={5}>
@@ -88,17 +88,18 @@ export default function Projects({ projects }) {
           <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={8}>
             {projects
               .filter((e) =>
-                e.fields.title.toLowerCase().includes(query.toLowerCase()),
+                e.title.toLowerCase().includes(query.toLowerCase()),
               )
               .map((project) => (
                 <Cards
-                  key={project.fields.title}
-                  deployLink={project.fields.deployLink}
-                  desc={project.fields.description}
-                  githubLink={project.fields.githubLink}
-                  imageURL={project.fields.imageUrl}
-                  tag={project.fields.tags}
-                  title={project.fields.title}
+                  key={project.title}
+                  desc={project.frontmatter.summary}
+                  imageURL={project.frontmatter.image}
+                  tag={project.frontmatter.techStack
+                    .split(',')
+                    .map((e) => e.trim())}
+                  title={project.title}
+                  slug={project.frontmatter.slug}
                 />
               ))}
           </SimpleGrid>
@@ -108,19 +109,29 @@ export default function Projects({ projects }) {
   )
 }
 
-let client = require('contentful').createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-})
-
 export async function getStaticProps() {
-  let data = await client.getEntries({
-    content_type: 'projects',
-    order: 'sys.updatedAt',
+  const blog = new GithubBlog({
+    repo: 'abdulrcs/abdulrahman.id',
+    token: process.env.GITHUB_TOKEN,
   })
+  const projects = await blog.getPosts({
+    query: {
+      author: 'abdulrcs',
+      type: 'project',
+      state: 'published',
+    },
+    pager: { limit: 100, offset: 0 },
+  })
+
   return {
     props: {
-      projects: data.items.reverse(),
+      projects: projects.edges
+        .sort(
+          (a, b) =>
+            Date.parse(b.post.frontmatter.date) -
+            Date.parse(a.post.frontmatter.date),
+        )
+        .map((e) => e.post),
     },
   }
 }

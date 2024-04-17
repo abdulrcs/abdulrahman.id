@@ -19,11 +19,13 @@ const GlobalStyle = ({ children }) => {
           html {
             min-width: 356px;
           }
+          body {
+            background: #000;
+          }
           #__next {
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background: #000;
           }
           ::-webkit-scrollbar {
             width: 8px;

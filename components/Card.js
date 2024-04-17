@@ -27,14 +27,7 @@ import {
 import { SiChakraui, SiNextdotjs } from 'react-icons/si'
 import useMediaQuery from '../hook/useMediaQuery'
 
-export default function Cards({
-  imageURL,
-  title,
-  desc,
-  githubLink,
-  deployLink,
-  tag,
-}) {
+export default function Cards({ imageURL, title, slug, desc, tag }) {
   const getTag = (tag) => {
     let values = []
     if (tag == 'React') {
@@ -91,6 +84,7 @@ export default function Cards({
       category: 'click',
       action: event,
     })
+    router.push(`/projects/${slug}`)
   }
 
   return (
@@ -102,14 +96,15 @@ export default function Cards({
       borderColor={{ base: '#333', md: 'borderColor' }}
       borderRadius="10px"
     >
-      <Link href={deployLink} isExternal>
+      <Link href={`/projects/${slug}`}>
         <ScaleFade transition={{ duration: 1 }} in={true}>
           <Center w="auto">
             <Image
               w="100%"
-              h="auto"
+              minH="270px"
               borderRadius="10px 10px 0px 0px"
               transition="0.3s"
+              objectFit="cover"
               alt={title}
               src={imageURL}
             />
@@ -125,30 +120,15 @@ export default function Cards({
                 isInline
                 spacing={4}
               >
-                {githubLink && (
-                  <Link
-                    color="white"
-                    href={githubLink}
-                    isExternal
-                    onClick={() =>
-                      handleClick(`githublink_${title.replace('@', '-at-')}`)
-                    }
-                  >
-                    <FaGithub aria-label="github" size={23} />
-                  </Link>
-                )}
-                {deployLink && (
-                  <Link
-                    color="white"
-                    href={deployLink}
-                    isExternal
-                    onClick={() =>
-                      handleClick(`deploylink_${title.replace('@', '-at')}`)
-                    }
-                  >
-                    <FaExternalLinkAlt aria-label="project link" size={20} />
-                  </Link>
-                )}
+                <Link
+                  color="white"
+                  href={`/projects/${slug}`}
+                  onClick={() =>
+                    handleClick(`project_${title.replace('@', '-at')}`)
+                  }
+                >
+                  <FaExternalLinkAlt aria-label="project link" size={20} />
+                </Link>
               </Stack>
             </Stack>
             <Stack isInline>{Tags}</Stack>

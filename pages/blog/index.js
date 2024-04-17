@@ -53,8 +53,7 @@ export default function Index({ posts }) {
         as="main"
         alignItems="flex-start"
         justifyContent="center"
-        my={['15vh', '15vh', '22.5vh', '22.5vh']}
-        px={['5vw', '10vw']}
+        my={{ base: '15vh', md: '16vh' }}
         spacing={5}
       >
         <Heading color="displayColor" fontSize={{ base: '4xl', md: '6xl' }}>

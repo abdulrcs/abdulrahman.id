@@ -22,7 +22,7 @@ const fluidType = (minFont, maxFont) => {
 }
 
 const colors = {
-  background: '#12141D',
+  background: '#000000',
   secondary: '#080808',
   complement: '#FA934F',
   displayColor: '#FFFFFF',
@@ -32,6 +32,7 @@ const colors = {
   button2: '#F6A20E',
   button3: '#5132BF',
   borderColor: '#111111',
+  logoGrey: '#8F9094',
 }
 
 const fonts = {
@@ -52,6 +53,7 @@ const Link = {
   baseStyle: {
     color: '#3CCF91',
     _hover: { textDecoration: 'none' },
+    _focus: { boxShadow: 'none' },
   },
 }
 

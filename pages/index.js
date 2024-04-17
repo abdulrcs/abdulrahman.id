@@ -57,10 +57,9 @@ export default function Index({ introduction, projects, articles, contactMe }) {
           as="main"
           alignItems="flex-start"
           justifyContent="center"
-          mt={{ base: '15vh', md: '22.5vh' }}
-          px={{ base: '5vw', md: '10vw' }}
+          mt={{ base: '15vh', md: '20vh' }}
           pb="144px"
-          spacing="144px"
+          spacing={{ base: '100px', md: '144px' }}
         >
           <Introduction introduction={introduction} />
           <AboutMe />

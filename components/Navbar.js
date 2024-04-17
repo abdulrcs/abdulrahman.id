@@ -68,7 +68,7 @@ export default function Navbar({ enableTransition }) {
   )
 
   return (
-    <Box zIndex="99">
+    <Box pos="sticky" zIndex={99}>
       <Slide
         direction="top"
         bg="black"
@@ -85,8 +85,9 @@ export default function Navbar({ enableTransition }) {
           align="center"
           justify="space-between"
           direction="row"
-          w="100%"
-          px="3vw"
+          w={{ base: '100%', lg: '75rem' }}
+          mx="auto"
+          px="22px"
           py="3"
           bg="black"
           borderBottom="0.5px solid #1e2029"
@@ -102,19 +103,19 @@ export default function Navbar({ enableTransition }) {
             </Text>
           </NextLink>
           {isLargerThan768 ? (
-            <Box color="textSecondary">
+            <Box mr={7} color="displayColor">
               <NextLink passHref href="/">
-                <Button as="a" ml="3vw" p="4" fontSize="16px" variant="ghost">
+                <Button as="a" p="4" fontSize="16px" variant="ghost">
                   Home
                 </Button>
               </NextLink>
               <NextLink passHref href="/projects">
-                <Button as="a" ml="3vw" p="4" fontSize="16px" variant="ghost">
+                <Button as="a" p="4" fontSize="16px" variant="ghost">
                   Projects
                 </Button>
               </NextLink>
               <NextLink passHref href="/blog">
-                <Button as="a" ml="3vw" p="4" fontSize="16px" variant="ghost">
+                <Button as="a" p="4" fontSize="16px" variant="ghost">
                   Blog
                 </Button>
               </NextLink>{' '}

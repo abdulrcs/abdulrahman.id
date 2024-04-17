@@ -73,9 +73,8 @@ export default function FeaturedProjects({ projects }) {
           </SlideUpWhenVisible>
           <SlideUpWhenVisible>
             <Cards
-              deployLink={projects[0].fields.deployLink}
+              slug={projects[0].fields.slug}
               desc={projects[0].fields.description}
-              githubLink={projects[0].fields.githubLink}
               imageURL={projects[0].fields.imageUrl}
               tag={projects[0].fields.tags}
               title={projects[0].fields.title}
@@ -84,9 +83,8 @@ export default function FeaturedProjects({ projects }) {
           <SlideUpWhenVisible>
             <Box mt={{ md: '-50%' }}>
               <Cards
-                deployLink={projects[1].fields.deployLink}
+                slug={projects[1].fields.slug}
                 desc={projects[1].fields.description}
-                githubLink={projects[1].fields.githubLink}
                 imageURL={projects[1].fields.imageUrl}
                 tag={projects[1].fields.tags}
                 title={projects[1].fields.title}
@@ -95,9 +93,8 @@ export default function FeaturedProjects({ projects }) {
           </SlideUpWhenVisible>
           <SlideUpWhenVisible threshold={0.8}>
             <Cards
-              deployLink={projects[2].fields.deployLink}
+              slug={projects[2].fields.slug}
               desc={projects[2].fields.description}
-              githubLink={projects[2].fields.githubLink}
               imageURL={projects[2].fields.imageUrl}
               tag={projects[2].fields.tags}
               title={projects[2].fields.title}
