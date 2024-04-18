@@ -4,11 +4,11 @@ import {
   Divider,
   HStack,
   Heading,
-  Image,
   Link,
   Text,
   useColorMode,
 } from '@chakra-ui/react'
+import Image from 'next/image'
 import NextLink from 'next/link'
 
 const CustomLink = (props) => {
@@ -135,7 +135,7 @@ const MDXComponents = {
       {...props}
     />
   ),
-  img: (props) => <Image w="100%" objectFit="contain" {...props} alt="" />,
+  img: (props) => <Image width={1366} height={768} {...props} alt="" />,
   inlineCode: (props) => (
     <Code mt={-10} fontSize="0.84em" colorScheme="blue" {...props} />
   ),

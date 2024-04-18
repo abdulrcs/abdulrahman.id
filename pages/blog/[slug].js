@@ -5,7 +5,6 @@ import {
   Divider,
   HStack,
   Heading,
-  Image,
   Spinner,
   Stack,
   Text,
@@ -28,6 +27,7 @@ import { GithubBlog } from '@rena.to/github-blog'
 
 import NextSeoData from '../../components/NextSeoData'
 import useUtterances from '../../hook/useUtterances'
+import Image from 'next/image'
 
 export default function Post({ metadata, publishedDate, source, toc }) {
   const [views, setViews] = useState('...')
@@ -84,7 +84,13 @@ export default function Post({ metadata, publishedDate, source, toc }) {
             borderRadius="10px"
           >
             <Image
-              borderRadius="10px"
+              width={1100}
+              height={500}
+              objectFit="cover"
+              style={{
+                borderRadius: '10px',
+                objectFit: 'cover',
+              }}
               alt=""
               priority
               src={metadata.frontmatter.image}

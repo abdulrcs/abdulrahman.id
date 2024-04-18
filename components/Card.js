@@ -1,7 +1,6 @@
 import {
   Center,
   Divider,
-  Image,
   Link,
   ScaleFade,
   Stack,
@@ -26,6 +25,7 @@ import {
 } from 'react-icons/fa'
 import { SiChakraui, SiNextdotjs } from 'react-icons/si'
 import useMediaQuery from '../hook/useMediaQuery'
+import Image from 'next/image'
 
 export default function Cards({ imageURL, title, slug, desc, tag }) {
   const getTag = (tag) => {
@@ -100,11 +100,16 @@ export default function Cards({ imageURL, title, slug, desc, tag }) {
         <ScaleFade transition={{ duration: 1 }} in={true}>
           <Center w="auto">
             <Image
-              w="100%"
+              width={800}
+              height={400}
               minH="270px"
               borderRadius="10px 10px 0px 0px"
               transition="0.3s"
               objectFit="cover"
+              style={{
+                borderRadius: '10px 10px 0px 0px',
+                objectFit: 'cover',
+              }}
               alt={title}
               src={imageURL}
             />

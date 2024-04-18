@@ -4,7 +4,6 @@ import {
   Divider,
   HStack,
   Heading,
-  Image,
   Link,
   Spinner,
   Stack,
@@ -30,6 +29,7 @@ import { GithubBlog } from '@rena.to/github-blog'
 import { FaGithub, FaLink, FaPersonBooth, FaUser } from 'react-icons/fa'
 import NextSeoData from '../../components/NextSeoData'
 import useUtterances from '../../hook/useUtterances'
+import Image from 'next/image'
 
 export default function Post({ metadata, publishedDate, source, toc }) {
   const [views, setViews] = useState('...')
@@ -93,10 +93,16 @@ export default function Post({ metadata, publishedDate, source, toc }) {
             borderRadius="10px"
           >
             <Image
-              borderRadius="10px"
+              width={1366}
+              height={768}
+              objectFit="cover"
+              style={{
+                borderRadius: '10px',
+              }}
               alt=""
               priority
               src={metadata.frontmatter.image}
+              blurDataURL={metadata.frontmatter.image}
             />
           </Stack>
 
