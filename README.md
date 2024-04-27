@@ -23,8 +23,10 @@ Create an `.env.local` and follow the variable name based on `.env.example` and 
 3. Choose "I create content"  <br>
 4. Go to content model and start to add content type  <br>
 
-> 📌  In this portfolio website, it has 5 Content type which is:
-> 1. BlogPosts
+> 📌  In this portfolio website, it has 5 Content type which is:  
+> > ~~1. BlogPosts~~  
+> > After the [⚡2.0.0 update](https://github.com/abdulrcs/abdulrahman.id/pull/17), I use Github Issues as blog content!  
+> > More details about this on: https://abdulrahman.id/blog/unleash-your-dev-blog-write-more-with-github-issues-as-your-cms
 > 2. FeaturedProjects
 > 3. Projects
 > 4. Introduction
@@ -33,8 +35,6 @@ Create an `.env.local` and follow the variable name based on `.env.example` and 
 > You must add this exact name since it's the ID that's used in the code.
 
 5. Add the content type according to these fields:  <br>
-    
-	![](https://i.imgur.com/PhC2Quk.png)
 	![](https://i.imgur.com/OD1oWG2.png)
 	![](https://i.imgur.com/nIkloDk.png)
 	![](https://user-images.githubusercontent.com/54136956/166127110-7baaef65-87b1-4f89-bbf5-eae3207f9ba6.png)
