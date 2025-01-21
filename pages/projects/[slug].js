@@ -252,9 +252,17 @@ export async function getStaticProps({ params }) {
   const data = await blog.getPost({
     query: {
       author: 'abdulrcs',
+      type: 'project',
       search: params.slug,
     },
   })
+
+  if (!data.post) {
+    return {
+      notFound: true,
+    }
+  }
+
   const article = data.post
   const source = article.body
   article.readingTime = readingTime(source).text
