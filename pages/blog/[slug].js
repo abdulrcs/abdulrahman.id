@@ -121,7 +121,7 @@ export default function Post({ metadata, publishedDate, source, toc }) {
 
                 <Text color="textPrimary" fontSize={['xs', 'xs', 'sm', 'sm']}>
                   Abdul Rahman /{' '}
-                  {dateFormat(Date.parse(publishedDate), 'mmmm d, yyyy')}
+                  {dateFormat(Date.parse(publishedDate), 'dd mmm yyyy')}
                 </Text>
               </Stack>
 
