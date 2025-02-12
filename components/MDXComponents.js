@@ -7,6 +7,7 @@ import {
   Link,
   Text,
   useColorMode,
+  Center,
 } from '@chakra-ui/react'
 import Image from 'next/image'
 import NextLink from 'next/link'
@@ -135,7 +136,20 @@ const MDXComponents = {
       {...props}
     />
   ),
-  img: (props) => <Image width={1366} height={768} {...props} alt="" />,
+  img: (props) => (
+    <Center>
+      <Box width={{ base: '100%', md: '80%' }} height="auto" maxWidth="1366px">
+        <Image
+          src={props.src}
+          width={1366}
+          height={768}
+          layout="responsive"
+          {...props}
+          alt=""
+        />
+      </Box>
+    </Center>
+  ),
   inlineCode: (props) => (
     <Code mt={-10} fontSize="0.84em" colorScheme="blue" {...props} />
   ),
