@@ -92,6 +92,7 @@ export default function Index({ posts }) {
                   w={100}
                   color="textSecondary"
                   textAlign="right"
+                  whiteSpace="nowrap"
                 >
                   {dateFormat(Date.parse(post.frontmatter.date), 'mmm d yyyy')}
                   <br />{' '}
