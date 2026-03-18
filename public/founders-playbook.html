@@ -4,6 +4,39 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SaaS Founder Playbook — $0 to $1K MRR</title>
+<script>
+  (function () {
+    if (typeof window === 'undefined' || typeof fetch !== 'function') return;
+
+    fetch('/api/analytics-config')
+      .then(function (response) {
+        if (!response.ok) throw new Error('analytics config unavailable');
+        return response.json();
+      })
+      .then(function (config) {
+        var trackingId = config && config.trackingId;
+        if (!trackingId) return;
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { window.dataLayer.push(arguments); }
+        window.gtag = gtag;
+
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(trackingId);
+        document.head.appendChild(script);
+
+        gtag('js', new Date());
+        gtag('config', trackingId, {
+          page_path: window.location.pathname,
+          page_title: document.title,
+        });
+      })
+      .catch(function () {
+        // Analytics stays disabled when config is unavailable.
+      });
+  })();
+</script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
