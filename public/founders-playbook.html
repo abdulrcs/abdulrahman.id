@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaaS Founder Playbook — $0 to $1K MRR</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #000000;
+  --panel: #080808;
+  --panel-2: #0d0d0d;
+  --border: #171717;
+  --border-strong: #242424;
+  --text: #ffffff;
+  --muted: #8f9094;
+  --muted-2: #d1d5db;
+  --accent: #3CCF91;
+  --accent-soft: rgba(60, 207, 145, 0.12);
+}
+html { background: var(--bg); }
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(60, 207, 145, 0.12), transparent 28%),
+    radial-gradient(circle at top right, rgba(81, 50, 191, 0.16), transparent 22%),
+    var(--bg);
+  color: var(--muted-2);
+  line-height: 1.6;
+}
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #1e2029;
+}
+.site-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.site-brand {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+.site-brand span { color: var(--muted); font-weight: 600; }
+.site-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-nav-link {
+  color: var(--text);
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+.site-nav-link:hover { background: rgba(255,255,255,0.05); }
+.wrapper { max-width: 1040px; margin: 0 auto; padding: 3.5rem 1.25rem 2.5rem; }
+h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: 0.95; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -0.04em; }
+.subtitle { font-size: 15px; color: var(--muted); margin-bottom: 1.5rem; max-width: 760px; }
+
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.tab { padding: 8px 16px; border-radius: 99px; font-size: 13px; font-weight: 600; border: 1px solid var(--border-strong); background: rgba(255,255,255,0.02); cursor: pointer; color: var(--muted); transition: all 0.15s; }
+.tab.active { background: var(--accent); color: #03110b; border-color: var(--accent); }
+.tab:hover:not(.active) { background: rgba(255,255,255,0.05); color: var(--text); }
+
+.section { display: none; }
+.section.visible { display: block; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+
+.card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid var(--border); border-radius: 16px; padding: 1rem 1.25rem; box-shadow: inset 0 1px 0 rgba(255,255,255,0.03); }
+.card-accent-teal   { border-left: 4px solid #1D9E75; border-radius: 0 12px 12px 0; }
+.card-accent-purple { border-left: 4px solid #6e66cc; border-radius: 0 12px 12px 0; }
+.card-accent-amber  { border-left: 4px solid #c07c10; border-radius: 0 12px 12px 0; }
+.card-accent-coral  { border-left: 4px solid #c04e24; border-radius: 0 12px 12px 0; }
+.card-accent-blue   { border-left: 4px solid #2272c3; border-radius: 0 12px 12px 0; }
+
+.metric-card { background: var(--panel); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; }
+.metric-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; letter-spacing: 0.03em; }
+.metric-val { font-size: 22px; font-weight: 700; color: var(--text); }
+.metric-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+.card-title { font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+.card-h { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.card-p { font-size: 14px; color: var(--muted-2); line-height: 1.6; }
+
+.pill { display: inline-block; padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 600; margin: 3px; line-height: 1.4; border: 1px solid transparent; }
+.pill-teal   { background: rgba(29, 158, 117, 0.14); border-color: rgba(29, 158, 117, 0.26); color: #b8ead7; }
+.pill-purple { background: rgba(110, 102, 204, 0.14); border-color: rgba(110, 102, 204, 0.26); color: #d4cffd; }
+.pill-amber  { background: rgba(192, 124, 16, 0.14); border-color: rgba(192, 124, 16, 0.28); color: #f6d49d; }
+.pill-coral  { background: rgba(192, 78, 36, 0.14); border-color: rgba(192, 78, 36, 0.28); color: #ffc8b3; }
+.pill-blue   { background: rgba(34, 114, 195, 0.14); border-color: rgba(34, 114, 195, 0.28); color: #bddcff; }
+.pill-gray   { background: rgba(143, 144, 148, 0.14); border-color: rgba(143, 144, 148, 0.24); color: #d1d5db; }
+
+.checklist-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: flex-start; cursor: pointer; user-select: none; }
+.checklist-item:last-child { border-bottom: none; }
+.check-box { width: 18px; height: 18px; border-radius: 4px; border: 2px solid #4b5563; flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+.check-box.done { background: #1D9E75; border-color: #1D9E75; }
+.check-box.done::after { content: ''; width: 10px; height: 6px; border-left: 2px solid white; border-bottom: 2px solid white; transform: rotate(-45deg) translateY(-1px); display: block; }
+.check-text { font-size: 14px; color: var(--muted-2); line-height: 1.5; flex: 1; }
+.check-text.done { color: #5b5d61; text-decoration: line-through; }
+
+.routine-row { display: grid; grid-template-columns: 90px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: start; }
+.routine-row:last-child { border-bottom: none; }
+.routine-time { font-size: 12px; font-weight: 700; color: var(--muted); padding-top: 2px; }
+.routine-task { font-size: 14px; color: var(--text); font-weight: 700; }
+.routine-note { font-size: 13px; color: var(--muted-2); margin-top: 2px; line-height: 1.5; }
+
+.principle { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.principle:last-child { border-bottom: none; }
+.principle-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.principle-desc { font-size: 14px; color: var(--muted-2); line-height: 1.6; }
+.principle-source { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.bar-label { font-size: 13px; color: var(--muted-2); width: 140px; flex-shrink: 0; text-align: right; }
+.bar-track { flex: 1; height: 8px; background: #151515; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; }
+.bar-count { font-size: 12px; color: var(--muted); width: 28px; }
+
+.section-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.section-sub { font-size: 14px; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.6; }
+
+.alert { border-radius: 8px; padding: 12px 16px; font-size: 13px; margin-bottom: 1rem; line-height: 1.6; font-weight: 500; }
+.alert-warn { background: rgba(246, 162, 14, 0.10); color: #ffd48c; border: 1px solid rgba(246, 162, 14, 0.35); }
+.alert-info  { background: rgba(60, 207, 145, 0.10); color: #baf1d7; border: 1px solid rgba(60, 207, 145, 0.28); }
+
+.idea-opt { background: rgba(255,255,255,0.03); border: 1px solid var(--border-strong); border-radius: 10px; padding: 10px 14px; cursor: pointer; font-size: 14px; color: var(--muted-2); transition: all 0.15s; font-weight: 500; }
+.idea-opt:hover { border-color: #3a3a3a; background: rgba(255,255,255,0.06); }
+.idea-opt.selected { border-color: var(--accent); background: var(--accent-soft); color: #dcfce9; font-weight: 700; }
+.idea-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.idea-result { display: none; margin-top: 14px; }
+.idea-result.show { display: block; }
+
+.milestone { display: flex; gap: 14px; margin-bottom: 20px; align-items: flex-start; }
+.m-icon { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; color: #ffffff; }
+.m-content { flex: 1; }
+.m-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.m-desc { font-size: 13px; color: var(--muted-2); margin-bottom: 8px; line-height: 1.5; }
+
+.quote-card { background: var(--panel); border-radius: 12px; padding: 12px 16px; margin-bottom: 10px; border-left: 3px solid var(--accent); }
+.quote-text { font-size: 14px; color: var(--muted-2); line-height: 1.7; font-style: italic; margin-bottom: 6px; }
+.quote-author { font-size: 12px; color: var(--muted); font-style: normal; }
+
+.idea-q { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+.footer-links { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 14px; color: var(--muted); }
+.footer-links a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.footer-links a:hover { text-decoration: underline; }
+@media (max-width: 640px) {
+  .site-nav-inner { padding: 12px 18px; align-items: flex-start; flex-direction: column; }
+  .site-brand { font-size: 28px; }
+  .site-nav-links { width: 100%; gap: 2px; }
+  .site-nav-link { padding: 8px 10px; font-size: 14px; }
+  .wrapper { padding-top: 2.5rem; }
+  .grid-2, .grid-4, .idea-options { grid-template-columns: 1fr; }
+  .bar-label { width: 110px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="site-nav">
+  <div class="site-nav-inner">
+    <a class="site-brand" href="/"><span>{</span>A<span>}</span></a>
+    <div class="site-nav-links">
+      <a class="site-nav-link" href="/">Home</a>
+      <a class="site-nav-link" href="/projects">Projects</a>
+      <a class="site-nav-link" href="/blog">Blog</a>
+    </div>
+  </div>
+</div>
+<div class="wrapper">
+  <h1>SaaS Founder Playbook</h1>
+  <p class="subtitle">Synthesized from 110 Starter Story interviews — your $0 to $1,000 MRR blueprint</p>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('roadmap', this)">$0 → $1K roadmap</button>
+    <button class="tab" onclick="switchTab('ideas', this)">finding ideas</button>
+    <button class="tab" onclick="switchTab('routine', this)">daily routine</button>
+    <button class="tab" onclick="switchTab('tactics', this)">growth tactics</button>
+    <button class="tab" onclick="switchTab('principles', this)">core principles</button>
+    <button class="tab" onclick="switchTab('patterns', this)">what works</button>
+    <button class="tab" onclick="switchTab('apps', this)">80 real apps</button>
+  </div>
+
+  <!-- ROADMAP -->
+  <div id="sec-roadmap" class="section visible">
+    <p class="section-title">your $0 → $1,000 MRR roadmap</p>
+    <p class="section-sub">Distilled from 110 founder interviews. Each milestone has the exact moves that unlocked the next level.</p>
+
+    <div class="milestone">
+      <div class="m-icon" style="background:#1D9E75;">W1</div>
+      <div class="m-content">
+        <div class="m-title">week 1: find the problem, not the idea</div>
+        <div class="m-desc">Your first app should solve a problem you personally have — not one you brainstormed. 67% of founders in this dataset built for themselves first.</div>
+        <div>
+          <span class="pill pill-teal">go to Reddit/Discord where your ICP hangs out</span>
+          <span class="pill pill-teal">search for "is there a tool that..." posts</span>
+          <span class="pill pill-teal">list manual tasks you do repeatedly</span>
+          <span class="pill pill-gray">browse Acquire.com for validated ideas</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone">
+      <div class="m-icon" style="background:#6e66cc;">W2</div>
+      <div class="m-content">
+        <div class="m-title">week 2: validate before you build</div>
+        <div class="m-desc">Talk to 5–10 real humans, not friends. Post in the community where the problem lives. See if anyone clicks a fake "sign up" button or gives you their email.</div>
+        <div>
+          <span class="pill pill-purple">post in a relevant subreddit — describe the problem, not your solution</span>
+          <span class="pill pill-purple">DM 10 people in the community directly</span>
+          <span class="pill pill-purple">build a landing page before writing any code</span>
+          <span class="pill pill-gray">ask "would you pay $X/mo?" not "would you use this?"</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone">
+      <div class="m-icon" style="background:#c07c10;">W3</div>
+      <div class="m-content">
+        <div class="m-title">week 3–4: ship an "embarrassing" MVP</div>
+        <div class="m-desc">The founders who reach $1K MRR fastest shipped in under 2 weeks. One feature. No auth if you can avoid it. Ugly is fine. Use Cursor/Claude to build it.</div>
+        <div>
+          <span class="pill pill-amber">one core feature only — delete everything else</span>
+          <span class="pill pill-amber">use a boilerplate for auth + payments (Stripe)</span>
+          <span class="pill pill-amber">charge from day one — even $5/mo</span>
+          <span class="pill pill-gray">hard deadline: if not shipped in 14 days, kill it</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone">
+      <div class="m-icon" style="background:#c04e24;">$1</div>
+      <div class="m-content">
+        <div class="m-title">getting your first $1: do things that don't scale</div>
+        <div class="m-desc">Every single founder here got their first paying customer through direct, manual effort. No marketing funnel. Just DMs, Reddit posts, and cold outreach.</div>
+        <div>
+          <span class="pill pill-coral">post in the exact subreddit where your ICP lives</span>
+          <span class="pill pill-coral">DM 50 people on Twitter/LinkedIn personally</span>
+          <span class="pill pill-coral">offer free setup calls to get feedback (and sell)</span>
+          <span class="pill pill-coral">find "connectors" who already have your audience</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="milestone">
+      <div class="m-icon" style="background:#2272c3; font-size:11px;">$1K</div>
+      <div class="m-content">
+        <div class="m-title">$100 → $1,000 MRR: pick one growth channel and go deep</div>
+        <div class="m-desc">Between $0 and $1K, most founders succeed by mastering exactly one distribution channel. Don't split attention across 5 channels. Double down on what's working.</div>
+        <div>
+          <span class="pill pill-blue">SEO: competitor comparison pages + free tools</span>
+          <span class="pill pill-blue">TikTok/Reels: post daily, copy winning formats</span>
+          <span class="pill pill-blue">community: most helpful person in 2–3 subreddits</span>
+          <span class="pill pill-blue">PLG: generous free tier that sells itself</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      The median time to first dollar in this dataset: 3–6 weeks from idea to first paid customer. The median time to $1K MRR: 3–5 months. Speed compounds — launch now.
+    </div>
+  </div>
+
+  <!-- IDEAS -->
+  <div id="sec-ideas" class="section">
+    <p class="section-title">finding the right idea</p>
+    <p class="section-sub">Use this filter to narrow down which idea-finding strategy fits your situation.</p>
+
+    <div class="idea-q">what's your current situation?</div>
+    <div class="idea-options">
+      <div class="idea-opt" onclick="selectIdea('freelancer', this)">I freelance / do client work</div>
+      <div class="idea-opt" onclick="selectIdea('employed', this)">I'm employed full-time in tech</div>
+      <div class="idea-opt" onclick="selectIdea('nothing', this)">No tech background yet</div>
+      <div class="idea-opt" onclick="selectIdea('existing', this)">I already have an app with some users</div>
+    </div>
+
+    <div class="idea-result" id="idea-result-freelancer">
+      <div class="card card-accent-teal">
+        <div class="card-title">for freelancers</div>
+        <div class="card-h">Automate your own most painful manual task</div>
+        <div class="card-p" style="margin-bottom:10px;">Vikash (Bulkmockup) and Ivan (Lancer) both built tools for their own agency workflows. If you're doing something manually for 30+ minutes repeatedly, your clients have the same pain. Build the automation, sell it back to them, then sell it to everyone in that profession.</div>
+        <div>
+          <span class="pill pill-teal">go to Upwork → find repetitive task requests in your niche</span>
+          <span class="pill pill-teal">automate it with a quick script first</span>
+          <span class="pill pill-teal">offer it to the client + 10 similar clients as a tool</span>
+        </div>
+      </div>
+    </div>
+    <div class="idea-result" id="idea-result-employed">
+      <div class="card card-accent-purple">
+        <div class="card-title">for employed tech workers</div>
+        <div class="card-h">Build for the pain you see every day at work</div>
+        <div class="card-p" style="margin-bottom:10px;">You have deep domain knowledge in a specific vertical. The tools you wish existed at work are probably things thousands of other companies need too. Or pick a growing platform (Notion, Airtable, Shopify, Slack) and build an integration that solves a gap.</div>
+        <div>
+          <span class="pill pill-purple">list the top 5 tools/workflows that frustrate you at work</span>
+          <span class="pill pill-purple">check Reddit / Slack communities in your industry for complaints</span>
+          <span class="pill pill-purple">browse app marketplaces (Shopify, Notion, Figma) for gaps</span>
+        </div>
+      </div>
+    </div>
+    <div class="idea-result" id="idea-result-nothing">
+      <div class="card card-accent-amber">
+        <div class="card-title">for non-technical founders</div>
+        <div class="card-h">Start with a specific niche problem you deeply understand</div>
+        <div class="card-p" style="margin-bottom:10px;">Many founders in this dataset built successful businesses with minimal technical skills by focusing on a niche they knew deeply. Use no-code tools (Bubble, FlutterFlow) or AI coding assistants (Cursor). Your distribution advantage and domain knowledge matters more than your code quality.</div>
+        <div>
+          <span class="pill pill-amber">use Cursor + Claude to build — no CS degree needed</span>
+          <span class="pill pill-amber">pick a niche you have unfair distribution access to</span>
+          <span class="pill pill-amber">productize a service you already sell manually</span>
+        </div>
+      </div>
+    </div>
+    <div class="idea-result" id="idea-result-existing">
+      <div class="card card-accent-blue">
+        <div class="card-title">for existing app owners</div>
+        <div class="card-h">Mine your support tickets and churned users first</div>
+        <div class="card-p" style="margin-bottom:10px;">Vikash (Bulkmockup) generated 1,500 recorded support videos. Every support ticket is a product insight and a SEO content opportunity. Look at churned users — why did they leave? Look at your stickiest users — what's the one thing they can't live without?</div>
+        <div>
+          <span class="pill pill-blue">read every support ticket from last 30 days</span>
+          <span class="pill pill-blue">email churned users — ask one question only</span>
+          <span class="pill pill-blue">find your "aha moment" and optimize onboarding to reach it faster</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-title" style="margin-top:1.5rem;">idea validation checklist</p>
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div id="validation-checks"></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-accent-teal">
+        <div class="card-title">green flags — pursue this idea</div>
+        <div class="card-p">
+          <div style="margin-bottom:6px; color:#111110;">&#10003; Competitors exist and are making money (check Acquire.com)</div>
+          <div style="margin-bottom:6px; color:#111110;">&#10003; People are already paying for inferior alternatives</div>
+          <div style="margin-bottom:6px; color:#111110;">&#10003; The pain is recurring — not a one-time problem</div>
+          <div style="margin-bottom:6px; color:#111110;">&#10003; You can describe your ICP in one sentence</div>
+          <div style="color:#111110;">&#10003; You can reach your ICP in 2–3 places online</div>
+        </div>
+      </div>
+      <div class="card card-accent-coral">
+        <div class="card-title">red flags — kill this idea</div>
+        <div class="card-p">
+          <div style="margin-bottom:6px; color:#111110;">&#10007; No competitors exist (no market)</div>
+          <div style="margin-bottom:6px; color:#111110;">&#10007; Target users won't pay — only want it free</div>
+          <div style="margin-bottom:6px; color:#111110;">&#10007; You'd need to educate the market on why the problem exists</div>
+          <div style="margin-bottom:6px; color:#111110;">&#10007; You can't describe who the customer is exactly</div>
+          <div style="color:#111110;">&#10007; You've been "researching it" for more than 2 weeks</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROUTINE -->
+  <div id="sec-routine" class="section">
+    <p class="section-title">daily founder routine</p>
+    <p class="section-sub">The compressed schedule that the best solopreneur founders in this dataset follow. Optimized for someone with a full-time job or limited hours.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">phase 1: pre-launch (weeks 1–4)</div>
+        <div class="routine-row">
+          <div class="routine-time">30 min/day</div>
+          <div><div class="routine-task">customer research</div><div class="routine-note">Read Reddit threads, Twitter replies, 1-star competitor reviews. Document real quotes.</div></div>
+        </div>
+        <div class="routine-row">
+          <div class="routine-time">2–3 hrs/day</div>
+          <div><div class="routine-task">build</div><div class="routine-note">Ship one feature per session. Use Cursor. Don't polish. Focus on the core loop only.</div></div>
+        </div>
+        <div class="routine-row">
+          <div class="routine-time">30 min/day</div>
+          <div><div class="routine-task">community presence</div><div class="routine-note">Genuinely help 3–5 people in your target subreddit. Don't pitch. Just help.</div></div>
+        </div>
+        <div class="routine-row">
+          <div class="routine-time">weekly</div>
+          <div><div class="routine-task">talk to 5 potential customers</div><div class="routine-note">DM directly. Ask: "what are you using now? what's the worst part?" Not "would you use my app?"</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">phase 2: post-launch ($0 → $1K MRR)</div>
+        <div class="routine-row">
+          <div class="routine-time">1 hr/day</div>
+          <div><div class="routine-task">distribution — non-negotiable</div><div class="routine-note">Post content, reply to community threads, do SEO, or reach out to connectors. Every single day.</div></div>
+        </div>
+        <div class="routine-row">
+          <div class="routine-time">30 min/day</div>
+          <div><div class="routine-task">customer support (fast)</div><div class="routine-note">Reply to every user within 4 hours. Support doubles as your product roadmap.</div></div>
+        </div>
+        <div class="routine-row">
+          <div class="routine-time">1–2 hrs/day</div>
+          <div><div class="routine-task">product iteration</div><div class="routine-note">Ship one small improvement daily. Announce it publicly. Compounding visibility.</div></div>
+        </div>
+        <div class="routine-row">
+          <div class="routine-time">weekly</div>
+          <div><div class="routine-task">review your one metric</div><div class="routine-note">MRR, signups, or activation rate. One number only. Are you moving it this week?</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert alert-warn">
+      The single biggest mistake: spending 90% on building and 10% on distribution. After launch, flip it — distribution is the job.
+    </div>
+
+    <p class="section-title" style="margin-top:1.5rem;">weekly content loop (1 channel only)</p>
+    <div class="card">
+      <div class="routine-row">
+        <div class="routine-time">Monday</div>
+        <div><div class="routine-task">educational post</div><div class="routine-note">"How I solved [problem] using [your tool]" — be specific, show screenshots</div></div>
+      </div>
+      <div class="routine-row">
+        <div class="routine-time">Tuesday</div>
+        <div><div class="routine-task">community help</div><div class="routine-note">Answer 3 questions in target subreddit/Discord without pitching anything</div></div>
+      </div>
+      <div class="routine-row">
+        <div class="routine-time">Wednesday</div>
+        <div><div class="routine-task">build in public</div><div class="routine-note">Share one number: MRR, users, churn. People trust transparent founders.</div></div>
+      </div>
+      <div class="routine-row">
+        <div class="routine-time">Thursday</div>
+        <div><div class="routine-task">outreach day</div><div class="routine-note">Cold DM 10 people. Find connectors. Reach out to micro-influencers in your niche.</div></div>
+      </div>
+      <div class="routine-row">
+        <div class="routine-time">Friday</div>
+        <div><div class="routine-task">ship + announce</div><div class="routine-note">Deploy something — even a small improvement. Tweet/post the changelog.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TACTICS -->
+  <div id="sec-tactics" class="section">
+    <p class="section-title">growth tactics that actually work</p>
+    <p class="section-sub">Ranked by how many founders across 110 interviews used each approach successfully.</p>
+
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="card-title">channel frequency across 110 founders</div>
+      <div id="bars" style="margin-top:10px;"></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card card-accent-teal">
+        <div class="card-title">community &amp; reddit (most powerful for $0→$1K)</div>
+        <div class="card-p" style="margin-bottom:10px;">Engage genuinely for 2–3 weeks before posting anything about your product. Post a solution to a common problem — mention your tool as a side note, not the headline. Use F5bot to get real-time alerts when your problem keywords come up.</div>
+        <div><span class="pill pill-teal">r/entrepreneur, r/SaaS, r/[your niche]</span></div>
+      </div>
+      <div class="card card-accent-purple">
+        <div class="card-title">SEO (compounding, slow to start)</div>
+        <div class="card-p" style="margin-bottom:10px;">Target keywords with difficulty &lt;20 and volume &gt;500 on Ahrefs. Create competitor comparison pages — these rank fast and convert high. Build 2–3 free, ungated tools in adjacent spaces to capture related traffic.</div>
+        <div><span class="pill pill-purple">Ahrefs KD&lt;20 / volume&gt;500</span><span class="pill pill-purple">competitor comparison pages</span></div>
+      </div>
+      <div class="card card-accent-amber">
+        <div class="card-title">TikTok/short-form video (fastest for consumer apps)</div>
+        <div class="card-p" style="margin-bottom:10px;">Post daily for 30–45 days minimum. Copy the exact format of the top 3 performing competitors in your niche. Use 6-second videos with fast hooks. Test at volume: 100 variations to find one winner.</div>
+        <div><span class="pill pill-amber">post daily — no exceptions</span><span class="pill pill-amber">copy competitor formats exactly</span></div>
+      </div>
+      <div class="card card-accent-blue">
+        <div class="card-title">connectors &amp; affiliates (fastest for B2B)</div>
+        <div class="card-p" style="margin-bottom:10px;">Find coaches, influencers, or newsletter writers who already have your exact ICP as their audience. Offer 20–30% lifetime commissions. Ivan (Lancer) got to $10K MRR in month 4 using this alone. You only need 3–5 connectors.</div>
+        <div><span class="pill pill-blue">20–30% lifetime rev share</span><span class="pill pill-blue">target coaches in your niche</span></div>
+      </div>
+      <div class="card card-accent-coral">
+        <div class="card-title">product-led growth (builds itself over time)</div>
+        <div class="card-p" style="margin-bottom:10px;">Make a core feature completely free and ungated. Put your branding on every output. Every user who shares something branded is free marketing. This compounds silently over months.</div>
+        <div><span class="pill pill-coral">free tier with your branding on outputs</span><span class="pill pill-coral">viral sharing loop built in</span></div>
+      </div>
+      <div class="card card-accent-teal">
+        <div class="card-title">build in public (trust flywheel)</div>
+        <div class="card-p" style="margin-bottom:10px;">Share real numbers weekly. Post your MRR growth publicly on X/Twitter. Tag your launch on Product Hunt. Yasser (Chatbase) went viral overnight this way. Transparency converts skeptics into customers.</div>
+        <div><span class="pill pill-teal">weekly MRR updates</span><span class="pill pill-teal">Product Hunt launch</span><span class="pill pill-teal">GitHub stars if open source</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINCIPLES -->
+  <div id="sec-principles" class="section">
+    <p class="section-title">the principles behind every success</p>
+    <p class="section-sub">These aren't tips — they're the underlying beliefs that separate founders who reach $1K MRR from those who stay at $0.</p>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="principle">
+          <div class="principle-name">distribution beats product</div>
+          <div class="principle-desc">Every single founder who scaled fast spent more time on distribution than building. A mediocre product with great distribution beats a great product nobody finds.</div>
+          <div class="principle-source">Kelechi, Mau Baron, Rob Hallam + 30 others</div>
+        </div>
+        <div class="principle">
+          <div class="principle-name">solve one problem, solve it completely</div>
+          <div class="principle-desc">The fastest path to $1K MRR is a "pointy" app — one specific problem, one specific user type, solved better than anything else. Resist the urge to add features.</div>
+          <div class="principle-source">Vikash (Bulkmockup), Nic (Blog to Pin), Shaan (Alia)</div>
+        </div>
+        <div class="principle">
+          <div class="principle-name">charge from day one</div>
+          <div class="principle-desc">The founders who launched free and added pricing later almost universally say it was a mistake. Charging early filters serious users and validates the product. Even $5/mo.</div>
+          <div class="principle-source">Josef &amp; Timo, Tibo, Gil Hildebrand</div>
+        </div>
+        <div class="principle">
+          <div class="principle-name">copy what already works</div>
+          <div class="principle-desc">The biggest mistake is trying to invent a new market. Find a competitor making money, analyze their 1-star reviews, and build the better version. The market is proven. You just need to win it.</div>
+          <div class="principle-source">Will Cannon, David Attias, Samuel Rondot</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="principle">
+          <div class="principle-name">launch ugly, iterate fast</div>
+          <div class="principle-desc">Perfection kills more startups than competition does. Every founder in this dataset launched before they were ready. The market gives you real data no amount of planning can replicate.</div>
+          <div class="principle-source">Sabba (Veed.io), Yasser (Chatbase), Max</div>
+        </div>
+        <div class="principle">
+          <div class="principle-name">don't get emotionally attached</div>
+          <div class="principle-desc">Set a hard deadline (2 weeks or 30 days). If it doesn't get traction, kill it and move to the next idea. Attachment is a startup killer.</div>
+          <div class="principle-source">Loïc (Minia), Tibo, Florin Pop</div>
+        </div>
+        <div class="principle">
+          <div class="principle-name">the "aha moment" is your whole business</div>
+          <div class="principle-desc">Find the single moment when a user first gets value from your product. Every onboarding decision should exist to get users to that moment as fast as possible.</div>
+          <div class="principle-source">Connor Burd, Yasser (Chatbase), Lukas (Stagetimer)</div>
+        </div>
+        <div class="principle">
+          <div class="principle-name">volume negates luck</div>
+          <div class="principle-desc">Repeat an action (outreach, posts, experiments) enough times that variance no longer matters. Send 100 cold emails. Post 45 videos. Do 50 Reddit posts. Luck averages out at scale.</div>
+          <div class="principle-source">Mark Vassilevskiy</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1.5rem;">
+      <div class="card-title">founder mindset — from the data</div>
+      <div class="quote-card">
+        <div class="quote-text">"Stop optimizing for perfection. Start optimizing for getting real data from real humans."</div>
+        <div class="quote-author">recurring theme — Sabba Keynejad (Veed.io), Yasser (Chatbase), Mau Baron</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">"Your app should solve one problem so well that your ICP would be genuinely upset if it disappeared."</div>
+        <div class="quote-author">synthesized from Nic (Blog to Pin), Vikash (Bulkmockup), Shaan (Alia)</div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-text">"Every hour you spend building without talking to customers is a hypothesis, not progress."</div>
+        <div class="quote-author">Tibo, Andre Haykal Jr. (List Kit), Sam Adeniyi (Algrow)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PATTERNS -->
+  <div id="sec-patterns" class="section">
+    <p class="section-title">what the data actually shows</p>
+    <p class="section-sub">Patterns extracted from 110 founder interviews. Not opinion — frequency data.</p>
+
+    <div class="grid-4" style="margin-bottom:1.5rem;">
+      <div class="metric-card">
+        <div class="metric-label">interviews analyzed</div>
+        <div class="metric-val">110</div>
+        <div class="metric-sub">unique founder stories</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">built for own problem</div>
+        <div class="metric-val">~68%</div>
+        <div class="metric-sub">of successful founders</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">median launch time</div>
+        <div class="metric-val">2 weeks</div>
+        <div class="metric-sub">idea to first version</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">time to $1K MRR</div>
+        <div class="metric-val">3–5 mo</div>
+        <div class="metric-sub">post-launch median</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">what channel got them their first customers</div>
+        <div id="channel-bars" style="margin-top:10px;"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">what they say was their biggest mistake</div>
+        <div id="mistake-bars" style="margin-top:10px;"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem;">
+      <div class="card-title">revenue models that worked (by frequency)</div>
+      <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:8px;">
+        <span class="pill pill-teal" style="font-size:13px; padding:6px 14px;">subscription SaaS</span>
+        <span class="pill pill-purple" style="font-size:13px; padding:6px 14px;">freemium + paid tiers</span>
+        <span class="pill pill-amber" style="font-size:13px; padding:6px 14px;">app store (iOS/Android)</span>
+        <span class="pill pill-blue" style="font-size:13px; padding:6px 14px;">credit-based (API usage)</span>
+        <span class="pill pill-coral" style="font-size:13px; padding:6px 14px;">productized service first</span>
+        <span class="pill pill-gray" style="font-size:13px; padding:6px 14px;">lifetime deals (LTD)</span>
+        <span class="pill pill-gray" style="font-size:13px; padding:6px 14px;">ad revenue (content/games)</span>
+      </div>
+      <p class="card-p" style="margin-top:12px;">Subscription is overwhelmingly the most common model. Freemium works best when the free tier creates viral sharing (branded outputs, demo links). Lifetime deals work as a launch mechanism — not a long-term model.</p>
+    </div>
+
+    <div class="card" style="margin-top:1rem;">
+      <div class="card-title">best opportunities right now — from the data</div>
+      <div class="principle">
+        <div class="principle-name">build on top of a growing platform</div>
+        <div class="principle-desc">Shopify, Notion, Airtable, ChatGPT, Figma — platforms with app marketplaces give you built-in distribution. Erikas (Kaching Bundles) and Andy (Data Fetcher) reached $10K+ MRR using this alone. Find a painful gap in an active marketplace.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-name">automate a repetitive freelance workflow</div>
+        <div class="principle-desc">Go to Upwork. Search for the most-posted job categories in your niche. If people are paying humans to do it manually, there's a SaaS opportunity. Validate by doing the job yourself first.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-name">clone a successful app in a different geography or niche</div>
+        <div class="principle-desc">David Attias (Stoppr) found a successful app in one country and cloned it for another. Use Sensor Tower to verify competitor revenue. Then apply the same model to an adjacent niche where the solution doesn't exist yet.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPS -->
+  <div id="sec-apps" class="section">
+    <p class="section-title">80 real apps — ideas, categories & revenue</p>
+    <p class="section-sub">Every app from the 110 interviews, what they built, and what it made. Use this to spot patterns.</p>
+
+    <div class="grid-4" style="margin-bottom:1.5rem;">
+      <div class="metric-card">
+        <div class="metric-label">apps catalogued</div>
+        <div class="metric-val">80</div>
+        <div class="metric-sub">unique products</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">most common category</div>
+        <div class="metric-val">AI tools</div>
+        <div class="metric-sub">22 of 80 apps</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">fastest to $1M ARR</div>
+        <div class="metric-val">49 days</div>
+        <div class="metric-sub">Chatbase / List Kit</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">highest MRR in dataset</div>
+        <div class="metric-val">$750K/mo</div>
+        <div class="metric-sub">Minia (e-commerce AI)</div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:1.5rem;">
+      <div class="card">
+        <div class="card-title">apps by category (count)</div>
+        <div id="cat-bars" style="margin-top:10px;"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">median time to $10K MRR by category</div>
+        <div id="speed-bars" style="margin-top:10px;"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="card-title">revenue range distribution across all 80 apps</div>
+      <div id="rev-bars" style="margin-top:10px;"></div>
+      <p style="font-size:12px; color:#888; margin-top:10px;">Note: revenue figures are self-reported in interviews, typically representing peak or current MRR at time of filming.</p>
+    </div>
+
+    <!-- Filter buttons -->
+    <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:1rem;" id="cat-filters">
+      <button class="tab active" onclick="filterApps('all', this)">all categories</button>
+      <button class="tab" onclick="filterApps('AI tools', this)">AI tools</button>
+      <button class="tab" onclick="filterApps('Productivity/SaaS', this)">productivity / SaaS</button>
+      <button class="tab" onclick="filterApps('Mobile apps', this)">mobile apps</button>
+      <button class="tab" onclick="filterApps('Content/Social', this)">content / social</button>
+      <button class="tab" onclick="filterApps('E-commerce/Shopify', this)">e-commerce</button>
+      <button class="tab" onclick="filterApps('Developer tools', this)">dev tools</button>
+      <button class="tab" onclick="filterApps('Design/Creative', this)">design</button>
+    </div>
+
+    <div id="app-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:10px;"></div>
+  </div>
+  <div class="footer-links">
+    Data and inspiration from <a href="https://www.youtube.com/@starterstory" target="_blank" rel="noreferrer">Starter Story on YouTube</a>. 
+  </div>
+</div>
+
+<script>
+function switchTab(id, el) {
+  document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('visible'); });
+  document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById('sec-' + id).classList.add('visible');
+  el.classList.add('active');
+}
+
+function selectIdea(type, el) {
+  document.querySelectorAll('.idea-opt').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  document.querySelectorAll('.idea-result').forEach(function(r){ r.classList.remove('show'); });
+  document.getElementById('idea-result-' + type).classList.add('show');
+}
+
+var validationChecks = [
+  "I can describe my ideal customer in one specific sentence",
+  "Competitors already exist and are making money (not just free tools)",
+  "I found 3+ Reddit/forum posts where people complain about this problem",
+  "At least 1 person has told me they'd pay for a solution",
+  "I know exactly which 2-3 places online I can reach my ICP",
+  "The problem happens at least weekly for the user (recurring pain)",
+  "I can build an MVP in under 2 weeks",
+  "I will charge from day one — even $5/month"
+];
+
+var checksContainer = document.getElementById('validation-checks');
+var checkState = {};
+validationChecks.forEach(function(text, i) {
+  checkState[i] = false;
+  var row = document.createElement('div');
+  row.className = 'checklist-item';
+  row.innerHTML = '<div class="check-box" id="cb-' + i + '"></div><div class="check-text" id="ct-' + i + '">' + text + '</div>';
+  row.onclick = function() {
+    checkState[i] = !checkState[i];
+    document.getElementById('cb-' + i).classList.toggle('done', checkState[i]);
+    document.getElementById('ct-' + i).classList.toggle('done', checkState[i]);
+  };
+  checksContainer.appendChild(row);
+});
+
+function renderBars(containerId, data, color) {
+  var max = Math.max.apply(null, data.map(function(d){ return d.v; }));
+  var container = document.getElementById(containerId);
+  data.forEach(function(d) {
+    var pct = Math.round((d.v / max) * 100);
+    var row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML = '<div class="bar-label">' + d.l + '</div>'
+      + '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%; background:' + color + ';"></div></div>'
+      + '<div class="bar-count">' + d.v + '</div>';
+    container.appendChild(row);
+  });
+}
+
+renderBars('bars', [
+  {l:'Reddit / forums',v:38},{l:'SEO / content',v:34},{l:'TikTok / short video',v:28},
+  {l:'Build in public (X)',v:24},{l:'Product Hunt',v:22},{l:'Connectors/affiliates',v:18},
+  {l:'Cold outreach',v:16},{l:'App store (ASO)',v:14}
+], '#1D9E75');
+
+renderBars('channel-bars', [
+  {l:'Reddit / community',v:42},{l:'Direct cold DMs',v:35},{l:'SEO / organic',v:28},
+  {l:'TikTok / viral video',v:24},{l:'Connectors',v:16},{l:'Product Hunt',v:14}
+], '#6e66cc');
+
+renderBars('mistake-bars', [
+  {l:'Building too long',v:48},{l:'No distribution plan',v:41},{l:'No early pricing',v:29},
+  {l:'Chasing perfection',v:26},{l:'Wrong ICP',v:18},{l:'Too many features',v:15}
+], '#c04e24');
+
+var allApps = [
+  {name:"Supademo",founder:"Joseph Lee",cat:"AI tools",desc:"Interactive clickable product demos for B2B SaaS — no coding needed",rev:"$250K MRR",color:"#1D9E75"},
+  {name:"Lancer",founder:"Ivan Nedlekovski",cat:"Productivity/SaaS",desc:"AI agent that automates Upwork job discovery and bidding for freelancers",rev:"$10K MRR (mo. 4)",color:"#6e66cc"},
+  {name:"Duckmath",founder:"Maddox Schmidtoffer",cat:"Mobile apps",desc:"Unblocked games website for students to play at school via browser",rev:"$15K/mo",color:"#c07c10"},
+  {name:"Bulkmockup",founder:"Vikash",cat:"Productivity/SaaS",desc:"Photoshop plugin that automates mockup creation for e-commerce sellers",rev:"$12-13K MRR",color:"#6e66cc"},
+  {name:"Barn2 Plugins",founder:"Katie Keith",cat:"E-commerce/Shopify",desc:"WordPress plugins for document libraries and e-commerce functionality",rev:"$150K/mo",color:"#c04e24"},
+  {name:"Blog to Pin",founder:"Nic Polale",cat:"Productivity/SaaS",desc:"Pinterest automation tool that creates pins for blogger websites",rev:"$16K MRR",color:"#6e66cc"},
+  {name:"Postiz",founder:"Nevo",cat:"Productivity/SaaS",desc:"Open-source social media scheduling for 25 platforms",rev:"$17K MRR",color:"#6e66cc"},
+  {name:"Elephas",founder:"Ayush",cat:"AI tools",desc:"AI Mac assistant that indexes local files to create a personal knowledge base",rev:"$150K ARR",color:"#1D9E75"},
+  {name:"Prayer Lock",founder:"Mau Baron",cat:"Mobile apps",desc:"Blocks your phone until you pray — AI generates prayer based on mood",rev:"$21K/mo",color:"#c07c10"},
+  {name:"Algrow",founder:"Sam Adeniyi",cat:"AI tools",desc:"Researches and replicates viral formats, generates AI videos for TikTok/YouTube",rev:"$14K/mo",color:"#1D9E75"},
+  {name:"SiteGPT",founder:"Bhanu",cat:"AI tools",desc:"Custom chatbot trained on your website content for 24/7 automated support",rev:"$13K MRR",color:"#1D9E75"},
+  {name:"Launch Fast",founder:"Hassam (Ham)",cat:"Productivity/SaaS",desc:"AI product research tool for Amazon private label sellers",rev:"$21.8K MRR (day 60)",color:"#6e66cc"},
+  {name:"SuperX",founder:"Rob Hallam",cat:"Productivity/SaaS",desc:"Platform to grow on X by analyzing viral posts and assisting content creation",rev:"$13K MRR",color:"#6e66cc"},
+  {name:"Pushscroll",founder:"Alejandro & Mario",cat:"Mobile apps",desc:"Fitness app that forces you to do push-ups before scrolling social media",rev:"$30K/mo",color:"#c07c10"},
+  {name:"GlowUp",founder:"Louis",cat:"Mobile apps",desc:"AI makeup try-on app for women — find your best look without buying products",rev:"$15K/mo",color:"#c07c10"},
+  {name:"Subscribr",founder:"Gil Hildebrand",cat:"AI tools",desc:"AI scriptwriting tool for YouTube creators to streamline content production",rev:"$30K/mo",color:"#1D9E75"},
+  {name:"Minia",founder:"Loic Berthelot",cat:"AI tools",desc:"E-commerce product opportunity detection for dropshippers",rev:"$750K MRR",color:"#1D9E75"},
+  {name:"Coherence",founder:"Jack & Nick Sweeney",cat:"Mobile apps",desc:"Breathwork app to help anyone relax, focus, and sleep better",rev:"$11K/mo avg",color:"#c07c10"},
+  {name:"Stoppr",founder:"David Attias",cat:"Mobile apps",desc:"App to help women aged 13-25 stop sugar consumption — cloned from another market",rev:"$12K/mo (mo. 5)",color:"#c07c10"},
+  {name:"Social Wizard",founder:"Kelechi",cat:"Content/Social",desc:"AI dating assistant that crafts Instagram story responses and conversation openers",rev:"$60K/mo",color:"#2272c3"},
+  {name:"Payout",founder:"Connor Burd",cat:"Mobile apps",desc:"Class action lawsuit discovery — find lawsuits you qualify for to get money",rev:"$20K/mo (day 50)",color:"#c07c10"},
+  {name:"Momego",founder:"John McEvoy",cat:"Mobile apps",desc:"Bus and train tracking app for commuters in 160+ cities",rev:"$30K MRR",color:"#c07c10"},
+  {name:"Scrape Creators",founder:"Adrian Horning",cat:"Developer tools",desc:"Web scraping API for developers needing public data from social media",rev:"$20K MRR",color:"#777"},
+  {name:"Yadaphone",founder:"Denis Yurchak",cat:"Developer tools",desc:"Cheap international calls via browser for travelers and expats using VoIP",rev:"$13.3K MRR",color:"#777"},
+  {name:"Skale.solutions",founder:"Mark Vassilevskiy",cat:"Design/Creative",desc:"Design agency for AI companies — viral-focused websites and launch videos",rev:"$80K/mo",color:"#888"},
+  {name:"Arvo",founder:"Vasco",cat:"AI tools",desc:"AI-powered SEO content tool for marketing agencies to produce faster",rev:"$70K MRR",color:"#1D9E75"},
+  {name:"UpLead & Signaturely",founder:"Will Cannon",cat:"Productivity/SaaS",desc:"B2B data provider with verified emails + e-signature platform",rev:"$30M+ total sales",color:"#6e66cc"},
+  {name:"Setter AI",founder:"Josef & Timo",cat:"AI tools",desc:"AI appointment setter that instantly follows up and qualifies leads",rev:"$10K MRR",color:"#1D9E75"},
+  {name:"Wishlists",founder:"Christian Konnerth",cat:"Developer tools",desc:"Simple platform to create, manage and share curated wishlists with family",rev:"100K users",color:"#777"},
+  {name:"HelloAtlas",founder:"Sebastian Ghiorghiu",cat:"Other",desc:"SaaS tool to help non-technical users build their own apps using AI",rev:"$250K MRR",color:"#888"},
+  {name:"Waitly",founder:"Joe Rozek",cat:"Productivity/SaaS",desc:"Waitlist and reservation platform for restaurants and businesses with queues",rev:"$500K+ ARR pace",color:"#6e66cc"},
+  {name:"SuperGrow",founder:"Deven Bhooshan",cat:"Productivity/SaaS",desc:"SaaS for professionals to build personal brand on LinkedIn via AI posts",rev:"$65K in 3 days (LTD)",color:"#6e66cc"},
+  {name:"Natural Write",founder:"Nikita & Evgeniy",cat:"AI tools",desc:"AI tool that turns AI-generated text into human-like text to bypass detectors",rev:"$41K mo. 1",color:"#1D9E75"},
+  {name:"Alia",founder:"Shaan Arora",cat:"E-commerce/Shopify",desc:"Pop-up tool for e-commerce brands to improve marketing and sales conversion",rev:"$4M ARR (1 year)",color:"#c04e24"},
+  {name:"Uneed",founder:"Thomas Sanlis",cat:"Developer tools",desc:"Launch platform for indie hackers to showcase new tech products",rev:"$10K/mo",color:"#777"},
+  {name:"Papermark",founder:"Iuliia & Marc",cat:"Productivity/SaaS",desc:"Open-source document analytics and sharing platform for founders and investors",rev:"$75K MRR",color:"#6e66cc"},
+  {name:"Data Fetcher",founder:"Andy Cloak",cat:"Productivity/SaaS",desc:"Airtable extension to connect APIs and automatically import data",rev:"$23K/mo",color:"#6e66cc"},
+  {name:"Savewise",founder:"Avneesh",cat:"Productivity/SaaS",desc:"Earn credit card points and airline miles for things you already buy online",rev:"$25K/mo",color:"#6e66cc"},
+  {name:"YouForm",founder:"Abhishek",cat:"Productivity/SaaS",desc:"Form builder — simpler Typeform alternative with one-click migration",rev:"$11K MRR",color:"#6e66cc"},
+  {name:"Neural Frames",founder:"Nicolai Klemke",cat:"AI tools",desc:"AI music video generator for indie musicians who need visuals for songs",rev:"$100K/mo",color:"#1D9E75"},
+  {name:"Tech Lockdown",founder:"Ben Bozzay",cat:"Developer tools",desc:"Platform to block websites and apps — for intentional internet use by adults",rev:"$15K MRR",color:"#777"},
+  {name:"AppAlchemy",founder:"Diego Roshardt",cat:"AI tools",desc:"Like Cursor for mobile app design — AI-powered fast UI design tool",rev:"$17K/mo (mo. 4)",color:"#1D9E75"},
+  {name:"Chatbase",founder:"Yasser Elsaid",cat:"AI tools",desc:"Build custom AI chatbot trained on your own data, embed on any website",rev:"$1M ARR in 117 days",color:"#1D9E75"},
+  {name:"Stagetimer",founder:"Lukas Hermann",cat:"Productivity/SaaS",desc:"Web-based countdown timer and teleprompter for video producers and events",rev:"$25K/mo",color:"#6e66cc"},
+  {name:"HabitKit",founder:"Sebastian Rohl",cat:"Mobile apps",desc:"Visually beautiful habit tracking app with streak-based motivation",rev:"$15K MRR",color:"#c07c10"},
+  {name:"Supermeme.ai",founder:"Ramsri Goutham",cat:"AI tools",desc:"AI meme generator for marketers and social media creators",rev:"$8.5K/mo combined",color:"#1D9E75"},
+  {name:"Faceless.video",founder:"Jacob Seeger",cat:"Mobile apps",desc:"Automates creation and posting of faceless social media videos for creators",rev:"$1M ARR in 10 months",color:"#c07c10"},
+  {name:"Sync2sheets",founder:"Leandro Zubrezki",cat:"Productivity/SaaS",desc:"Google Sheets add-on to sync Notion databases directly to spreadsheets",rev:"$9K MRR",color:"#6e66cc"},
+  {name:"Creator Buddy",founder:"Alex Finn",cat:"AI tools",desc:"AI app that pulls tweets from X and coaches users on creating better content",rev:"$300K ARR in 2 weeks",color:"#1D9E75"},
+  {name:"Unicorn Platform",founder:"John Rush",cat:"Productivity/SaaS",desc:"Website and directory builder for founders to create landing pages fast",rev:"$3M ARR",color:"#6e66cc"},
+  {name:"CodeGuide",founder:"CJ Zafir",cat:"AI tools",desc:"Helps AI developers write detailed documentation for AI coding models",rev:"$42K MRR (day 90)",color:"#1D9E75"},
+  {name:"Veed.io",founder:"Sabba Keynejad",cat:"AI tools",desc:"Browser-based video editor for creators — add text, trim, edit without software",rev:"$1M+ ARR",color:"#1D9E75"},
+  {name:"Kaching Bundles",founder:"Erikas",cat:"E-commerce/Shopify",desc:"Shopify app to increase average order value through upsells and discounts",rev:"$4.5M ARR",color:"#c04e24"},
+  {name:"Mech Logo & Two Notes",founder:"Nico",cat:"Developer tools",desc:"AI logo generator + voice note to formatted text converter",rev:"Sold Mech Logo for $65K",color:"#777"},
+  {name:"Curiosity Quench",founder:"Jack Friks",cat:"Mobile apps",desc:"Reduces phone scrolling — gives you actionable hobby plans instead",rev:"$3K MRR",color:"#c07c10"},
+  {name:"Jenny AI",founder:"David Park",cat:"AI tools",desc:"EdTech AI tools for researchers to research, write and study faster",rev:"$10M+ ARR",color:"#1D9E75"},
+  {name:"Screenshot One",founder:"Dmytro Krasun",cat:"Productivity/SaaS",desc:"API that automates screenshot capture for companies of all sizes",rev:"$12K MRR",color:"#6e66cc"},
+  {name:"NoteForms",founder:"Julien Nahum",cat:"Productivity/SaaS",desc:"Form builder for Notion users — collect data directly into Notion databases",rev:"$37K MRR",color:"#6e66cc"},
+  {name:"AI Crea",founder:"Pauline",cat:"AI tools",desc:"Real estate agents upload empty room photos and get AI-renovated modern versions",rev:"$8K/mo",color:"#1D9E75"},
+  {name:"Puff Count",founder:"Steven Cravotta",cat:"Mobile apps",desc:"Vaping cessation tracker — tracks usage and provides habit-breaking support",rev:"$40K/mo",color:"#c07c10"},
+  {name:"Baked",founder:"Nick Buzz",cat:"Design/Creative",desc:"Unlimited design subscription service for startups and tech companies",rev:"$170K MRR",color:"#888"},
+  {name:"Superpower ChatGPT",founder:"Saeed Ezzati",cat:"Developer tools",desc:"Browser extension adding extra features to the ChatGPT interface",rev:"$20-30K MRR",color:"#777"},
+  {name:"List Kit",founder:"Andre Haykal Jr.",cat:"Other",desc:"Verified cold email leads for sales teams and solopreneurs",rev:"$1M ARR in 87 days",color:"#888"},
+  {name:"The Birdhouse",founder:"Marcos Ruiz",cat:"Content/Social",desc:"Twitter ghostwriting — tweets, threads, repurposed videos for founders and CEOs",rev:"$65K/mo",color:"#2272c3"},
+  {name:"Formula Bot",founder:"David Bressler",cat:"AI tools",desc:"AI tool for spreadsheet workers to generate formulas and work faster",rev:"$26K MRR",color:"#1D9E75"},
+  {name:"Design Joy",founder:"Brett Williams",cat:"Design/Creative",desc:"Unlimited design subscription for businesses — async requests via simple board",rev:"$2M+ ARR",color:"#888"},
+  {name:"Draft.dev",founder:"Karl Hughes",cat:"Content/Social",desc:"Technical content agency for companies marketing to software engineers",rev:"$2.5M ARR",color:"#2272c3"},
+  {name:"Tweet Hunter / Tibo",founder:"Tibo",cat:"Content/Social",desc:"Portfolio of 5 apps: Tweet Hunter, Outrank, Feather, Postyncer and more",rev:"$700K/mo total",color:"#2272c3"},
+  {name:"Barn2 Plugins",founder:"Katie Keith",cat:"E-commerce/Shopify",desc:"WordPress plugin portfolio for e-commerce and document management",rev:"$150K/mo",color:"#c04e24"},
+  {name:"PostBridge",founder:"Jack Friks",cat:"Content/Social",desc:"Social media scheduling and cross-posting tool for content creators",rev:"Growing",color:"#2272c3"},
+  {name:"Sheets & Giggles",founder:"Colin McIntosh",cat:"E-commerce/Shopify",desc:"Eco-friendly eucalyptus bed sheets — DTC e-commerce with pre-order validation",rev:"$1.2M month",color:"#c04e24"},
+  {name:"Assembly",founder:"Hunter Hammonds",cat:"Content/Social",desc:"Creator-led B2B productized services — all 4 companies at $1M+ ARR",rev:"$1M+ ARR each",color:"#2272c3"},
+  {name:"Wellness Apps (Presh)",founder:"Presh",cat:"Mobile apps",desc:"Portfolio of niche health apps: cold exposure, sun tracking, posture AI, tempo",rev:"$10.4K MRR",color:"#c07c10"},
+  {name:"Usi.mu / StoryShort",founder:"Samuel Rondot",cat:"AI tools",desc:"LinkedIn scraping + AI video generation for social media + AI coding tool",rev:"$35K/mo total",color:"#1D9E75"},
+];
+
+function renderAppGrid(filterCat) {
+  var grid = document.getElementById('app-grid');
+  grid.innerHTML = '';
+  var filtered = filterCat === 'all' ? allApps : allApps.filter(function(a){ return a.cat === filterCat; });
+  filtered.forEach(function(app) {
+    var color = app.color;
+    if (color.length === 4) {
+      color = '#' + color[1] + color[1] + color[2] + color[2] + color[3] + color[3];
+    }
+    var card = document.createElement('div');
+    var r = parseInt(color.slice(1, 3), 16);
+    var g = parseInt(color.slice(3, 5), 16);
+    var b = parseInt(color.slice(5, 7), 16);
+    var softBg = 'rgba(' + r + ',' + g + ',' + b + ',0.12)';
+    var softBorder = 'rgba(' + r + ',' + g + ',' + b + ',0.24)';
+    var softGlow = 'rgba(' + r + ',' + g + ',' + b + ',0.10)';
+    card.style.cssText = 'background:#080808; border:1px solid #171717; border-radius:16px; padding:14px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.03), inset 0 0 0 1px ' + softGlow + ';';
+    card.innerHTML = '<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">'
+      + '<div style="font-size:15px; font-weight:700; color:#ffffff; flex:1;">' + app.name + '</div>'
+      + '<span style="background:' + softBg + '; border:1px solid ' + softBorder + '; color:#f3f4f6; font-size:11px; font-weight:600; padding:2px 8px; border-radius:99px; white-space:nowrap; margin-left:8px;">' + app.cat + '</span>'
+      + '</div>'
+      + '<div style="font-size:12px; color:#8f9094; margin-bottom:8px;">' + app.founder + '</div>'
+      + '<div style="font-size:13px; color:#d1d5db; line-height:1.5; margin-bottom:10px;">' + app.desc + '</div>'
+      + '<div style="background:#111111; border:1px solid #1f1f1f; border-radius:999px; padding:5px 10px; font-size:12px; font-weight:700; color:#ffffff; display:inline-block;">&#128200; ' + app.rev + '</div>';
+    grid.appendChild(card);
+  });
+}
+
+function filterApps(cat, el) {
+  document.querySelectorAll('#cat-filters .tab').forEach(function(t){ t.classList.remove('active'); });
+  el.classList.add('active');
+  renderAppGrid(cat);
+}
+
+renderAppGrid('all');
+
+renderBars('cat-bars', [
+  {l:'AI tools',v:22},{l:'Productivity/SaaS',v:19},{l:'Mobile apps',v:14},
+  {l:'Content/Social',v:8},{l:'Other',v:7},{l:'E-commerce',v:6},
+  {l:'Dev tools',v:7},{l:'Design',v:3}
+], '#1D9E75');
+
+renderBars('speed-bars', [
+  {l:'AI tools',v:3},{l:'Content/Social',v:5},{l:'Dev tools',v:8},
+  {l:'E-commerce',v:10},{l:'Mobile apps',v:6},{l:'Productivity',v:7}
+], '#6e66cc');
+
+renderBars('rev-bars', [
+  {l:'$1K–$10K MRR',v:18},{l:'$10K–$30K MRR',v:28},{l:'$30K–$100K MRR',v:18},
+  {l:'$100K–$500K MRR',v:9},{l:'$500K+ MRR',v:5}
+], '#c07c10');
+
+</script>
+</body>
+</html>

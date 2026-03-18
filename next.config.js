@@ -9,4 +9,12 @@ module.exports = {
       'github.com',
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/founders-playbook',
+        destination: '/founders-playbook.html',
+      },
+    ]
+  },
 }
