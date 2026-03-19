@@ -93,6 +93,23 @@ body {
   gap: 6px;
   flex-wrap: wrap;
 }
+.site-nav-mobile-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.site-nav-mobile-toggle svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+}
 .site-nav-link {
   color: var(--text);
   text-decoration: none;
@@ -101,6 +118,75 @@ body {
   font-size: 16px;
 }
 .site-nav-link:hover { background: rgba(255,255,255,0.05); }
+.site-nav-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+}
+.site-nav-drawer.open { display: block; }
+.site-nav-drawer-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.48);
+}
+.site-nav-drawer-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(320px, 88vw);
+  height: 100%;
+  background: #080808;
+  border-left: 1px solid #1e2029;
+  box-shadow: -18px 0 48px rgba(0, 0, 0, 0.38);
+  display: flex;
+  flex-direction: column;
+}
+.site-nav-drawer-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding: 0 56px 0 24px;
+  border-bottom: 1px solid #1e2029;
+}
+.site-nav-drawer-brand {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+.site-nav-drawer-brand span { color: var(--muted); font-weight: 600; }
+.site-nav-drawer-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+}
+.site-nav-drawer-close:hover { background: rgba(255,255,255,0.06); }
+.site-nav-drawer-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.site-nav-drawer-link {
+  display: inline-flex;
+  width: fit-content;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 16px;
+  padding: 0;
+}
 .wrapper { max-width: 1040px; margin: 0 auto; padding: 3.5rem 1.25rem 2.5rem; }
 h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: 0.95; font-weight: 700; color: var(--text); margin-bottom: 10px; letter-spacing: -0.04em; }
 .subtitle { font-size: 15px; color: var(--muted); margin-bottom: 1.5rem; max-width: 760px; }
@@ -194,11 +280,13 @@ h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: 0.95; font-weight: 700;
 .footer-links { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 14px; color: var(--muted); }
 .footer-links a { color: var(--accent); font-weight: 600; text-decoration: none; }
 .footer-links a:hover { text-decoration: underline; }
+@media (max-width: 768px) {
+  .site-nav-inner { padding: 12px 22px; }
+  .site-nav-links { display: none; }
+  .site-nav-mobile-toggle { display: inline-flex; }
+}
 @media (max-width: 640px) {
-  .site-nav-inner { padding: 12px 18px; align-items: flex-start; flex-direction: column; }
   .site-brand { font-size: 28px; }
-  .site-nav-links { width: 100%; gap: 2px; }
-  .site-nav-link { padding: 8px 10px; font-size: 14px; }
   .wrapper { padding-top: 2.5rem; }
   .grid-2, .grid-4, .idea-options { grid-template-columns: 1fr; }
   .bar-label { width: 110px; font-size: 12px; }
@@ -213,6 +301,25 @@ h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: 0.95; font-weight: 700;
       <a class="site-nav-link" href="/">Home</a>
       <a class="site-nav-link" href="/projects">Projects</a>
       <a class="site-nav-link" href="/blog">Blog</a>
+    </div>
+    <button class="site-nav-mobile-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav-drawer" onclick="openNavDrawer()">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M4 7h16v2H4V7zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+<div class="site-nav-drawer" id="site-nav-drawer" aria-hidden="true">
+  <div class="site-nav-drawer-overlay" onclick="closeNavDrawer()"></div>
+  <div class="site-nav-drawer-panel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="site-nav-drawer-header">
+      <a class="site-nav-drawer-brand" href="/"><span>{</span>A<span>}</span></a>
+      <button class="site-nav-drawer-close" type="button" aria-label="Close navigation menu" onclick="closeNavDrawer()">&times;</button>
+    </div>
+    <div class="site-nav-drawer-body">
+      <a class="site-nav-drawer-link" href="/" onclick="closeNavDrawer()">Home</a>
+      <a class="site-nav-drawer-link" href="/projects" onclick="closeNavDrawer()">Projects</a>
+      <a class="site-nav-drawer-link" href="/blog" onclick="closeNavDrawer()">Blog</a>
     </div>
   </div>
 </div>
@@ -723,6 +830,34 @@ h1 { font-size: clamp(2.4rem, 5vw, 4.5rem); line-height: 0.95; font-weight: 700;
 </div>
 
 <script>
+function openNavDrawer() {
+  var drawer = document.getElementById('site-nav-drawer');
+  var toggle = document.querySelector('.site-nav-mobile-toggle');
+  if (!drawer || !toggle) return;
+  drawer.classList.add('open');
+  drawer.setAttribute('aria-hidden', 'false');
+  toggle.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeNavDrawer() {
+  var drawer = document.getElementById('site-nav-drawer');
+  var toggle = document.querySelector('.site-nav-mobile-toggle');
+  if (!drawer || !toggle) return;
+  drawer.classList.remove('open');
+  drawer.setAttribute('aria-hidden', 'true');
+  toggle.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+window.addEventListener('resize', function() {
+  if (window.innerWidth > 768) closeNavDrawer();
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') closeNavDrawer();
+});
+
 function switchTab(id, el) {
   document.querySelectorAll('.section').forEach(function(s){ s.classList.remove('visible'); });
   document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
