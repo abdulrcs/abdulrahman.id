@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react'
 
 import ReactGA from 'react-ga4'
 
+import matter from 'gray-matter'
 import mdxPrism from 'mdx-prism'
 
 import readingTime from 'reading-time'
@@ -233,7 +234,7 @@ export async function getStaticPaths() {
       type: 'project',
       state: 'published',
     },
-    pager: { limit: 10, offset: 0 },
+    pager: { limit: 100, offset: 0 },
   })
 
   return {
@@ -249,22 +250,56 @@ export async function getStaticProps({ params }) {
     repo: 'abdulrcs/abdulrahman.id',
     token: process.env.GITHUB_TOKEN,
   })
-  const data = await blog.getPost({
+  const data = await blog.getPosts({
     query: {
       author: 'abdulrcs',
       type: 'project',
-      search: params.slug,
+      state: 'published',
     },
+    pager: { limit: 100, offset: 0 },
   })
+  const matchedPost = data.edges.find(
+    ({ post }) => post.frontmatter.slug === params.slug,
+  )?.post
 
-  if (!data.post) {
+  if (!matchedPost) {
     return {
       notFound: true,
+      revalidate: 30,
     }
   }
 
-  const article = data.post
-  const source = article.body
+  const issueNumber = matchedPost.url.match(/\/issues\/(\d+)$/)?.[1]
+  if (!issueNumber) {
+    return {
+      notFound: true,
+      revalidate: 30,
+    }
+  }
+
+  const issueResponse = await fetch(
+    `https://api.github.com/repos/abdulrcs/abdulrahman.id/issues/${issueNumber}`,
+    {
+      headers: {
+        Accept: 'application/vnd.github+json',
+        ...(process.env.GITHUB_TOKEN
+          ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` }
+          : {}),
+      },
+    },
+  )
+
+  if (!issueResponse.ok) {
+    return {
+      notFound: true,
+      revalidate: 30,
+    }
+  }
+
+  const issue = await issueResponse.json()
+  const source = matter(issue.body || '').content
+  const article = { ...matchedPost, body: source }
+
   article.readingTime = readingTime(source).text
   const mdxSource = await serialize(source, {
     mdxOptions: {
@@ -272,7 +307,7 @@ export async function getStaticProps({ params }) {
     },
   })
 
-  const headings = source.match(/#{2,4} .+/g)
+  const headings = source.match(/#{2,4} .+/g) || []
   const toc = headings.map((heading) => {
     const level = heading.match(/#/g).length - 2
     const title = heading.replace(/#{2,4} /, '')
