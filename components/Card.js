@@ -8,6 +8,8 @@ import {
   TagLabel,
   TagLeftIcon,
   Text,
+  Wrap,
+  WrapItem,
 } from '@chakra-ui/react'
 import ReactGA from 'react-ga4'
 import {
@@ -70,14 +72,12 @@ export default function Cards({ imageURL, title, slug, desc, tag }) {
   const isLargerThan800 = useMediaQuery(800)
 
   const Tags = tag.map((item) => (
-    <Tag
-      key={item}
-      colorScheme={getTag(item)[0]}
-      size={isLargerThan800 ? 'md' : 'sm'}
-    >
-      <TagLeftIcon as={getTag(item)[1]}></TagLeftIcon>
-      <TagLabel>{item}</TagLabel>
-    </Tag>
+    <WrapItem key={item}>
+      <Tag colorScheme={getTag(item)[0]} size={isLargerThan800 ? 'md' : 'sm'}>
+        <TagLeftIcon as={getTag(item)[1]}></TagLeftIcon>
+        <TagLabel>{item}</TagLabel>
+      </Tag>
+    </WrapItem>
   ))
   const handleClick = (event) => {
     ReactGA.event({
@@ -91,6 +91,7 @@ export default function Cards({ imageURL, title, slug, desc, tag }) {
     <Stack
       minH="320px"
       maxH="500px"
+      minW={0}
       bg="secondary"
       border="1px"
       borderColor={{ base: '#333', md: 'borderColor' }}
@@ -116,7 +117,13 @@ export default function Cards({ imageURL, title, slug, desc, tag }) {
           </Center>
           <Stack px={4} py={2}>
             <Stack alignItems="center" justifyContent="space-between" isInline>
-              <Text color="displayColor" fontFamily="Ubuntu" fontSize="2xl">
+              <Text
+                color="displayColor"
+                fontFamily="Ubuntu"
+                fontSize="2xl"
+                minW={0}
+                wordBreak="break-word"
+              >
                 {title}
               </Text>
               <Stack
@@ -136,7 +143,7 @@ export default function Cards({ imageURL, title, slug, desc, tag }) {
                 </Link>
               </Stack>
             </Stack>
-            <Stack isInline>{Tags}</Stack>
+            <Wrap spacing={2}>{Tags}</Wrap>
             <Divider />
             <Text color="textSecondary" fontSize={['sm', 'md']}>
               {desc}

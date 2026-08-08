@@ -7,6 +7,8 @@ import {
   Button,
   SlideFade,
   Image,
+  Wrap,
+  WrapItem,
 } from '@chakra-ui/react'
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa'
 import useMediaQuery from '../hook/useMediaQuery'
@@ -123,42 +125,48 @@ export default function Introduction({ introduction }) {
         transition={{ enter: { duration: 0.4, delay: 1.0 } }}
         in={true}
       >
-        <Stack isInline spacing={4}>
-          <Link href="https://github.com/abdulrcs" isExternal>
-            <Button
-              pos="static"
-              color="white"
-              leftIcon={<FaGithub color="#3CCF91" />}
-              onClick={() => handleClick('introduction_github')}
-              size={isLargerThan800 ? 'md' : 'sm'}
-            >
-              Github
-            </Button>
-          </Link>
-          <Link href="https://linkedin.com/in/abdulrcs" isExternal>
-            <Button
-              pos="static"
-              color="white"
-              leftIcon={<FaLinkedin color="#3CCF91" />}
-              onClick={() => handleClick('introduction_linkedin')}
-              size={isLargerThan800 ? 'md' : 'sm'}
-            >
-              LinkedIn
-            </Button>
-          </Link>
-          <Link href="mailto:abdulrcs1@gmail.com" isExternal>
-            <Button
-              pos="static"
-              color="white"
-              transition="0.3s"
-              leftIcon={<FaEnvelope fill="#3CCF91" />}
-              onClick={() => handleClick('introduction_email')}
-              size={isLargerThan800 ? 'md' : 'sm'}
-            >
-              Email
-            </Button>
-          </Link>
-        </Stack>
+        <Wrap spacing={4}>
+          <WrapItem>
+            <Link href="https://github.com/abdulrcs" isExternal>
+              <Button
+                pos="static"
+                color="white"
+                leftIcon={<FaGithub color="#3CCF91" />}
+                onClick={() => handleClick('introduction_github')}
+                size={isLargerThan800 ? 'md' : 'sm'}
+              >
+                Github
+              </Button>
+            </Link>
+          </WrapItem>
+          <WrapItem>
+            <Link href="https://linkedin.com/in/abdulrcs" isExternal>
+              <Button
+                pos="static"
+                color="white"
+                leftIcon={<FaLinkedin color="#3CCF91" />}
+                onClick={() => handleClick('introduction_linkedin')}
+                size={isLargerThan800 ? 'md' : 'sm'}
+              >
+                LinkedIn
+              </Button>
+            </Link>
+          </WrapItem>
+          <WrapItem>
+            <Link href="mailto:abdulrcs1@gmail.com" isExternal>
+              <Button
+                pos="static"
+                color="white"
+                transition="0.3s"
+                leftIcon={<FaEnvelope fill="#3CCF91" />}
+                onClick={() => handleClick('introduction_email')}
+                size={isLargerThan800 ? 'md' : 'sm'}
+              >
+                Email
+              </Button>
+            </Link>
+          </WrapItem>
+        </Wrap>
       </SlideFade>
     </Stack>
   )
